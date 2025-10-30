@@ -3,535 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Veritas Vault - Get Paid 3 Times Daily. 100% Transparent. No KYC, No Lockups, No Middlemen.">
-    <meta name="keywords" content="crypto, staking, rewards, transparent, daily earnings">
-    <meta name="author" content="Veritas Vault">
-    <title>Veritas Vault - 100% Transparent Daily Earnings</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Earn up to 1.3% daily in DeFi with Veritas Vault. Passive income directly in your wallet. No lockups. No middlemen.">
+    <title>Veritas Vault DeFi | Get Paid 3 Times Daily</title>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --primary-purple: #6c2a91;
+            --dark-purple: #531c79;
+            --primary-green: #046601;
+            --dark-green: #035301;
+            --bg-dark: #37194f;
+            --text-light: #DEF2F8;
+            --text-secondary: #73798B;
+            --white: #ffffff;
+            --black: #000000;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background: linear-gradient(135deg, #1a0b2e 0%, var(--bg-dark) 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--text-light), var(--white));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .btn-primary {
-            transition: all 0.3s ease;
+        
+        .hero h1 strong {
+            color: var(--text-light);
         }
-        .btn-primary:hover {
+        
+        .hero .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 600;
+            margin: 30px 0;
+            color: var(--text-light);
+        }
+        
+        .hero .description {
+            font-size: clamp(16px, 2vw, 20px);
+            margin: 20px auto;
+            max-width: 800px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--text-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .highlight-box p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: visible;
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        
+        .btn-green {
+            background: linear-gradient(to bottom, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(4, 102, 1, 0.4);
+        }
+        
+        .btn-green:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
         }
-        .card-hover {
+        
+        .btn-purple {
+            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.4);
+        }
+        
+        .btn-purple:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 20px;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .section-title {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-light);
+        }
+        
+        /* Resources Section */
+        .resources {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--primary-purple);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-        .card-hover:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(108, 42, 145, 0.3);
         }
-        .faq-icon {
-            transition: transform 0.3s ease;
+        
+        .resource-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 20px 0 15px;
+            color: var(--text-light);
+        }
+        
+        .resource-card p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Disclaimer Section */
+        .disclaimer {
+            background: var(--bg-dark);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .disclaimer p {
+            font-size: clamp(10px, 2vw, 14px);
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .disclaimer strong {
+            color: var(--text-light);
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hero {
+                padding: 40px 15px 30px;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .highlight-box {
+                padding: 20px;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2), rgba(4, 102, 1, 0.2));
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin-bottom: 30px;
+            color: var(--text-light);
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">VV</span>
-                    </div>
-                    <span class="font-bold text-xl text-gray-900">Veritas Vault</span>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Features</a>
-                    <a href="#benefits" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Benefits</a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">Testimonials</a>
-                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium">About</a>
-                </div>
-
-                <!-- CTA Button Desktop -->
-                <div class="hidden md:block">
-                    <a href="https://veritasvault.app/dashboard?ref=0x3E0997a7490549ed9708460ca9A0c13D9cB35655" target="_blank" rel="noopener noreferrer" class="btn-primary bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-button md:hidden text-gray-900 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
-                <div class="px-4 py-4 space-y-4">
-                    <a href="#features" class="block text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium py-2">Features</a>
-                    <a href="#benefits" class="block text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium py-2">Benefits</a>
-                    <a href="#testimonials" class="block text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium py-2">Testimonials</a>
-                    <a href="#about" class="block text-gray-700 hover:text-purple-600 transition-colors duration-300 font-medium py-2">About</a>
-                    <a href="https://veritasvault.app/dashboard?ref=0x3E0997a7490549ed9708460ca9A0c13D9cB35655" target="_blank" rel="noopener noreferrer" class="block btn-primary bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold text-center hover:shadow-lg">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+<body>
+    
     <!-- Hero Section -->
-    <section class="relative py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center space-y-8">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-                    Get Paid <span class="gradient-text">3 Times Daily</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-700 font-semibold">100% Transparent</p>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                    Experience the future of transparent, decentralized earnings. No hidden fees, no complex processes—just pure, honest returns delivered directly to your wallet every single day.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-                    <a href="https://veritasvault.app/dashboard?ref=0x3E0997a7490549ed9708460ca9A0c13D9cB35655" target="_blank" rel="noopener noreferrer" class="btn-primary bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-2xl flex items-center justify-center gap-2">
-                        <i class="fas fa-rocket"></i> Start Earning Today
-                    </a>
-                    <a href="#features" class="btn-primary border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-50">
-                        Learn More
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-24 md:py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Why Choose Veritas Vault?</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Designed for users who demand transparency, simplicity, and real returns without compromise.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1: No KYC -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-user-secret text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">No KYC Required</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Start earning immediately without lengthy identity verification processes. Your privacy is protected while maintaining full compliance with regulatory standards. Join thousands of users enjoying frictionless access to premium earning opportunities.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Instant account setup
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Privacy-first approach
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Compliant verification
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Feature 2: No Lockups -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-lock-open text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">No Lockup Periods</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Your funds remain completely liquid and accessible at any moment. Unlike traditional staking platforms, we don't trap your capital in restrictive contracts. Withdraw anytime with zero penalties or waiting periods.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Complete liquidity
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Zero withdrawal fees
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Instant access anytime
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Feature 3: No Middlemen -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-handshake text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">No Middlemen</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        Direct peer-to-peer transactions without intermediaries taking cuts. Our blockchain-based infrastructure ensures you receive every penny you've earned. Complete transparency from deposit to withdrawal.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Direct transactions
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> No hidden fees
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-check text-green-500"></i> Full transparency
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="py-24 md:py-32 bg-gradient-to-br from-purple-50 to-blue-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Maximize Your Earnings</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Our intelligent system works around the clock to amplify your returns with minimal effort.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Benefit 1: Earn Every 8 Hours -->
-                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-                    <div class="flex items-start gap-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Earn Every 8 Hours</h3>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Three daily payment cycles mean you're earning consistently throughout the day and night. Your rewards are calculated and distributed automatically every 8 hours, keeping your capital productive 24/7.
-                            </p>
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <p class="text-sm font-semibold text-purple-700">
-                                    <i class="fas fa-star text-yellow-400 mr-2"></i> Up to 3 payouts per day
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Benefit 2: Staking Rewards -->
-                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-                    <div class="flex items-start gap-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-coins text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Premium Staking Rewards</h3>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Earn competitive staking rewards on your holdings with industry-leading APY rates. Our smart contract technology ensures optimal yield generation while maintaining your capital security and accessibility.
-                            </p>
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <p class="text-sm font-semibold text-purple-700">
-                                    <i class="fas fa-percentage text-yellow-400 mr-2"></i> Competitive APY rates
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Benefit 3: Auto-Compounding -->
-                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-                    <div class="flex items-start gap-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Automatic Compounding</h3>
-                            <p class="text-gray-700 leading-relaxed mb-4">
-                                Let the power of compounding work for you automatically. Every reward is reinvested instantly, exponentially growing your earnings over time. Watch your portfolio expand without lifting a finger.
-                            </p>
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <p class="text-sm font-semibold text-purple-700">
-                                    <i class="fas fa-rocket text-yellow-400 mr-2"></i> Exponential growth potential
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="relative py-24 md:py-32 bg-cover bg-center" style="background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Ready to Start Earning?
-            </h2>
-            <p class="text-lg md:text-xl text-white text-opacity-90 max-w-2xl mx-auto mb-8">
-                Join thousands of users who are already earning daily with Veritas Vault. No KYC, no lockups, no complications—just pure, transparent returns.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://veritasvault.app/dashboard?ref=0x3E0997a7490549ed9708460ca9A0c13D9cB35655" target="_blank" rel="noopener noreferrer" class="btn-primary bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:shadow-2xl flex items-center justify-center gap-2">
-                    <i class="fas fa-arrow-right"></i> Access Dashboard
-                </a>
-                <a href="#about" class="btn-primary border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600">
-                    Learn Our Story
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 md:py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Real users, real results. See what our community has to say about their experience with Veritas Vault.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        "Finally, a platform that delivers on its promises. I've been earning consistently every 8 hours for the past 3 months. The transparency is incredible—I can see every transaction on the blockchain."
-                    </p>
-                    <div class="border-t border-gray-300 pt-4">
-                        <p class="font-bold text-gray-900">Marcus Chen</p>
-                        <p class="text-sm text-gray-600">Crypto Investor</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        "No KYC was a game-changer for me. I started with a small amount and watched it grow through auto-compounding. The dashboard is user-friendly and withdrawal process is seamless."
-                    </p>
-                    <div class="border-t border-gray-300 pt-4">
-                        <p class="font-bold text-gray-900">Sarah Mitchell</p>
-                        <p class="text-sm text-gray-600">Digital Nomad</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        "The absence of middlemen is refreshing. I can see exactly where my money goes and what returns I'm getting. Been using Veritas Vault for 6 months now with zero issues."
-                    </p>
-                    <div class="border-t border-gray-300 pt-4">
-                        <p class="font-bold text-gray-900">James Rodriguez</p>
-                        <p class="text-sm text-gray-600">Tech Entrepreneur</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        "What impressed me most is the consistent daily payouts. Three times a day, like clockwork. The auto-compounding feature has turned my initial investment into something substantial. Highly recommend!"
-                    </p>
-                    <div class="border-t border-gray-300 pt-4">
-                        <p class="font-bold text-gray-900">Elena Kowalski</p>
-                        <p class="text-sm text-gray-600">Financial Advisor</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">About Veritas Vault</h2>
-                <p class="text-lg text-gray-600">Our mission to revolutionize transparent, decentralized finance</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Veritas Vault was founded on a simple but powerful principle: financial systems should be transparent, accessible, and fair. Born from the frustration of watching users get trapped in complex platforms with hidden fees and restrictive terms, our team of blockchain engineers and financial experts came together in 2023 to build something different. We recognized that the crypto space needed a platform where users could earn consistently without sacrificing their privacy, liquidity, or peace of mind. Today, Veritas Vault stands as a testament to what's possible when transparency meets innovation.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Our core mission is to democratize wealth creation through blockchain technology while maintaining the highest standards of integrity and user protection. We believe that everyone deserves access to premium earning opportunities without jumping through hoops or trusting centralized intermediaries. At Veritas Vault, we're committed to continuous innovation, absolute transparency in our operations, and putting our users first in every decision we make. Our values—honesty, simplicity, and reliability—guide everything we do, from product development to customer support. We're not just building a platform; we're building a community of empowered, informed users who understand exactly where their money is and how it's working for them.
-                    </p>
-                </div>
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl transform rotate-3 opacity-10"></div>
-                    <div class="relative bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                        <div class="grid grid-cols-2 gap-8">
-                            <div class="text-center">
-                                <p class="text-4xl font-bold gradient-text mb-2">50K+</p>
-                                <p class="text-gray-600 font-semibold">Active Users</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-4xl font-bold gradient-text mb-2">$500M+</p>
-                                <p class="text-gray-600 font-semibold">Total Value Staked</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-4xl font-bold gradient-text mb-2">99.9%</p>
-                                <p class="text-gray-600 font-semibold">Uptime</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-4xl font-bold gradient-text mb-2">24/7</p>
-                                <p class="text-gray-600 font-semibold">Support</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-100 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                <!-- Brand Column -->
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">VV</span>
-                        </div>
-                        <span class="font-bold text-xl text-white">Veritas Vault</span>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Transparent, decentralized earning platform delivering daily returns without compromise.
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="font-bold text-white mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors duration-300">Features</a></li>
-                        <li><a href="#benefits" class="text-gray-400 hover:text-white transition-colors duration-300">Benefits</a></li>
-                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors duration-300">Testimonials</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Legal Links -->
-                <div>
-                    <h3 class="font-bold text-white mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact & Social -->
-                <div>
-                    <h3 class="font-bold text-white mb-4">Connect With Us</h3>
-                    <p class="text-gray-400 text-sm mb-4">
-                        <i class="fas fa-envelope mr-2"></i>
-                        <a href="mailto:mtglegacyai@gmail.com" class="hover:text-white transition-colors duration-300">mtglegacyai@gmail.com</a>
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300" aria-label="Twitter">
-                            <i class="fab fa-twitter text-white"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300" aria-label="Discord">
-                            <i class="fab fa-discord text-white"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300" aria-label="Telegram">
-                            <i class="fab fa-telegram text-white"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p class="text-gray-400 text-sm">
-                        &copy; 2025 Veritas Vault. All rights reserved.
-                    </p>
-                    <p class="text-gray-400 text-sm">
-                        Built with transparency and trust for the blockchain community.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.querySelector('header nav .mobile-menu-button');
-            const mobileMenu = document.querySelector('header nav .mobile-menu');
+    <section class="hero">
+        <div class="container">
+            <h1>
+                🚨 <strong>100% Transparent</strong> • Your Money, Your Control
+            </h1>
             
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                    const icon = mobileMenuButton.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
-                    }
-                });
-
-                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-                mobileMenuLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                        const icon = mobileMenuButton.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
+            <h2 class="subtitle">Watch Your Money Grow Every 8 Hours!</h2>
+            
+            <p class="description">
+                <strong>Passively earn up to 1.3% per day</strong> directly in your wallet.
+            </p>
+            
+            <div class="highlight-box">
+                <p>
+                    Stake once and watch your balance grow <strong>3x daily</strong> automatically, right in your wallet. 
+                    <strong>No lockups. No middlemen.</strong>
+                </p>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <a href="#" class="btn btn-green">
+                    <i class="fas fa-rocket"></i> 👉 GO TO INVITER'S VVA SITE
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>🎬 Unlock Financial Freedom Today!</h2>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section class="resources">
+        <div class="container">
+            <h2 class="section-title">Essential Resources to Get Started</h2>
+            
+            <div class="resource-grid">
+                <!-- Presentation Card -->
+                <div class="resource-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-presentation"></i>
+                    </div>
+                    <h3>VVA PRESENTATION AND UPDATE</h3>
+                    <p>Includes the latest insights from our lead developer.</p>
+                    <a href="#" class="btn btn-purple">
+                        <i class="fas fa-play-circle"></i> Watch Now
+                    </a>
+                </div>
+                
+                <!-- Getting Started Card -->
+                <div class="resource-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>GETTING STARTED GUIDE</h3>
+                    <p>Start Here: Setup, Stake, and Grow Today</p>
+                    <a href="#" class="btn btn-purple">
+                        <i class="fas fa-arrow-right"></i> Read Guide
+                    </a>
+                </div>
+                
+                <!-- Help Videos Card -->
+                <div class="resource-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>HELP VIDEOS</h3>
+                    <p>Quick Video Guides to Master Veritas Vault</p>
+                    <a href="#" class="btn btn-purple">
+                        <i class="fas fa-play"></i> Watch Videos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Growing Your Crypto?</h2>
+            <a href="#" class="btn btn-green" style="font-size: 20px; padding: 20px 50px;">
+                <i class="fas fa-rocket"></i> Get Started Now
+            </a>
+        </div>
+    </section>
+    
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <p>
+                <strong>Disclaimer:</strong> Cryptocurrency investments carry risk. Past performance does not guarantee future results. 
+                This is not financial advice. Please do your own research and consult with a financial advisor before making investment decisions. 
+                Returns are not guaranteed and may vary. Always invest responsibly and only what you can afford to lose.
+            </p>
+        </div>
+    </section>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
-                });
-            }
-
-            // Smooth Scroll for Anchor Links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href !== '#' && href.length > 1) {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }
-                });
+                }
+            });
+        });
+        
+        // Add tracking events for buttons (replace with your tracking solution)
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('Button clicked:', this.textContent.trim());
+                // Add your analytics tracking here
+                // Example: gtag('event', 'click', { 'event_category': 'CTA', 'event_label': this.textContent });
             });
         });
     </script>
