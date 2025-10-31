@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Earn up to 1.3% daily in DeFi with Veritas Vault. Passive income directly in your wallet. No lockups. No middlemen.">
     <title>Veritas Vault App | Get Paid 3 Times Daily</title>
-    <link rel="icon" type="image/png" href="https://vaultveritas.com/images/vault-veritas-logo.jpg">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -207,24 +207,41 @@
             color: rgba(255, 255, 255, 0.8);
         }
         
-        /* Disclaimer Section */
-        .disclaimer {
-            background: var(--bg-dark);
-            padding: 40px 20px;
+        /* Footer Section */
+        .footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px 20px;
             text-align: center;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid rgba(108, 42, 145, 0.3);
         }
         
-        .disclaimer p {
-            font-size: clamp(10px, 2vw, 14px);
-            color: var(--text-secondary);
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.5;
+        .footer-links {
+            margin-bottom: 15px;
         }
         
-        .disclaimer strong {
+        .footer-links a {
             color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .footer-credit {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .footer-links a {
+                display: block;
+                margin: 10px 0;
+            }
         }
         
         /* Conversion Top Bar */
@@ -504,16 +521,19 @@
         </div>
     </section>
     
-    <!-- Disclaimer -->
-    <section class="disclaimer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p>
-                <strong>Disclaimer:</strong> Cryptocurrency investments carry risk. Past performance does not guarantee future results. 
-                This is not financial advice. Please do your own research and consult with a financial advisor before making investment decisions. 
-                Returns are not guaranteed and may vary. Always invest responsibly and only what you can afford to lose.
-            </p>
+            <div class="footer-links">
+                <a href="https://vaultveritas.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
+                <a href="https://vaultveritas.com/terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
+                <a href="https://vaultveritas.com/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+            </div>
+            <div class="footer-credit">
+                Made with ❤️ by Veritas Vault affiliates.
+            </div>
         </div>
-    </section>
+    </footer>
     
     <script>
         // Smooth scrolling for anchor links
