@@ -242,14 +242,8 @@
             gap: 25px;
             z-index: 9999;
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(108, 42, 145, 0.4);
+            animation: slideDown 0.7s ease-out;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        
-        /* Visible state - triggered after delay */
-        .conversion-bar.visible {
-            animation: slideDown 0.7s ease-out forwards;
         }
         
         /* Hidden state when scrolling down */
@@ -545,40 +539,22 @@
             });
         });
         
-        // Delayed appearance of conversion bar
-        window.addEventListener('load', function() {
-            const conversionBar = document.querySelector('.conversion-bar');
-            const DELAY_SECONDS = 3; // ⚙️ CUSTOMIZE THIS: Change number of seconds before bar appears
-            
-            setTimeout(function() {
-                conversionBar.classList.add('visible');
-            }, DELAY_SECONDS * 1000);
-        });
-        
         // Scroll-responsive conversion bar
         (function() {
             const conversionBar = document.querySelector('.conversion-bar');
             let lastScrollY = window.scrollY;
             let ticking = false;
-            let barHasAppeared = false;
             
             function updateConversionBar() {
                 const currentScrollY = window.scrollY;
                 
-                // Only apply scroll behavior after bar has initially appeared
-                if (conversionBar.classList.contains('visible')) {
-                    barHasAppeared = true;
-                }
-                
-                if (barHasAppeared) {
-                    // Show bar when scrolling up or at top of page
-                    if (currentScrollY < lastScrollY || currentScrollY < 10) {
-                        conversionBar.classList.remove('hidden');
-                    } 
-                    // Hide bar when scrolling down (and past initial view)
-                    else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                        conversionBar.classList.add('hidden');
-                    }
+                // Show bar when scrolling up or at top of page
+                if (currentScrollY < lastScrollY || currentScrollY < 10) {
+                    conversionBar.classList.remove('hidden');
+                } 
+                // Hide bar when scrolling down (and past initial view)
+                else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    conversionBar.classList.add('hidden');
                 }
                 
                 lastScrollY = currentScrollY;
