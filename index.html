@@ -416,6 +416,130 @@
             margin-bottom: 30px;
             color: var(--text-light);
         }
+        
+        /* Mission Section */
+        .mission-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.15) 0%, rgba(4, 102, 1, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(108, 42, 145, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .mission-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .mission-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.4);
+        }
+        
+        .mission-headline {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--white) 50%, var(--primary-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(108, 42, 145, 0.3);
+        }
+        
+        .mission-statement {
+            font-size: clamp(18px, 3vw, 24px);
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .mission-statement strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+        
+        .mission-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-green), #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .mission-cta {
+            margin-top: 40px;
+        }
+        
+        .mission-cta p {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .mission-cta .btn {
+            font-size: clamp(18px, 2.5vw, 22px);
+            padding: 20px 50px;
+            box-shadow: 0 8px 25px rgba(4, 102, 1, 0.5);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .mission-section {
+                padding: 60px 20px;
+            }
+            
+            .mission-stats {
+                gap: 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -459,15 +583,51 @@
         </div>
     </section>
     
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Mission Section -->
+    <section class="mission-section">
         <div class="container">
-            <h2>🎬 Unlock Financial Freedom Today!</h2>
+            <div class="mission-content">
+                <div class="mission-badge">
+                    🚀 OUR BOLD MISSION
+                </div>
+                
+                <h2 class="mission-headline">
+                    We're Building a Movement of 1 Million Earners
+                </h2>
+                
+                <p class="mission-statement">
+                    Join us in revolutionizing passive income. We're on a mission to help <strong>1 MILLION people worldwide</strong> 
+                    get paid <strong>3 times every single day</strong> through VVA token staking and propel the VVA token to 
+                    <strong>$100 per coin</strong> within the next 12 months.
+                </p>
+                
+                <div class="mission-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Target Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3x</div>
+                        <div class="stat-label">Daily Payouts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$100</div>
+                        <div class="stat-label">Target Price</div>
+                    </div>
+                </div>
+                
+                <div class="mission-cta">
+                    <p>💎 <strong>This isn't just an opportunity. It's a movement.</strong> Are you ready to be part of history?</p>
+                    <a href="#resources" class="btn btn-green">
+                        <i class="fas fa-rocket"></i> JOIN THE MOVEMENT - START NOW
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     
     <!-- Resources Section -->
-    <section class="resources">
+    <section class="resources" id="resources">
         <div class="container">
             <h2 class="section-title">Essential Resources to Get Started</h2>
             
