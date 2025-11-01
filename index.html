@@ -232,196 +232,87 @@
         }
         
         .footer-credit {
-            color: var(--text-secondary);
-            font-size: 13px;
-            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
         }
         
-        @media screen and (max-width: 768px) {
-            .footer-links a {
-                display: block;
-                margin: 10px 0;
-            }
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2) 0%, rgba(4, 102, 1, 0.2) 100%);
         }
         
-        /* Conversion Top Bar */
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+        
+        /* Conversion Bar */
         .conversion-bar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b3d 50%, #1a0b2e 100%);
-            border-bottom: 3px solid var(--primary-purple);
-            padding: 15px 20px;
+            right: 0;
+            background: linear-gradient(to right, var(--primary-purple), var(--primary-green));
+            padding: 12px 20px;
+            z-index: 1000;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 25px;
-            z-index: 9999;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(108, 42, 145, 0.4);
-            animation: slideDown 0.7s ease-out;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            flex-wrap: wrap;
         }
         
-        /* Hidden state when scrolling down */
         .conversion-bar.hidden {
             transform: translateY(-100%);
-            opacity: 0;
-        }
-        
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
         
         .conversion-bar-text {
-            font-size: clamp(14px, 2.5vw, 18px);
+            font-size: clamp(14px, 2vw, 16px);
             font-weight: 700;
             color: var(--white);
-            letter-spacing: 0.3px;
-            line-height: 1.3;
             text-align: center;
         }
         
         .conversion-bar-text .emphasis {
+            font-size: clamp(16px, 2.5vw, 20px);
             color: #FFD700;
-            text-transform: uppercase;
-            font-weight: 900;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 28px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            gap: 8px;
+            background: #25D366;
             color: var(--white);
-            font-size: 16px;
-            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 25px;
             text-decoration: none;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5), 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 14px;
             transition: all 0.3s ease;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .whatsapp-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .whatsapp-btn:hover::before {
-            width: 300px;
-            height: 300px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
         
         .whatsapp-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7), 0 0 30px rgba(37, 211, 102, 0.4);
-        }
-        
-        .whatsapp-btn:active {
-            transform: scale(0.98);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
         }
         
         .whatsapp-btn i {
             font-size: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .whatsapp-btn span {
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Add padding to body to prevent content from hiding under fixed bar */
-        body {
-            padding-top: 80px;
-        }
-        
-        /* Mobile Responsive for Conversion Bar */
-        @media screen and (max-width: 768px) {
-            body {
-                padding-top: 140px;
-            }
-            
-            .conversion-bar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .conversion-bar-text {
-                font-size: 14px;
-                line-height: 1.4;
-            }
-            
-            .whatsapp-btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-                padding: 14px 24px;
-            }
-        }
-        
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .hero {
-                padding: 40px 15px 30px;
-            }
-            
-            .btn {
-                padding: 15px 30px;
-                font-size: 16px;
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            .highlight-box {
-                padding: 20px;
-            }
-            
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2), rgba(4, 102, 1, 0.2));
-        }
-        
-        .cta-section h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            margin-bottom: 30px;
-            color: var(--text-light);
         }
         
         /* Mission Section */
         .mission-section {
-            text-align: center;
             padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(108, 42, 145, 0.15) 0%, rgba(4, 102, 1, 0.15) 100%);
+            background: linear-gradient(135deg, rgba(4, 102, 1, 0.15) 0%, rgba(108, 42, 145, 0.15) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -433,49 +324,49 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(108, 42, 145, 0.2) 0%, transparent 70%);
-            pointer-events: none;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23DEF2F8"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.1;
         }
         
         .mission-content {
-            position: relative;
-            z-index: 2;
             max-width: 900px;
             margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
         
         .mission-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            background: linear-gradient(to right, var(--primary-purple), var(--primary-green));
             color: var(--white);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 14px;
+            padding: 12px 30px;
+            border-radius: 50px;
             font-weight: 700;
-            text-transform: uppercase;
+            font-size: 14px;
             letter-spacing: 1px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.4);
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.3);
         }
         
         .mission-headline {
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, var(--text-light) 0%, var(--white) 50%, var(--primary-green) 100%);
+            background: linear-gradient(45deg, var(--text-light), var(--white));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(108, 42, 145, 0.3);
         }
         
         .mission-statement {
-            font-size: clamp(18px, 3vw, 24px);
-            line-height: 1.6;
+            font-size: clamp(18px, 2.5vw, 22px);
+            line-height: 1.8;
             color: var(--text-light);
-            margin-bottom: 25px;
-            font-weight: 500;
+            margin-bottom: 50px;
+            font-weight: 400;
         }
         
         .mission-statement strong {
@@ -484,42 +375,49 @@
         }
         
         .mission-stats {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
+            margin: 50px 0;
         }
         
         .stat-item {
-            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--primary-purple);
+            border-radius: 15px;
+            padding: 30px 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-green);
+            box-shadow: 0 10px 30px rgba(4, 102, 1, 0.3);
         }
         
         .stat-number {
-            font-size: clamp(36px, 5vw, 48px);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-green), #00ff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(42px, 6vw, 64px);
+            font-weight: 900;
+            color: var(--primary-green);
             line-height: 1;
             margin-bottom: 10px;
         }
         
         .stat-label {
-            font-size: clamp(14px, 2vw, 16px);
-            color: var(--text-secondary);
+            font-size: 16px;
+            color: var(--text-light);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 600;
         }
         
         .mission-cta {
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
         .mission-cta p {
-            font-size: clamp(16px, 2.5vw, 20px);
+            font-size: clamp(18px, 2.5vw, 22px);
             color: var(--text-light);
             margin-bottom: 25px;
             font-weight: 600;
@@ -531,6 +429,122 @@
             box-shadow: 0 8px 25px rgba(4, 102, 1, 0.5);
         }
         
+        /* ============================================
+           VIDEO MODAL POPUP STYLES - PREMIUM DESIGN
+           ============================================ */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .video-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.15), rgba(55, 25, 79, 0.2));
+            border: 3px solid rgba(222, 242, 248, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 
+                0 25px 80px rgba(0, 0, 0, 0.7),
+                0 0 60px rgba(108, 42, 145, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(222, 242, 248, 0.2);
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 6px 20px rgba(4, 102, 1, 0.5),
+                0 0 30px rgba(4, 102, 1, 0.3);
+            z-index: 10001;
+            font-weight: 700;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.15);
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            box-shadow: 
+                0 8px 30px rgba(108, 42, 145, 0.7),
+                0 0 50px rgba(108, 42, 145, 0.5);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .modal-close:active {
+            transform: rotate(90deg) scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+            }
+            to { 
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
         @media screen and (max-width: 768px) {
             .mission-section {
                 padding: 60px 20px;
@@ -538,6 +552,45 @@
             
             .mission-stats {
                 gap: 30px;
+            }
+            
+            .video-modal-content {
+                width: 95%;
+                padding: 20px;
+                border-width: 2px;
+            }
+            
+            .modal-close {
+                top: -12px;
+                right: -12px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                border-width: 2px;
+            }
+            
+            .video-wrapper {
+                border-width: 1px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .video-modal-content {
+                width: 98%;
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            .modal-close {
+                top: -10px;
+                right: -10px;
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .video-wrapper {
+                border-radius: 8px;
             }
         }
     </style>
@@ -632,6 +685,21 @@
             <h2 class="section-title">Essential Resources to Get Started</h2>
             
             <div class="resource-grid">
+                <!-- ============================================
+                     NEW CARD: Veritas Vault App Overview
+                     Positioned ABOVE VVA Presentation Card
+                     ============================================ -->
+                <div class="resource-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>VERITAS VAULT APP OVERVIEW</h3>
+                    <p>Master the app that pays you 3x daily in 4 minutes.</p>
+                    <a href="#" class="btn btn-purple" id="openOverviewVideo">
+                        <i class="fas fa-play-circle"></i> Watch Now
+                    </a>
+                </div>
+                
                 <!-- Presentation Card -->
                 <div class="resource-card">
                     <div class="feature-icon">
@@ -639,7 +707,7 @@
                     </div>
                     <h3>VVA PRESENTATION AND UPDATE</h3>
                     <p>Includes the latest insights from our lead developer.</p>
-                    <a href="#" class="btn btn-purple">
+                    <a href="#" class="btn btn-purple" id="openPresentationVideo">
                         <i class="fas fa-play-circle"></i> Watch Now
                     </a>
                 </div>
@@ -695,17 +763,122 @@
         </div>
     </footer>
     
+    <!-- ============================================
+         VIDEO MODAL POPUP - PREMIUM DESIGN
+         ============================================ -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-wrapper">
+                <iframe id="videoPlayer" 
+                        src="" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
     <script>
+        // ============================================
+        // VIDEO MODAL FUNCTIONALITY - PREMIUM EXPERIENCE
+        // ============================================
+        (function() {
+            const modal = document.getElementById('videoModal');
+            const overviewBtn = document.getElementById('openOverviewVideo');
+            const presentationBtn = document.getElementById('openPresentationVideo');
+            const closeBtn = document.getElementById('closeModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            // ACTUAL VIDEO URLS WITH OPTIMAL PARAMETERS
+            // Parameters explained:
+            // - autoplay=1: Auto-play video when modal opens
+            // - rel=0: Show only related videos from same channel
+            // - modestbranding=1: Minimal YouTube branding
+            // - controls=1: Show play/pause controls
+            // - showinfo=0: Hide video title (deprecated but still works in some cases)
+            
+            const videos = {
+                overview: 'https://www.youtube.com/embed/UZQzqpow_bE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0',
+                presentation: 'https://www.youtube.com/embed/ZNgtyM7o5jE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0'
+            };
+            
+            // Function to open modal with specific video
+            function openModal(videoType) {
+                modal.classList.add('active');
+                videoPlayer.src = videos[videoType];
+                document.body.style.overflow = 'hidden'; // Lock page scrolling
+                
+                // Track video view (add your analytics here)
+                console.log('Video opened:', videoType);
+            }
+            
+            // Function to close modal and stop video
+            function closeModal() {
+                modal.classList.remove('active');
+                videoPlayer.src = ''; // Stop video playback completely
+                document.body.style.overflow = ''; // Restore page scrolling
+                
+                // Track modal close (add your analytics here)
+                console.log('Video modal closed');
+            }
+            
+            // Event Listeners for Overview Video
+            if (overviewBtn) {
+                overviewBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal('overview');
+                });
+            }
+            
+            // Event Listeners for Presentation Video
+            if (presentationBtn) {
+                presentationBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal('presentation');
+                });
+            }
+            
+            // Close button click
+            closeBtn.addEventListener('click', closeModal);
+            
+            // Close when clicking outside the video content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // Prevent clicks inside modal content from closing
+            document.querySelector('.video-modal-content').addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        })();
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                
+                // Only process valid anchor links (not just '#')
+                if (href && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
