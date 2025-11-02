@@ -42,6 +42,17 @@
             font-variant-emoji: emoji;
         }
         
+        /* Emoji class to override webkit text fill and preserve color */
+        .emoji {
+            -webkit-text-fill-color: initial !important;
+            color: inherit !important;
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+            display: inline-block;
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif !important;
+        }
+        
         /* MOBILE FIX: Eliminate browser default spacing - SURGICAL PRECISION */
         @media (max-width: 768px) {
             html, body {
@@ -714,7 +725,7 @@
     <section class="hero">
         <div class="container">
             <h1>
-                <span style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; font-size: 1.1em;">🚨</span> <strong>100% Transparent</strong> • Your Money, Your Control
+                <span class="emoji">🚨</span> <strong>100% Transparent</strong> • Your Money, Your Control
             </h1>
             
             <h2 class="subtitle">Watch Your Money <span class="emphasis">Grow</span> and <span class="emphasis">Compound</span> Every 8 Hours!</h2>
@@ -747,7 +758,7 @@
                 </div>
                 
                 <h2 class="mission-headline">
-                    We're Building a Movement of 100,000 Earners <span style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;">💪🏽🚀</span>
+                    We're Building a Movement of 100,000 Earners <span class="emoji">💪🏽</span><span class="emoji">🚀</span>
                 </h2>
                 
                 <p class="mission-statement">
