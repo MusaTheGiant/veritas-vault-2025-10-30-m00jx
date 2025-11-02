@@ -275,46 +275,52 @@
         
         .step-item {
             display: flex;
-            gap: 25px;
-            margin-bottom: 40px;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0px;
             position: relative;
-            padding-right: 20px;
         }
         
-        .step-item:not(:last-child)::before {
+        .step-item:not(:last-child)::after {
             content: '';
             position: absolute;
-            left: 30px;
-            top: 70px;
+            left: 50%;
+            bottom: -30px;
+            transform: translateX(-50%);
             width: 3px;
-            height: calc(100% + 40px);
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
+            height: 30px;
+            background-image: linear-gradient(to bottom, var(--primary-purple) 50%, transparent 50%);
+            background-size: 3px 8px;
+            background-repeat: repeat-y;
             z-index: 0;
         }
         
         .step-number {
-            min-width: 60px;
-            width: 60px;
-            height: 60px;
+            min-width: 70px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
             position: relative;
             z-index: 1;
+            margin-bottom: 20px;
         }
         
         .step-content {
-            flex: 1;
+            width: 100%;
+            max-width: 900px;
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 25px;
+            padding: 30px;
             transition: all 0.3s ease;
+            margin-bottom: 30px;
         }
         
         .step-content:hover {
@@ -770,22 +776,24 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .step-item {
-                gap: 15px;
-                padding-right: 0;
+                margin-bottom: 0px;
             }
             
-            .step-item::before {
-                left: 27px;
+            .step-item:not(:last-child)::after {
+                bottom: -25px;
+                height: 25px;
             }
             
             .step-number {
-                width: 55px;
-                height: 55px;
-                font-size: 22px;
+                width: 60px;
+                height: 60px;
+                font-size: 26px;
+                margin-bottom: 15px;
             }
             
             .step-content {
-                padding: 20px;
+                padding: 25px 20px;
+                margin-bottom: 25px;
             }
             
             .video-grid {
@@ -823,13 +831,20 @@
         
         @media (max-width: 480px) {
             .step-number {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+                margin-bottom: 15px;
             }
             
             .step-content {
-                padding: 15px;
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .step-item:not(:last-child)::after {
+                bottom: -20px;
+                height: 20px;
             }
             
             .scroll-to-top {
