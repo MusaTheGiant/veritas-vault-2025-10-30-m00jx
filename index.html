@@ -35,13 +35,70 @@
             color: var(--white);
             background: linear-gradient(135deg, #1a0b2e 0%, var(--bg-dark) 100%);
             min-height: 100vh;
-            padding-top: 60px; /* Space for fixed conversion bar */
         }
         
         .container {
             max-width: 1170px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        /* Logo Section */
+        .logo-section {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 11, 46, 0.6) 100%);
+            padding: 20px 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(108, 42, 145, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-container {
+            max-width: 320px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(108, 42, 145, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(108, 42, 145, 0.3);
+        }
+        
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-section {
+                padding: 15px 15px 12px;
+            }
+            
+            .logo-container {
+                max-width: 280px;
+                padding: 12px 15px;
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-section {
+                padding: 12px 10px 10px;
+            }
+            
+            .logo-container {
+                max-width: 240px;
+                padding: 10px 12px;
+            }
         }
         
         /* Hero Section */
@@ -237,6 +294,12 @@
             font-size: 14px;
         }
         
+        /* General emphasis styling for hero and other sections */
+        .emphasis {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
         /* CTA Section */
         .cta-section {
             padding: 80px 20px;
@@ -249,71 +312,6 @@
             font-weight: 700;
             margin-bottom: 30px;
             color: var(--text-light);
-        }
-        
-        /* Conversion Bar */
-        .conversion-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
-            padding: 12px 20px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            flex-wrap: wrap;
-        }
-        
-        .conversion-bar.hidden {
-            transform: translateY(-100%);
-        }
-        
-        .conversion-bar-text {
-            font-size: clamp(14px, 2vw, 16px);
-            font-weight: 700;
-            color: var(--white);
-            text-align: center;
-        }
-        
-        .conversion-bar-text .emphasis {
-            font-size: clamp(16px, 2.5vw, 20px);
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        /* General emphasis styling for hero and other sections */
-        .emphasis {
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25D366;
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-        }
-        
-        .whatsapp-btn i {
-            font-size: 20px;
         }
         
         /* Mission Section */
@@ -615,16 +613,12 @@
 </head>
 <body>
     
-    <!-- Conversion Top Bar -->
-    <div class="conversion-bar">
-        <div class="conversion-bar-text">
-            <span class="emphasis">STOP</span> Struggling. <span class="emphasis">START</span> Earning. Clone This Proven Website.
+    <!-- Logo Section -->
+    <section class="logo-section">
+        <div class="logo-container">
+            <img src="https://vaultveritas.com/images/veritas-vault-registration.png" alt="Veritas Vault Logo">
         </div>
-        <a href="https://wa.me/27721714626" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-            <span>Let's Chat Now</span>
-        </a>
-    </div>
+    </section>
     
     <!-- Hero Section -->
     <section class="hero">
@@ -939,38 +933,6 @@
                 // Example: gtag('event', 'click', { 'event_category': 'CTA', 'event_label': this.textContent });
             });
         });
-        
-        // Scroll-responsive conversion bar
-        (function() {
-            const conversionBar = document.querySelector('.conversion-bar');
-            let lastScrollY = window.scrollY;
-            let ticking = false;
-            
-            function updateConversionBar() {
-                const currentScrollY = window.scrollY;
-                
-                // Show bar when scrolling up or at top of page
-                if (currentScrollY < lastScrollY || currentScrollY < 10) {
-                    conversionBar.classList.remove('hidden');
-                } 
-                // Hide bar when scrolling down (and past initial view)
-                else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    conversionBar.classList.add('hidden');
-                }
-                
-                lastScrollY = currentScrollY;
-                ticking = false;
-            }
-            
-            function requestTick() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateConversionBar);
-                    ticking = true;
-                }
-            }
-            
-            window.addEventListener('scroll', requestTick, { passive: true });
-        })();
     </script>
 </body>
 </html>
