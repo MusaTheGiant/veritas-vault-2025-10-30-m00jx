@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags - Optimized for Search Engines & AI -->
-    <meta name="description" content="Complete step-by-step guide to get started with Veritas Vault. Learn how to set up your Web3 wallet, connect to BNB Chain, and start earning passive income 3 times daily through DeFi staking.">
-    <meta name="keywords" content="Veritas Vault getting started, VVA token setup, MetaMask tutorial, BNB Chain setup, DeFi passive income, Web3 wallet guide, cryptocurrency staking, VVA staking guide, earn crypto daily">
+    <meta name="description" content="Complete step-by-step guide to get started with Veritas Vault. Learn how to set up your Web3 wallet, connect to BNB Chain, claim your staked tokens, and start earning passive income 3 times daily through DeFi staking.">
+    <meta name="keywords" content="Veritas Vault getting started, VVA token setup, MetaMask tutorial, BNB Chain setup, DeFi passive income, Web3 wallet guide, cryptocurrency staking, VVA staking guide, earn crypto daily, claim staking rewards">
     <meta name="author" content="Veritas Vault">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="Getting Started with Veritas Vault | Step-by-Step Setup Guide">
+    <meta property="og:title" content="Getting Started with Veritas Vault | Complete 5-Step Setup Guide">
     <meta property="og:description" content="Follow our easy step-by-step guide to set up your Veritas Vault account and start earning passive income 3 times daily through DeFi staking.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vaultveritas.com/getting-started.html">
@@ -21,7 +21,7 @@
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Getting Started with Veritas Vault | Step-by-Step Setup Guide">
+    <meta name="twitter:title" content="Getting Started with Veritas Vault | Complete 5-Step Setup Guide">
     <meta name="twitter:description" content="Follow our easy step-by-step guide to set up your Veritas Vault account and start earning passive income 3 times daily.">
     <meta name="twitter:image" content="https://vaultveritas.com/images/veritas-vault-logo.png">
     
@@ -63,12 +63,18 @@
           "name": "Connect and Register",
           "text": "Use your sponsor's referral link to connect your wallet and create your Veritas Vault account",
           "url": "https://vaultveritas.com/getting-started.html#step4"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Claim Your Staked Tokens",
+          "text": "After 24 hours, claim your VVA tokens to convert them to sVVA and start earning automatic compounding rewards every 8 hours",
+          "url": "https://vaultveritas.com/getting-started.html#step5"
         }
       ]
     }
     </script>
     
-    <title>Get Started with Veritas Vault | Complete Setup Guide 2025</title>
+    <title>Get Started with Veritas Vault | Complete 5-Step Setup Guide 2025</title>
     <link rel="canonical" href="https://vaultveritas.com/getting-started.html">
     <link rel="icon" type="image/png" href="images/favicon.png">
 
@@ -193,72 +199,46 @@
             
             .logo-container {
                 max-width: 280px;
-                margin-top: 0;
-                padding-top: 0;
             }
         }
         
         /* Hero Section */
         .hero {
+            padding: 40px 20px;
             text-align: center;
-            padding: 40px 20px 40px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero h1 {
-            font-size: clamp(32px, 5vw, 58px);
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(45deg, var(--text-light), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero .subtitle {
-            font-size: clamp(18px, 3vw, 24px);
-            font-weight: 600;
-            margin: 25px auto;
-            max-width: 800px;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-        
-        /* Getting Started Steps Section */
-        .getting-started {
-            padding: 60px 20px;
-            background: rgba(0, 0, 0, 0.2);
             overflow-x: hidden;
         }
         
-        .section-title {
-            text-align: center;
-            font-size: clamp(36px, 5vw, 48px);
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
             font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--gold), var(--text-light));
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--gold), #ffd700, #ffed4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             word-wrap: break-word;
         }
         
-        .section-subtitle {
-            text-align: center;
-            font-size: clamp(18px, 2.5vw, 22px);
+        .subtitle {
+            font-size: clamp(16px, 2.5vw, 22px);
             color: var(--text-light);
-            margin-bottom: 50px;
-            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
             word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
-        /* Roadmap Style Steps */
-        .steps-roadmap {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            padding: 20px 0;
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 15px;
+            }
+        }
+        
+        /* Getting Started Section */
+        .getting-started {
+            padding: 60px 20px;
             overflow-x: hidden;
         }
         
@@ -266,123 +246,131 @@
             .getting-started {
                 padding: 40px 15px;
             }
-            
-            .section-subtitle {
-                margin-bottom: 35px;
-            }
-            
-            .steps-roadmap {
-                padding: 15px 0;
-            }
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--gold);
+            word-wrap: break-word;
+        }
+        
+        .section-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 50px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Steps Roadmap */
+        .steps-roadmap {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
         }
         
         .step-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 50px;
+            gap: 25px;
+            margin-bottom: 40px;
             position: relative;
-            padding-left: 0;
-            gap: 30px;
+            padding-right: 20px;
         }
         
-        .step-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-item::before {
+        .step-item:not(:last-child)::before {
             content: '';
             position: absolute;
-            left: 35px;
-            top: 80px;
+            left: 30px;
+            top: 70px;
             width: 3px;
-            height: calc(100% + 30px);
+            height: calc(100% + 40px);
             background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
-            opacity: 0.5;
-        }
-        
-        .step-item:last-child::before {
-            display: none;
+            z-index: 0;
         }
         
         .step-number {
-            flex-shrink: 0;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            min-width: 60px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
             font-weight: 700;
-            color: var(--white);
-            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.6);
+            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
         
         .step-content {
             flex: 1;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
             transition: all 0.3s ease;
-            width: 100%;
-            overflow-x: hidden;
         }
         
         .step-content:hover {
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--primary-purple);
-            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.4);
-            transform: translateY(-5px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 42, 145, 0.3);
         }
         
         .step-title {
-            font-size: clamp(20px, 3vw, 26px);
+            font-size: clamp(20px, 2.5vw, 26px);
             font-weight: 700;
-            color: var(--gold);
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            color: var(--gold);
+            word-wrap: break-word;
+        }
+        
+        .step-title i {
+            margin-right: 10px;
+            color: var(--primary-green);
         }
         
         .step-description {
-            font-size: clamp(16px, 2vw, 18px);
+            font-size: clamp(15px, 1.8vw, 17px);
             color: var(--text-light);
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
         
-        .step-description a {
-            color: var(--gold);
-            text-decoration: underline;
-            word-break: break-all;
+        .step-description:last-child {
+            margin-bottom: 0;
         }
         
-        /* Contract Address Box */
+        /* Contract Boxes */
         .contract-box {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             border: 2px solid var(--primary-purple);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 15px;
-            margin: 15px 0;
-            width: 100%;
-            overflow-x: hidden;
+            margin: 20px 0;
         }
         
         .contract-label {
             font-size: 14px;
             color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            word-wrap: break-word;
+        }
+        
+        .contract-label i {
+            margin-right: 8px;
         }
         
         .contract-address-wrapper {
@@ -390,35 +378,34 @@
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
-            width: 100%;
         }
         
         .contract-address {
-            font-family: 'Courier New', monospace;
-            font-size: clamp(11px, 2vw, 15px);
-            color: var(--white);
-            word-break: break-all;
             flex: 1;
-            min-width: 0;
-            overflow-wrap: break-word;
-            line-height: 1.5;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(11px, 1.5vw, 14px);
+            color: var(--text-light);
+            word-break: break-all;
+            min-width: 200px;
         }
         
         .copy-btn {
+            padding: 12px 20px;
             background: linear-gradient(to bottom, var(--primary-green), var(--dark-green));
             color: var(--white);
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
             white-space: nowrap;
-            flex-shrink: 0;
         }
         
         .copy-btn:hover {
@@ -427,130 +414,134 @@
         }
         
         .copy-btn.copied {
-            background: linear-gradient(to bottom, var(--gold), #FFA500);
+            background: linear-gradient(to bottom, var(--gold), #d4af37);
         }
         
-        @media (max-width: 768px) {
-            .contract-box {
-                padding: 12px;
-            }
-            
-            .contract-address {
-                font-size: 11px;
-                width: 100%;
-            }
-            
-            .contract-address-wrapper {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-            }
-            
-            .copy-btn {
-                width: 100%;
-                justify-content: center;
-                padding: 12px;
-                font-size: 15px;
-            }
-        }
-        
-        /* Referral Link Box - Special Styling */
+        /* Referral Box */
         .referral-box {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(108, 42, 145, 0.15));
-            border: 3px solid var(--gold);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 30px 0;
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
-            animation: glow-pulse 3s infinite ease-in-out;
-            width: 100%;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
         }
         
-        @keyframes glow-pulse {
-            0%, 100% {
-                box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
-            }
-            50% {
-                box-shadow: 0 8px 40px rgba(255, 215, 0, 0.5);
-            }
+        /* Note Box */
+        .note-box {
+            background: rgba(4, 102, 1, 0.15);
+            border-left: 4px solid var(--primary-green);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
-        .referral-box .contract-label {
-            font-size: 18px;
+        .note-box strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .note-box ul {
+            margin: 10px 0 0 25px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .note-box li {
+            margin-bottom: 8px;
+            word-wrap: break-word;
+        }
+
+        /* Investment Options Box */
+        .investment-options-box {
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2), rgba(108, 42, 145, 0.05));
+            border: 3px solid var(--primary-purple);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0 30px 0;
+        }
+
+        .investment-options-title {
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .investment-option {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .investment-option:hover {
+            border-color: var(--gold);
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .investment-option-title {
+            font-size: clamp(18px, 2vw, 22px);
+            font-weight: 700;
             color: var(--gold);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
-            flex-wrap: wrap;
         }
-        
-        .referral-box .copy-btn {
-            background: linear-gradient(to bottom, var(--gold), #FFA500);
-            color: var(--black);
-            font-weight: 700;
-            font-size: 16px;
-            padding: 12px 25px;
-        }
-        
-        .referral-box .copy-btn:hover {
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-        
-        @media (max-width: 768px) {
-            .referral-box {
-                padding: 18px;
-                margin: 20px 0;
-            }
-            
-            .referral-box .contract-label {
-                font-size: 16px;
-            }
-            
-            .referral-box .contract-address {
-                font-size: 10px;
-            }
-        }
-        
-        /* Mobile Note Box */
-        .note-box {
-            background: rgba(4, 102, 1, 0.15);
-            border-left: 4px solid var(--primary-green);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            width: 100%;
-            overflow-x: hidden;
-        }
-        
-        .note-box strong {
-            color: var(--gold);
-            font-size: 16px;
-        }
-        
-        .note-box ul {
-            margin: 15px 0 10px 20px;
+
+        .investment-option-description {
+            font-size: clamp(15px, 1.8vw, 17px);
             color: var(--text-light);
-            padding-left: 10px;
-        }
-        
-        .note-box li {
-            margin: 10px 0;
-            line-height: 1.8;
+            line-height: 1.7;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
-        
-        @media (max-width: 768px) {
-            .note-box {
-                padding: 15px;
-            }
-            
-            .note-box ul {
-                margin-left: 10px;
-                padding-left: 5px;
-            }
+
+        .tip-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .tip-box-title {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-box-content {
+            font-size: clamp(15px, 1.8vw, 17px);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: clamp(20px, 2.5vw, 26px);
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Video Section */
@@ -560,42 +551,37 @@
             overflow-x: hidden;
         }
         
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
         @media (max-width: 768px) {
             .video-section {
                 padding: 40px 15px;
             }
-            
-            .video-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1170px;
+            margin: 0 auto;
         }
         
         .video-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .video-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+            border-color: var(--primary-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(108, 42, 145, 0.4);
         }
         
         .video-container {
             position: relative;
+            width: 100%;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
@@ -860,6 +846,14 @@
             .referral-box {
                 padding: 15px;
             }
+
+            .investment-options-box {
+                padding: 20px;
+            }
+
+            .investment-option {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -885,7 +879,7 @@
     <section id="getting-started" class="getting-started">
         <div class="container">
             <h2 class="section-title">Your Roadmap to Success</h2>
-            <p class="section-subtitle">Follow these 4 simple steps to begin your journey</p>
+            <p class="section-subtitle">Follow these 5 simple steps to begin your journey</p>
             
             <div class="steps-roadmap">
                 <!-- Step 1 -->
@@ -1016,10 +1010,85 @@
                                 <li>Confirm and pay the small gas fee to complete registration</li>
                             </ul>
                         </div>
-                        
-                        <p class="step-description" style="margin-top: 25px; font-size: 18px; font-weight: 600; color: var(--gold);">
-                            <i class="fas fa-check-circle"></i> That's it! Once registration is complete, you're ready to start earning!
+                    </div>
+                </div>
+
+                <!-- Step 5 - NEW CRITICAL STEP -->
+                <div class="step-item" id="step5">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">
+                            <i class="fas fa-hand-pointer"></i> Claim Your Staked Tokens After 24 Hours
+                        </h3>
+                        <p class="step-description">
+                            After you stake your VVA tokens, they will go into a <strong style="color: var(--gold);">24-hour holding balance</strong>. This is a critical step that many new members miss!
                         </p>
+                        <p class="step-description">
+                            <strong style="color: var(--gold);">Important:</strong> You must return to your Veritas Vault dashboard after 24 hours and click/tap the <strong>"Claim"</strong> button to convert your VVA tokens into sVVA (Staked VVA). Only after claiming will you begin receiving staking rewards.
+                        </p>
+                        
+                        <div class="note-box">
+                            <strong><i class="fas fa-clock"></i> How the Claiming Process Works</strong>
+                            <ul>
+                                <li>After buying and staking VVA tokens, wait 24 hours</li>
+                                <li>Return to your Veritas Vault dashboard</li>
+                                <li>Click/Tap the <strong>"Claim"</strong> button</li>
+                                <li>Your VVA tokens will be converted to sVVA (Staked VVA)</li>
+                                <li>You'll automatically start earning rewards every 8 hours (3 times daily)</li>
+                                <li>Rewards compound automatically - no further action needed!</li>
+                            </ul>
+                        </div>
+
+                        <p class="step-description" style="margin-top: 25px; font-size: 18px; font-weight: 600; color: var(--gold);">
+                            <i class="fas fa-check-circle"></i> Once you claim, your staking is complete and rewards begin automatically!
+                        </p>
+
+                        <!-- Investment Options Section -->
+                        <div class="investment-options-box">
+                            <div class="investment-options-title">
+                                <i class="fas fa-chart-line"></i> Choose Your Investment Strategy
+                            </div>
+
+                            <div class="investment-option">
+                                <div class="investment-option-title">
+                                    <i class="fas fa-rocket"></i> Best Option: Set It & Forget It
+                                </div>
+                                <p class="investment-option-description">
+                                    <strong style="color: var(--gold);">Invest $1,000+ DAI</strong> into VVA tokens and stake them. Watch it compound daily on autopilot. Withdraw and swap tokens at any time. This is the ideal strategy for serious passive income builders.
+                                </p>
+                            </div>
+
+                            <div class="investment-option">
+                                <div class="investment-option-title">
+                                    <i class="fas fa-flask"></i> Test the System
+                                </div>
+                                <p class="investment-option-description">
+                                    Buy a minimum of <strong style="color: var(--gold);">$20 worth of VVA</strong> to stake (you'll need about $5 in BNB for gas fees). Perfect for those who want to experience the platform before committing more capital.
+                                </p>
+                            </div>
+
+                            <div class="investment-option">
+                                <div class="investment-option-title">
+                                    <i class="fas fa-users"></i> Earn with the Comp Plan
+                                </div>
+                                <p class="investment-option-description">
+                                    Buy a minimum of <strong style="color: var(--gold);">$100 worth of VVA</strong> to stake (need about $5 in BNB for gas) and unlock the generous compensation plan. The price is rising - lock in your position early!
+                                </p>
+                            </div>
+
+                            <div class="tip-box">
+                                <div class="tip-box-title">
+                                    <i class="fas fa-lightbulb"></i> Pro Tip
+                                </div>
+                                <p class="tip-box-content">
+                                    Staked tokens earn compounding rewards every 8 hours. The earlier you start, the more you accumulate through the power of compound interest!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="welcome-message">
+                            🎉 Welcome to the VVA Family! 🎉
+                        </div>
                     </div>
                 </div>
             </div>
