@@ -635,17 +635,21 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            opacity: 1;  /* TESTING: Always visible */
-            visibility: visible;  /* TESTING: Always visible */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;  /* Not clickable when hidden */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 9999;
+            z-index: 99999;  /* Even higher to ensure it's on top */
             box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
             font-size: 20px;
+            -webkit-tap-highlight-color: transparent;  /* Remove tap highlight on mobile */
+            user-select: none;  /* Prevent text selection */
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;  /* Clickable when visible */
         }
         
         .scroll-to-top:hover {
@@ -672,14 +676,14 @@
             animation: scroll-pulse 2s infinite ease-in-out;
         }
         
-        /* Mobile optimization - larger touch target */
+        /* Mobile optimization - SMALLER, less obtrusive */
         @media screen and (max-width: 768px) {
             .scroll-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
-                font-size: 22px;
+                bottom: 15px;
+                right: 15px;
+                width: 45px;  /* Smaller on mobile */
+                height: 45px;  /* Smaller on mobile */
+                font-size: 18px;
             }
         }
         
@@ -1016,33 +1020,55 @@
         });
         
         // ==========================================
-        // SCROLL TO TOP BUTTON FUNCTIONALITY
+        // SCROLL TO TOP BUTTON FUNCTIONALITY - FIXED
         // ==========================================
-        const scrollToTopBtn = document.getElementById('scrollToTop');
         
-        // Only initialize if button exists
-        if (scrollToTopBtn) {
-            // Show/hide button based on scroll position
-            function toggleScrollButton() {
-                if (window.pageYOffset > 300) {
-                    scrollToTopBtn.classList.add('visible');
-                } else {
-                    scrollToTopBtn.classList.remove('visible');
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            if (scrollToTopBtn) {
+                console.log('Scroll-to-top button found and initialized!');
+                
+                // Show/hide button based on scroll position
+                function toggleScrollButton() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('visible');
+                    } else {
+                        scrollToTopBtn.classList.remove('visible');
+                    }
                 }
-            }
-            
-            // Smooth scroll to top
-            function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+                
+                // Smooth scroll to top function
+                function scrollToTop(e) {
+                    e.preventDefault();
+                    console.log('Scroll to top button clicked!');
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Event listeners
+                window.addEventListener('scroll', toggleScrollButton);
+                scrollToTopBtn.addEventListener('click', scrollToTop);
+                
+                // Also try with touch events for mobile
+                scrollToTopBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    console.log('Scroll to top button tapped!');
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
+                
+                // Initial check
+                toggleScrollButton();
+            } else {
+                console.error('Scroll-to-top button not found!');
             }
-            
-            // Event listeners for scroll-to-top button
-            window.addEventListener('scroll', toggleScrollButton);
-            scrollToTopBtn.addEventListener('click', scrollToTop);
-        }
+        });
     </script>
     
     <!-- Scroll to Top Button -->
