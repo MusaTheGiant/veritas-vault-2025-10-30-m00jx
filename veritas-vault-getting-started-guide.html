@@ -86,18 +86,35 @@
             box-sizing: border-box;
         }
         
+        /* Global overflow prevention */
+        *, *::before, *::after {
+            max-width: 100%;
+        }
+        
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--white);
             background: linear-gradient(135deg, #1a0b2e 0%, var(--bg-dark) 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        html {
+            overflow-x: hidden;
         }
         
         @media (max-width: 768px) {
             html, body {
                 margin: 0 !important;
                 padding: 0 !important;
+                overflow-x: hidden !important;
+                width: 100%;
             }
         }
         
@@ -105,6 +122,14 @@
             max-width: 1170px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
         }
         
         /* Logo Section */
@@ -195,6 +220,7 @@
         .getting-started {
             padding: 60px 20px;
             background: rgba(0, 0, 0, 0.2);
+            overflow-x: hidden;
         }
         
         .section-title {
@@ -206,6 +232,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            word-wrap: break-word;
         }
         
         .section-subtitle {
@@ -214,6 +241,7 @@
             color: var(--text-light);
             margin-bottom: 50px;
             font-weight: 500;
+            word-wrap: break-word;
         }
         
         /* Roadmap Style Steps */
@@ -222,6 +250,21 @@
             margin: 0 auto;
             position: relative;
             padding: 20px 0;
+            overflow-x: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .getting-started {
+                padding: 40px 15px;
+            }
+            
+            .section-subtitle {
+                margin-bottom: 35px;
+            }
+            
+            .steps-roadmap {
+                padding: 15px 0;
+            }
         }
         
         .step-item {
@@ -277,6 +320,8 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .step-content:hover {
@@ -293,6 +338,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .step-description {
@@ -300,6 +346,14 @@
             color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .step-description a {
+            color: var(--gold);
+            text-decoration: underline;
+            word-break: break-all;
         }
         
         /* Contract Address Box */
@@ -309,6 +363,8 @@
             border-radius: 12px;
             padding: 15px;
             margin: 15px 0;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .contract-label {
@@ -325,15 +381,18 @@
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            width: 100%;
         }
         
         .contract-address {
             font-family: 'Courier New', monospace;
-            font-size: clamp(12px, 2vw, 15px);
+            font-size: clamp(11px, 2vw, 15px);
             color: var(--white);
             word-break: break-all;
             flex: 1;
-            min-width: 200px;
+            min-width: 0;
+            overflow-wrap: break-word;
+            line-height: 1.5;
         }
         
         .copy-btn {
@@ -350,6 +409,7 @@
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .copy-btn:hover {
@@ -361,6 +421,30 @@
             background: linear-gradient(to bottom, var(--gold), #FFA500);
         }
         
+        @media (max-width: 768px) {
+            .contract-box {
+                padding: 12px;
+            }
+            
+            .contract-address {
+                font-size: 11px;
+                width: 100%;
+            }
+            
+            .contract-address-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+        
         /* Referral Link Box - Special Styling */
         .referral-box {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(108, 42, 145, 0.15));
@@ -370,6 +454,8 @@
             margin: 30px 0;
             box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
             animation: glow-pulse 3s infinite ease-in-out;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         @keyframes glow-pulse {
@@ -388,6 +474,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .referral-box .copy-btn {
@@ -402,6 +489,21 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
         }
         
+        @media (max-width: 768px) {
+            .referral-box {
+                padding: 18px;
+                margin: 20px 0;
+            }
+            
+            .referral-box .contract-label {
+                font-size: 16px;
+            }
+            
+            .referral-box .contract-address {
+                font-size: 10px;
+            }
+        }
+        
         /* Mobile Note Box */
         .note-box {
             background: rgba(4, 102, 1, 0.15);
@@ -409,6 +511,8 @@
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .note-box strong {
@@ -419,17 +523,32 @@
         .note-box ul {
             margin: 15px 0 10px 20px;
             color: var(--text-light);
+            padding-left: 10px;
         }
         
         .note-box li {
             margin: 10px 0;
             line-height: 1.8;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        @media (max-width: 768px) {
+            .note-box {
+                padding: 15px;
+            }
+            
+            .note-box ul {
+                margin-left: 10px;
+                padding-left: 5px;
+            }
         }
         
         /* Video Section */
         .video-section {
             padding: 60px 20px;
             background: rgba(0, 0, 0, 0.3);
+            overflow-x: hidden;
         }
         
         .video-grid {
@@ -438,6 +557,17 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .video-section {
+                padding: 40px 15px;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
         }
         
         .video-card {
@@ -537,6 +667,7 @@
             padding: 60px 20px;
             background: rgba(0, 0, 0, 0.4);
             text-align: center;
+            overflow-x: hidden;
         }
         
         .cta-section h2 {
@@ -544,6 +675,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--gold);
+            word-wrap: break-word;
         }
         
         .cta-section p {
@@ -553,6 +685,19 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .cta-section div {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 40px 15px;
+            }
         }
         
         /* Footer */
@@ -631,6 +776,7 @@
         @media (max-width: 768px) {
             .step-item {
                 gap: 15px;
+                padding-right: 0;
             }
             
             .step-item::before {
@@ -660,6 +806,24 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            /* Ensure all text wraps properly */
+            h1, h2, h3, h4, h5, h6 {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            p, li, span, div {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* Fix potential table overflow */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
         }
         
         @media (max-width: 480px) {
@@ -669,11 +833,23 @@
                 font-size: 20px;
             }
             
+            .step-content {
+                padding: 15px;
+            }
+            
             .scroll-to-top {
                 bottom: 20px;
                 right: 20px;
                 width: 45px;
                 height: 45px;
+            }
+            
+            .contract-box {
+                padding: 10px;
+            }
+            
+            .referral-box {
+                padding: 15px;
             }
         }
     </style>
