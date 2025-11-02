@@ -37,6 +37,14 @@
             min-height: 100vh;
         }
         
+        /* MOBILE FIX: Eliminate browser default spacing - SURGICAL PRECISION */
+        @media (max-width: 768px) {
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+        
         .container {
             max-width: 1170px;
             margin: 0 auto;
@@ -74,24 +82,29 @@
         
         @media (max-width: 768px) {
             .logo-section {
-                padding: 5px 15px 18px;
+                padding: 0 15px 18px; /* MOBILE FIX: Zero top padding */
                 margin-top: 0;
+                margin-bottom: 0;
             }
             
             .logo-container {
                 max-width: 320px;
+                margin-top: 0; /* MOBILE FIX: Zero top margin */
+                padding-top: 0; /* MOBILE FIX: Zero top padding */
             }
         }
         
         @media (max-width: 480px) {
             .logo-section {
-                padding: 0 15px 15px;
+                padding: 0 15px 15px; /* MOBILE FIX: Zero top padding maintained */
                 margin-top: 0;
+                margin-bottom: 0;
             }
             
             .logo-container {
                 max-width: 280px;
-                margin-top: 0;
+                margin-top: 0; /* MOBILE FIX: Zero top margin */
+                padding-top: 0; /* MOBILE FIX: Zero top padding */
             }
         }
         
