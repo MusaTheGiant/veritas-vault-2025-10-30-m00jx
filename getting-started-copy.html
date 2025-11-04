@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags - Optimized for Search Engines & AI -->
     <meta name="description" content="Complete step-by-step guide to get started with Veritas Vault. Learn how to set up your Web3 wallet, connect to BNB Chain, claim your staked tokens, and start earning passive income 3 times daily through DeFi staking.">
@@ -28,6 +28,9 @@
     <!-- WhatsApp / Telegram Sharing (uses Open Graph) -->
     <meta property="og:site_name" content="Veritas Vault">
     <meta property="og:locale" content="en_US">
+    
+    <!-- Additional sharing optimization -->
+    <link rel="image_src" href="https://vaultveritas.com/images/veritas-vault-logo.png">
     
     <!-- Structured Data for Search Engines -->
     <script type="application/ld+json">
@@ -77,7 +80,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
         :root {
             --primary-purple: #6c2a91;
@@ -90,8 +93,6 @@
             --white: #ffffff;
             --black: #000000;
             --gold: #FFD700;
-            --connector-color: rgba(108,42,145,0.95);
-            --connector-accent: rgba(255,215,0,0.95);
         }
         
         * {
@@ -270,19 +271,6 @@
             max-width: 900px;
             margin: 0 auto;
             position: relative;
-            padding: 40px 0;
-        }
-
-        /* SVG overlay container */
-        .connectors-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* so clicks go through to the steps */
-            z-index: 0;
-            overflow: visible;
         }
         
         .step-item {
@@ -291,7 +279,6 @@
             align-items: center;
             margin-bottom: 0px;
             position: relative;
-            z-index: 1; /* above the svg */
         }
         
         .step-item:not(:last-child)::after {
@@ -312,7 +299,8 @@
             min-width: 70px;
             width: 70px;
             height: 70px;
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -321,8 +309,17 @@
             font-weight: 700;
             box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
             position: relative;
-            z-index: 2;
+            z-index: 1;
             margin-bottom: 20px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        /* Enhanced hover effect matching scroll button aesthetic */
+        .step-number:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(108, 42, 145, 0.7);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .step-content {
@@ -605,6 +602,8 @@
             height: 0;
             overflow: hidden;
             background: var(--black);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
         }
         
         .video-container video {
@@ -614,6 +613,189 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        /* ========================================
+           PREMIUM VIDEO THUMBNAIL OVERLAY SYSTEM
+           ======================================== */
+        
+        /* Dark overlay on thumbnail for better play button visibility */
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(108, 42, 145, 0.2) 50%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+            z-index: 1;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .video-container:hover::before {
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(108, 42, 145, 0.35) 50%,
+                rgba(0, 0, 0, 0.5) 100%
+            );
+        }
+        
+        /* ========================================
+           CUSTOM PLAY BUTTON - CONVERSION OPTIMIZED
+           ======================================== */
+        
+        .video-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 30px rgba(108, 42, 145, 0.6),
+                0 0 0 0 rgba(255, 255, 255, 0.4);
+            animation: play-button-pulse 2.5s infinite ease-in-out;
+        }
+        
+        /* Play icon (triangle) */
+        .video-play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 28px solid var(--white);
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            margin-left: 6px; /* Center the triangle */
+            transition: all 0.3s ease;
+        }
+        
+        /* Hover effect on play button */
+        .video-container:hover .video-play-button {
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 
+                0 12px 40px rgba(108, 42, 145, 0.8),
+                0 0 0 15px rgba(255, 255, 255, 0.15);
+            border-color: var(--gold);
+        }
+        
+        .video-container:hover .video-play-button::after {
+            border-left-color: var(--gold);
+        }
+        
+        /* Active/Click effect */
+        .video-container:active .video-play-button {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        /* Pulse animation for play button */
+        @keyframes play-button-pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 30px rgba(108, 42, 145, 0.6),
+                    0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 35px rgba(108, 42, 145, 0.8),
+                    0 0 0 12px rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        /* Duration badge overlay (top right) */
+        .video-duration-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Quality badge (top left) */
+        .video-quality-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(4, 102, 1, 0.5);
+        }
+        
+        /* Hide play button when video is playing */
+        .video-container.playing .video-play-button {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .video-container.playing::before {
+            opacity: 0;
+        }
+        
+        /* Mobile optimization for play button */
+        @media screen and (max-width: 768px) {
+            .video-play-button {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .video-play-button::after {
+                border-left: 22px solid var(--white);
+                border-top: 14px solid transparent;
+                border-bottom: 14px solid transparent;
+                margin-left: 5px;
+            }
+            
+            .video-duration-badge,
+            .video-quality-badge {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .video-play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .video-play-button::after {
+                border-left: 18px solid var(--white);
+                border-top: 12px solid transparent;
+                border-bottom: 12px solid transparent;
+                margin-left: 4px;
+            }
         }
         
         .video-info {
@@ -753,97 +935,97 @@
             font-weight: 700;
         }
         
-        /* Scroll to Top Button */
+        /* ========================================
+           SCROLL TO TOP BUTTON - OPTIMIZED FOR CONVERSIONS
+           ======================================== */
+        
         .scroll-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             color: var(--white);
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
+            cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            pointer-events: none;  /* Not clickable when hidden */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 99999;  /* Even higher to ensure it's on top */
+            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
+            font-size: 20px;
+            -webkit-tap-highlight-color: transparent;  /* Remove tap highlight on mobile */
+            user-select: none;  /* Prevent text selection */
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;  /* Clickable when visible */
         }
         
         .scroll-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(108, 42, 145, 0.7);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.8);
+            border-color: rgba(255, 255, 255, 0.8);
         }
         
-        /* Connector path animation */
-        @keyframes dash-move {
-            to {
-                stroke-dashoffset: -200;
+        .scroll-to-top:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* Pulse animation to grab attention */
+        @keyframes scroll-pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(108, 42, 145, 0.9);
             }
         }
-
-        /* Make sure the svg paths are visible and animated */
-        .connector-path {
-            fill: none;
-            stroke: var(--connector-color);
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 8 10; /* dashed appearance */
-            filter: drop-shadow(0 4px 8px rgba(108,42,145,0.25));
-            opacity: 0.95;
-            animation: dash-move 6s linear infinite;
+        
+        .scroll-to-top.visible {
+            animation: scroll-pulse 2s infinite ease-in-out;
         }
-
-        /* Slightly lighter accent paths */
-        .connector-path.accent {
-            stroke: var(--connector-accent);
-            stroke-width: 2;
-            stroke-dasharray: 6 8;
-            opacity: 0.95;
-            animation: dash-move 5.5s linear infinite;
-        }
-
-        /* Third parallel path for the 'three-dashed' look */
-        .connector-path.offset {
-            stroke: var(--connector-color);
-            stroke-width: 2;
-            stroke-dasharray: 10 8;
-            opacity: 0.85;
-            animation: dash-move 6.6s linear infinite;
-        }
-
-        /* Arrowheads */
-        .connector-arrow {
-            fill: var(--connector-accent);
-            stroke: none;
-        }
-
-        /* Responsive tweaks */
-        @media (max-width: 900px) {
-            .steps-roadmap {
-                padding: 20px 0;
-            }
-
-            .connectors-svg {
-                /* allow more visible overflow on mobile */
-                overflow: visible;
+        
+        /* Mobile optimization - SMALLER, less obtrusive */
+        @media screen and (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;  /* Smaller on mobile */
+                height: 45px;  /* Smaller on mobile */
+                font-size: 18px;
             }
         }
-
-        @media (max-width: 480px) {
+        
+        /* Tablet optimization */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .scroll-to-top {
+                bottom: 25px;
+                right: 25px;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .step-item {
+                margin-bottom: 0px;
+            }
+            
+            .step-item:not(:last-child)::after {
+                bottom: -25px;
+                height: 25px;
+            }
+            
             .step-number {
+                min-width: 55px;
                 width: 55px;
                 height: 55px;
                 font-size: 24px;
@@ -851,14 +1033,83 @@
             }
             
             .step-content {
+                padding: 25px 20px;
+                margin-bottom: 25px;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contract-address-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Ensure all text wraps properly */
+            h1, h2, h3, h4, h5, h6 {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            p, li, span, div {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* Fix potential table overflow */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .step-number {
+                min-width: 50px;
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .step-content {
                 padding: 20px 15px;
                 margin-bottom: 20px;
             }
+            
+            .step-item:not(:last-child)::after {
+                bottom: -20px;
+                height: 20px;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .contract-box {
+                padding: 10px;
+            }
+            
+            .referral-box {
+                padding: 15px;
+            }
 
-            /* reduce dash animation complexity slightly on tiny screens */
-            .connector-path, .connector-path.accent, .connector-path.offset {
-                stroke-width: 2.2;
-                stroke-dasharray: 6 8;
+            .investment-options-box {
+                padding: 20px;
+            }
+
+            .investment-option {
+                padding: 15px;
             }
         }
     </style>
@@ -888,69 +1139,6 @@
             <p class="section-subtitle">Follow these 5 simple steps to begin your journey</p>
             
             <div class="steps-roadmap">
-                <!-- SVG overlay for S-shaped three-dashed connectors -->
-                <!--
-                    This SVG draws a set of S-shaped bezier curves that visually connect the steps.
-                    There are three parallel paths for the 'three-dashed' look. The paths are animated.
-                    preserveAspectRatio="none" lets it scale to the container.
-                -->
-                <svg class="connectors-svg" viewBox="0 0 1000 1800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                    <defs>
-                        <!-- Arrow marker -->
-                        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" class="connector-arrow"/>
-                        </marker>
-                        <!-- Soft glow -->
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-                            <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    <!-- Path coordinates are set for the container shape.
-                         Y positions correspond roughly to each step area:
-                         step1 ~ y=170, step2 ~ y=520, step3 ~ y=860, step4 ~ y=1200, step5 ~ y=1560
-                         These will scale to the container due to preserveAspectRatio="none".
-                    -->
-
-                    <!-- Primary S-shaped path (center) -->
-                    <path id="path-center" class="connector-path" d="
-                        M 500 200
-                        C 700 260, 780 420, 540 520
-                        C 320 600, 420 760, 580 860
-                        C 760 950, 720 1110, 520 1200
-                        C 300 1290, 420 1450, 580 1560
-                    " stroke-linecap="round" marker-end="url(#arrow)" filter="url(#glow)"></path>
-
-                    <!-- Left offset path -->
-                    <path id="path-left" class="connector-path offset" d="
-                        M 480 200
-                        C 680 260, 760 420, 520 520
-                        C 300 600, 400 760, 560 860
-                        C 740 950, 700 1110, 500 1200
-                        C 280 1290, 400 1450, 560 1560
-                    " stroke-linecap="round" marker-end="url(#arrow)"></path>
-
-                    <!-- Right offset accent path -->
-                    <path id="path-right" class="connector-path accent" d="
-                        M 520 200
-                        C 720 260, 800 420, 560 520
-                        C 340 600, 440 760, 600 860
-                        C 780 950, 740 1110, 540 1200
-                        C 320 1290, 440 1450, 600 1560
-                    " stroke-linecap="round" marker-end="url(#arrow)"></path>
-
-                    <!-- Final short downward connector from below step 5 pointing to claim area -->
-                    <path id="path-final" class="connector-path" d="
-                        M 600 1620
-                        C 600 1660, 600 1700, 500 1740
-                    " marker-end="url(#arrow)"></path>
-
-                </svg>
-
                 <!-- Step 1 -->
                 <div class="step-item" id="step1">
                     <div class="step-number">1</div>
@@ -1059,7 +1247,7 @@
                                 If you discovered Veritas Vault independently or from MTG 👑, use the official referral link below to get started:
                             </p>
                             <div class="contract-address-wrapper">
-                                <span class="contract-address" id="referral-link">https://veritasvault.app/dashboard?ref=0xa891226974f46aedabb285ac127dde25bd8891c2</span>
+                                <span class="contract-address" id="referral-link">https://veritasvault.app/dashboard?ref=0x3E0997a7490549ed9708460ca9A0c13D9cB35655</span>
                                 <button class="copy-btn" onclick="copyToClipboard('referral-link', this)">
                                     <i class="fas fa-copy"></i> Copy Link
                                 </button>
@@ -1173,11 +1361,19 @@
             <div class="video-grid">
                 <!-- Video 1 -->
                 <div class="video-card">
-                    <div class="video-container">
-                        <video controls preload="metadata" poster="images/video-thumbnail-1.jpg">
+                    <div class="video-container" data-video-id="video-1">
+                        <video id="video-1" preload="metadata" poster="images/video-thumbnail-1.jpg">
                             <source src="https://vaultveritas.com/videos/veritas-vault-tutorial-step-1-set-up-your-metamask-add-coins-like-a-pro.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        <!-- Custom Play Button -->
+                        <div class="video-play-button"></div>
+                        <!-- Duration Badge -->
+                        <div class="video-duration-badge">
+                            <i class="fas fa-clock"></i> 2:39
+                        </div>
+                        <!-- Quality Badge -->
+                        <div class="video-quality-badge">HD</div>
                     </div>
                     <div class="video-info">
                         <div class="video-step">Step 1 Tutorial</div>
@@ -1193,11 +1389,19 @@
                 
                 <!-- Video 2 -->
                 <div class="video-card">
-                    <div class="video-container">
-                        <video controls preload="metadata" poster="images/video-thumbnail-2.jpg">
+                    <div class="video-container" data-video-id="video-2">
+                        <video id="video-2" preload="metadata" poster="images/video-thumbnail-2.jpg">
                             <source src="https://vaultveritas.com/videos/veritas-vault-tutorial-step-2-how-to-swap-bnb-into-dai-quick-and-easy-guide.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        <!-- Custom Play Button -->
+                        <div class="video-play-button"></div>
+                        <!-- Duration Badge -->
+                        <div class="video-duration-badge">
+                            <i class="fas fa-clock"></i> 2:19
+                        </div>
+                        <!-- Quality Badge -->
+                        <div class="video-quality-badge">HD</div>
                     </div>
                     <div class="video-info">
                         <div class="video-step">Step 2 Tutorial</div>
@@ -1213,11 +1417,19 @@
                 
                 <!-- Video 3 -->
                 <div class="video-card">
-                    <div class="video-container">
-                        <video controls preload="metadata" poster="images/video-thumbnail-3.jpg">
+                    <div class="video-container" data-video-id="video-3">
+                        <video id="video-3" preload="metadata" poster="images/video-thumbnail-3.jpg">
                             <source src="https://vaultveritas.com/videos/veritas-vault-app-tutorial-step-3-and-4-buying-and-staking-vva.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        <!-- Custom Play Button -->
+                        <div class="video-play-button"></div>
+                        <!-- Duration Badge -->
+                        <div class="video-duration-badge">
+                            <i class="fas fa-clock"></i> 3:42
+                        </div>
+                        <!-- Quality Badge -->
+                        <div class="video-quality-badge">HD</div>
                     </div>
                     <div class="video-info">
                         <div class="video-step">Steps 3 & 4 Tutorial</div>
@@ -1349,13 +1561,18 @@
             });
         });
         
-        // ============================================
-        // SCROLL TO TOP BUTTON FUNCTIONALITY
-        // ============================================
+        // ==========================================
+        // SCROLL TO TOP BUTTON FUNCTIONALITY - FIXED
+        // ==========================================
+        
+        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             const scrollToTopBtn = document.getElementById('scrollToTop');
             
             if (scrollToTopBtn) {
+                console.log('Scroll-to-top button found and initialized!');
+                
+                // Show/hide button based on scroll position
                 function toggleScrollButton() {
                     if (window.pageYOffset > 300) {
                         scrollToTopBtn.classList.add('visible');
@@ -1364,74 +1581,110 @@
                     }
                 }
                 
+                // Smooth scroll to top function
                 function scrollToTop(e) {
                     e.preventDefault();
+                    console.log('Scroll to top button clicked!');
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
                 }
                 
+                // Event listeners
                 window.addEventListener('scroll', toggleScrollButton);
                 scrollToTopBtn.addEventListener('click', scrollToTop);
                 
-                // Mobile touch support
+                // Also try with touch events for mobile
                 scrollToTopBtn.addEventListener('touchend', function(e) {
                     e.preventDefault();
+                    console.log('Scroll to top button tapped!');
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
                 });
                 
+                // Initial check
                 toggleScrollButton();
+            } else {
+                console.error('Scroll-to-top button not found!');
             }
         });
         
         // ============================================
-        // VIDEO ANALYTICS TRACKING (Optional)
+        // PREMIUM VIDEO PLAYER WITH CUSTOM CONTROLS
         // ============================================
-        document.querySelectorAll('video').forEach(video => {
-            video.addEventListener('play', function() {
-                console.log('Video played:', this.src);
-                // Add your analytics tracking here
+        
+        // Initialize all video players
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainers = document.querySelectorAll('.video-container');
+            
+            videoContainers.forEach(container => {
+                const video = container.querySelector('video');
+                const playButton = container.querySelector('.video-play-button');
+                
+                if (!video || !playButton) return;
+                
+                // Play video when custom play button is clicked
+                playButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    playVideo(container, video);
+                });
+                
+                // Also allow clicking anywhere on the container to play
+                container.addEventListener('click', function(e) {
+                    // Only play if clicking the container itself or overlay, not the video controls
+                    if (e.target === container || e.target === playButton) {
+                        playVideo(container, video);
+                    }
+                });
+                
+                // When video starts playing, hide custom controls
+                video.addEventListener('play', function() {
+                    container.classList.add('playing');
+                    console.log('Video started:', video.querySelector('source').src);
+                    
+                    // Add your analytics tracking here
+                    // Example: gtag('event', 'video_play', { 'video_title': video.id });
+                });
+                
+                // When video is paused, show custom controls again
+                video.addEventListener('pause', function() {
+                    container.classList.remove('playing');
+                    console.log('Video paused:', video.querySelector('source').src);
+                });
+                
+                // When video ends, show custom controls again
+                video.addEventListener('ended', function() {
+                    container.classList.remove('playing');
+                    video.currentTime = 0; // Reset to beginning
+                    console.log('Video completed:', video.querySelector('source').src);
+                    
+                    // Add your analytics tracking here
+                    // Example: gtag('event', 'video_complete', { 'video_title': video.id });
+                });
+                
+                // Handle video errors gracefully
+                video.addEventListener('error', function() {
+                    console.error('Video load error:', video.querySelector('source').src);
+                    
+                    // You could display a user-friendly error message here
+                    playButton.style.opacity = '0.5';
+                });
             });
             
-            video.addEventListener('ended', function() {
-                console.log('Video completed:', this.src);
-                // Add your analytics tracking here
-            });
-        });
-
-        // ============================================
-        // Adjust SVG stroke-dashoffset based on path length for smoother animation
-        // (This makes the dash animation consistent across screens)
-        // ============================================
-        function normalizeConnectorAnimations() {
-            const paths = document.querySelectorAll('.connectors-svg path.connector-path, .connectors-svg path.connector-path.accent, .connectors-svg path.connector-path.offset');
-            paths.forEach(p => {
-                try {
-                    const len = p.getTotalLength();
-                    // set dasharray proportional to length to keep dash pattern pleasing when scaled
-                    p.style.strokeDasharray = Math.min(18, Math.round(len / 30)) + ' ' + Math.min(24, Math.round(len / 20));
-                    // adjust animation duration slightly based on path length for a natural flow
-                    const baseDuration = 6; // seconds
-                    const duration = Math.max(4, Math.min(10, Math.round((len / 300) + baseDuration)));
-                    p.style.animationDuration = duration + 's';
-                } catch(e) {
-                    // ignore if path not renderable yet
-                }
-            });
-        }
-
-        // Run on load and on resize so the animated dash feels right on all sizes
-        window.addEventListener('load', normalizeConnectorAnimations);
-        window.addEventListener('resize', function() {
-            // debounce a little
-            clearTimeout(window.__vv_resize_timer);
-            window.__vv_resize_timer = setTimeout(() => {
-                normalizeConnectorAnimations();
-            }, 150);
+            // Function to play video and show native controls
+            function playVideo(container, video) {
+                // Show native video controls
+                video.setAttribute('controls', 'controls');
+                
+                // Play the video
+                video.play().catch(error => {
+                    console.error('Error playing video:', error);
+                    // Handle autoplay restrictions or other errors
+                });
+            }
         });
     </script>
 </body>
