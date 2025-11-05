@@ -584,6 +584,106 @@
             border-radius: 10px;
         }
         
+        /* ============================================
+           VIDEO LOADING OVERLAY - PROFESSIONAL DESIGN
+           ============================================ */
+        .video-loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 11, 46, 0.98) 0%, rgba(55, 25, 79, 0.98) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            border-radius: 12px;
+        }
+        
+        .video-loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Loading Spinner Animation */
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(222, 242, 248, 0.2);
+            border-top: 4px solid var(--primary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 25px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Loading Text */
+        .loading-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin-bottom: 10px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        .loading-subtext {
+            font-size: 14px;
+            color: rgba(222, 242, 248, 0.7);
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Mobile Optimization for Loading Overlay */
+        @media (max-width: 768px) {
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border-width: 3px;
+                margin-bottom: 20px;
+            }
+            
+            .loading-text {
+                font-size: 18px;
+            }
+            
+            .loading-subtext {
+                font-size: 13px;
+                padding: 0 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .loading-spinner {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 18px;
+            }
+            
+            .loading-text {
+                font-size: 16px;
+            }
+            
+            .loading-subtext {
+                font-size: 12px;
+            }
+        }
+        
         .modal-close {
             position: absolute;
             top: -18px;
@@ -989,6 +1089,13 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="video-wrapper">
+                <!-- Loading Overlay -->
+                <div id="videoLoadingOverlay" class="video-loading-overlay">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Preparing Your Video...</div>
+                    <div class="loading-subtext">This will only take a moment</div>
+                </div>
+                
                 <iframe id="videoPlayer" 
                         src="" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -998,48 +1105,182 @@
         </div>
     </div>
     
+    <!-- YouTube iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
     <script>
         // ============================================
-        // VIDEO MODAL FUNCTIONALITY - PREMIUM EXPERIENCE
+        // VIDEO MODAL WITH YOUTUBE API INTEGRATION
+        // Professional loading overlay that auto-hides when video is ready
         // ============================================
+        
         (function() {
             const modal = document.getElementById('videoModal');
             const overviewBtn = document.getElementById('openOverviewVideo');
             const presentationBtn = document.getElementById('openPresentationVideo');
             const closeBtn = document.getElementById('closeModal');
             const videoPlayer = document.getElementById('videoPlayer');
+            const loadingOverlay = document.getElementById('videoLoadingOverlay');
             
-            // ACTUAL VIDEO URLS WITH OPTIMAL PARAMETERS
-            // Parameters explained:
-            // - autoplay=1: Auto-play video when modal opens
-            // - rel=0: Show only related videos from same channel
-            // - modestbranding=1: Minimal YouTube branding
-            // - controls=1: Show play/pause controls
-            // - showinfo=0: Hide video title (deprecated but still works in some cases)
-            
-            const videos = {
-                overview: 'https://www.youtube.com/embed/UZQzqpow_bE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0',
-                presentation: 'https://www.youtube.com/embed/ZNgtyM7o5jE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0'
+            // Video IDs extracted from URLs
+            const videoIds = {
+                overview: 'UZQzqpow_bE',
+                presentation: 'ZNgtyM7o5jE'
             };
+            
+            let player = null;
+            let currentVideoType = null;
+            let isYouTubeAPIReady = false;
+            let queuedVideoId = null;
+            
+            // YouTube iframe API ready callback
+            window.onYouTubeIframeAPIReady = function() {
+                console.log('✅ YouTube iframe API loaded successfully');
+                isYouTubeAPIReady = true;
+                
+                // If there's a queued video, initialize it now
+                if (queuedVideoId) {
+                    console.log('🎬 Initializing queued video:', queuedVideoId);
+                    initializePlayer(queuedVideoId);
+                    queuedVideoId = null;
+                }
+            };
+            
+            // Function to initialize YouTube player with API
+            function initializePlayer(videoId) {
+                // Safety check: Only proceed if API is ready
+                if (!isYouTubeAPIReady) {
+                    console.log('⏳ YouTube API not ready yet, queuing video...');
+                    queuedVideoId = videoId;
+                    return;
+                }
+                
+                // Destroy existing player if it exists
+                if (player) {
+                    try {
+                        player.destroy();
+                    } catch (e) {
+                        console.log('Player already destroyed');
+                    }
+                    player = null;
+                }
+                
+                // Show loading overlay
+                loadingOverlay.classList.remove('hidden');
+                
+                // Create new player with API
+                try {
+                    player = new YT.Player('videoPlayer', {
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 1,
+                            rel: 0,
+                            modestbranding: 1,
+                            controls: 1,
+                            showinfo: 0,
+                            enablejsapi: 1
+                        },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange,
+                            'onError': onPlayerError
+                        }
+                    });
+                    console.log('🎬 YouTube player initialized successfully');
+                } catch (e) {
+                    console.error('❌ Error creating YouTube player:', e);
+                    // Hide loading overlay on error
+                    loadingOverlay.classList.add('hidden');
+                }
+            }
+            
+            // Player ready event - hide loading overlay
+            function onPlayerReady(event) {
+                console.log('✅ YouTube player ready');
+                // Hide loading overlay with smooth fade
+                setTimeout(function() {
+                    loadingOverlay.classList.add('hidden');
+                }, 300);
+                
+                // Auto-play the video
+                event.target.playVideo();
+            }
+            
+            // Player state change event
+            function onPlayerStateChange(event) {
+                // YT.PlayerState.PLAYING = 1
+                if (event.data === YT.PlayerState.PLAYING) {
+                    console.log('▶️ Video started playing');
+                    // Ensure loading overlay is hidden when video starts
+                    loadingOverlay.classList.add('hidden');
+                }
+                
+                // YT.PlayerState.BUFFERING = 3
+                if (event.data === YT.PlayerState.BUFFERING) {
+                    console.log('⏳ Video buffering');
+                }
+            }
+            
+            // Player error event
+            function onPlayerError(event) {
+                console.error('❌ YouTube player error:', event.data);
+                // Hide loading overlay even on error
+                loadingOverlay.classList.add('hidden');
+            }
             
             // Function to open modal with specific video
             function openModal(videoType) {
+                currentVideoType = videoType;
                 modal.classList.add('active');
-                videoPlayer.src = videos[videoType];
                 document.body.style.overflow = 'hidden'; // Lock page scrolling
                 
-                // Track video view (add your analytics here)
-                console.log('Video opened:', videoType);
+                // Show loading overlay immediately
+                loadingOverlay.classList.remove('hidden');
+                
+                // Check if YouTube API is ready
+                if (isYouTubeAPIReady && typeof YT !== 'undefined' && YT.Player) {
+                    // API is ready, initialize player immediately
+                    console.log('✅ YouTube API ready, initializing player');
+                    initializePlayer(videoIds[videoType]);
+                } else {
+                    // API not ready yet, queue the video
+                    console.log('⏳ YouTube API still loading, video queued');
+                    queuedVideoId = videoIds[videoType];
+                    
+                    // The video will auto-initialize when onYouTubeIframeAPIReady fires
+                    // Loading overlay will remain visible until then
+                }
+                
+                // Track video view
+                console.log('🎥 Video modal opened:', videoType);
             }
             
             // Function to close modal and stop video
             function closeModal() {
                 modal.classList.remove('active');
-                videoPlayer.src = ''; // Stop video playback completely
                 document.body.style.overflow = ''; // Restore page scrolling
                 
-                // Track modal close (add your analytics here)
-                console.log('Video modal closed');
+                // Clear any queued video
+                queuedVideoId = null;
+                
+                // Stop video playback
+                if (player && player.stopVideo) {
+                    try {
+                        player.stopVideo();
+                        player.destroy();
+                    } catch (e) {
+                        console.log('Player cleanup completed');
+                    }
+                    player = null;
+                }
+                
+                // Reset loading overlay for next use
+                setTimeout(function() {
+                    loadingOverlay.classList.remove('hidden');
+                }, 300);
+                
+                // Track modal close
+                console.log('✖️ Video modal closed');
             }
             
             // Event Listeners for Overview Video
