@@ -1105,13 +1105,10 @@
         </div>
     </div>
     
-    <!-- YouTube iframe API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    
     <script>
         // ============================================
-        // VIDEO MODAL WITH YOUTUBE API INTEGRATION
-        // Professional loading overlay that auto-hides when video is ready
+        // VIDEO MODAL FUNCTIONALITY - BULLETPROOF APPROACH
+        // Simple iframe load detection with loading overlay
         // ============================================
         
         (function() {
@@ -1122,156 +1119,61 @@
             const videoPlayer = document.getElementById('videoPlayer');
             const loadingOverlay = document.getElementById('videoLoadingOverlay');
             
-            // Video IDs extracted from URLs
-            const videoIds = {
-                overview: 'UZQzqpow_bE',
-                presentation: 'ZNgtyM7o5jE'
+            // ACTUAL VIDEO URLS WITH OPTIMAL PARAMETERS
+            const videos = {
+                overview: 'https://www.youtube.com/embed/UZQzqpow_bE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0',
+                presentation: 'https://www.youtube.com/embed/ZNgtyM7o5jE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0'
             };
             
-            let player = null;
-            let currentVideoType = null;
-            let isYouTubeAPIReady = false;
-            let queuedVideoId = null;
+            let loadTimeout = null;
             
-            // YouTube iframe API ready callback
-            window.onYouTubeIframeAPIReady = function() {
-                console.log('✅ YouTube iframe API loaded successfully');
-                isYouTubeAPIReady = true;
-                
-                // If there's a queued video, initialize it now
-                if (queuedVideoId) {
-                    console.log('🎬 Initializing queued video:', queuedVideoId);
-                    initializePlayer(queuedVideoId);
-                    queuedVideoId = null;
-                }
-            };
-            
-            // Function to initialize YouTube player with API
-            function initializePlayer(videoId) {
-                // Safety check: Only proceed if API is ready
-                if (!isYouTubeAPIReady) {
-                    console.log('⏳ YouTube API not ready yet, queuing video...');
-                    queuedVideoId = videoId;
-                    return;
-                }
-                
-                // Destroy existing player if it exists
-                if (player) {
-                    try {
-                        player.destroy();
-                    } catch (e) {
-                        console.log('Player already destroyed');
-                    }
-                    player = null;
-                }
-                
-                // Show loading overlay
-                loadingOverlay.classList.remove('hidden');
-                
-                // Create new player with API
-                try {
-                    player = new YT.Player('videoPlayer', {
-                        videoId: videoId,
-                        playerVars: {
-                            autoplay: 1,
-                            rel: 0,
-                            modestbranding: 1,
-                            controls: 1,
-                            showinfo: 0,
-                            enablejsapi: 1
-                        },
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange,
-                            'onError': onPlayerError
-                        }
-                    });
-                    console.log('🎬 YouTube player initialized successfully');
-                } catch (e) {
-                    console.error('❌ Error creating YouTube player:', e);
-                    // Hide loading overlay on error
-                    loadingOverlay.classList.add('hidden');
-                }
-            }
-            
-            // Player ready event - hide loading overlay
-            function onPlayerReady(event) {
-                console.log('✅ YouTube player ready');
-                // Hide loading overlay with smooth fade
-                setTimeout(function() {
-                    loadingOverlay.classList.add('hidden');
-                }, 300);
-                
-                // Auto-play the video
-                event.target.playVideo();
-            }
-            
-            // Player state change event
-            function onPlayerStateChange(event) {
-                // YT.PlayerState.PLAYING = 1
-                if (event.data === YT.PlayerState.PLAYING) {
-                    console.log('▶️ Video started playing');
-                    // Ensure loading overlay is hidden when video starts
-                    loadingOverlay.classList.add('hidden');
-                }
-                
-                // YT.PlayerState.BUFFERING = 3
-                if (event.data === YT.PlayerState.BUFFERING) {
-                    console.log('⏳ Video buffering');
-                }
-            }
-            
-            // Player error event
-            function onPlayerError(event) {
-                console.error('❌ YouTube player error:', event.data);
-                // Hide loading overlay even on error
+            // Function to hide loading overlay
+            function hideLoadingOverlay() {
                 loadingOverlay.classList.add('hidden');
+                if (loadTimeout) {
+                    clearTimeout(loadTimeout);
+                    loadTimeout = null;
+                }
+                console.log('✅ Video loaded, hiding overlay');
             }
             
             // Function to open modal with specific video
             function openModal(videoType) {
-                currentVideoType = videoType;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Lock page scrolling
                 
-                // Show loading overlay immediately
+                // Show loading overlay
                 loadingOverlay.classList.remove('hidden');
+                console.log('🎥 Opening video:', videoType);
                 
-                // Check if YouTube API is ready
-                if (isYouTubeAPIReady && typeof YT !== 'undefined' && YT.Player) {
-                    // API is ready, initialize player immediately
-                    console.log('✅ YouTube API ready, initializing player');
-                    initializePlayer(videoIds[videoType]);
-                } else {
-                    // API not ready yet, queue the video
-                    console.log('⏳ YouTube API still loading, video queued');
-                    queuedVideoId = videoIds[videoType];
-                    
-                    // The video will auto-initialize when onYouTubeIframeAPIReady fires
-                    // Loading overlay will remain visible until then
-                }
+                // Set video source
+                videoPlayer.src = videos[videoType];
                 
-                // Track video view
-                console.log('🎥 Video modal opened:', videoType);
+                // Hide loading overlay when iframe loads
+                videoPlayer.onload = function() {
+                    console.log('📺 Iframe loaded');
+                    // Wait a moment for video to initialize, then hide overlay
+                    setTimeout(hideLoadingOverlay, 1500);
+                };
+                
+                // Backup timeout in case onload doesn't fire
+                loadTimeout = setTimeout(function() {
+                    console.log('⏱️ Timeout reached, hiding overlay');
+                    hideLoadingOverlay();
+                }, 3000);
             }
             
             // Function to close modal and stop video
             function closeModal() {
                 modal.classList.remove('active');
+                videoPlayer.src = ''; // Stop video playback completely
+                videoPlayer.onload = null; // Clear event listener
                 document.body.style.overflow = ''; // Restore page scrolling
                 
-                // Clear any queued video
-                queuedVideoId = null;
-                
-                // Stop video playback
-                if (player && player.stopVideo) {
-                    try {
-                        player.stopVideo();
-                        player.destroy();
-                    } catch (e) {
-                        console.log('Player cleanup completed');
-                    }
-                    player = null;
+                // Clear any pending timeout
+                if (loadTimeout) {
+                    clearTimeout(loadTimeout);
+                    loadTimeout = null;
                 }
                 
                 // Reset loading overlay for next use
@@ -1279,7 +1181,6 @@
                     loadingOverlay.classList.remove('hidden');
                 }, 300);
                 
-                // Track modal close
                 console.log('✖️ Video modal closed');
             }
             
