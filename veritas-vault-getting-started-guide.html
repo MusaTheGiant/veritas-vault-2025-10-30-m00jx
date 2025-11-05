@@ -202,6 +202,91 @@
             }
         }
         
+        /* ============================================
+           SECTION DIVIDER - TRUE VISUAL SEPARATOR
+           Clear separation between logo and hero sections
+           ============================================ */
+        .affiliate-divider {
+            background: transparent;
+            padding: 25px 20px;
+            text-align: center;
+            margin: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .affiliate-divider::before,
+        .affiliate-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(222, 242, 248, 0.3), transparent);
+        }
+        
+        .affiliate-divider::before {
+            margin-right: 20px;
+        }
+        
+        .affiliate-divider::after {
+            margin-left: 20px;
+        }
+        
+        .affiliate-divider-text {
+            font-size: 13px;
+            color: rgba(222, 242, 248, 0.7);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            padding: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .affiliate-divider-text:hover {
+            color: rgba(222, 242, 248, 0.9);
+        }
+        
+        /* Mobile optimization for section divider */
+        @media (max-width: 768px) {
+            .affiliate-divider {
+                padding: 20px 15px;
+            }
+            
+            .affiliate-divider::before {
+                margin-right: 15px;
+            }
+            
+            .affiliate-divider::after {
+                margin-left: 15px;
+            }
+            
+            .affiliate-divider-text {
+                font-size: 12px;
+                letter-spacing: 0.3px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .affiliate-divider {
+                padding: 18px 15px;
+            }
+            
+            .affiliate-divider::before {
+                margin-right: 12px;
+            }
+            
+            .affiliate-divider::after {
+                margin-left: 12px;
+            }
+            
+            .affiliate-divider-text {
+                font-size: 11px;
+                letter-spacing: 0.2px;
+                padding: 0 8px;
+            }
+        }
+        
         /* Hero Section */
         .hero {
             padding: 40px 20px;
@@ -1120,6 +1205,11 @@
         <a href="https://vaultveritas.com/" class="logo-container">
             <img src="https://vaultveritas.com/images/veritas-vault-registration.png" alt="Veritas Vault - Get Started | Earn Passive Income 3 Times Daily">
         </a>
+    </div>
+    
+    <!-- Section Divider -->
+    <div class="affiliate-divider">
+        <span class="affiliate-divider-text">Built with ❤️ by a Veritas Vault member</span>
     </div>
     
     <!-- Hero Section -->
