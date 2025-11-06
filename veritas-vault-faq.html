@@ -404,34 +404,67 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(222, 242, 248, 0.2);
             border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             transition: all 0.3s ease;
+            overflow: hidden;
         }
         
         .faq-item:hover {
-            background: rgba(255, 255, 255, 0.08);
             border-color: var(--primary-purple);
-            transform: translateX(5px);
+        }
+        
+        .faq-item.active {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
         }
         
         .faq-question {
             font-size: clamp(18px, 2.5vw, 22px);
             font-weight: 700;
             color: var(--gold);
-            margin-bottom: 15px;
+            padding: 25px;
             line-height: 1.4;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: all 0.3s ease;
         }
         
-        .faq-question i {
-            margin-right: 10px;
+        .faq-question:hover {
+            color: var(--white);
+        }
+        
+        .faq-question-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+        
+        .faq-question i.chevron {
+            font-size: 20px;
             color: var(--primary-green);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-question i.chevron {
+            transform: rotate(90deg);
         }
         
         .faq-answer {
             font-size: clamp(15px, 2vw, 18px);
             color: var(--text-light);
             line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 2000px;
+            padding: 0 25px 25px 25px;
         }
         
         .faq-answer p {
@@ -624,37 +657,69 @@
             height: 50px;
             background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             color: var(--white);
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            cursor: pointer;
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 99999;
+            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
+            font-size: 20px;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
         
         .scroll-to-top:hover {
-            transform: scale(1.1) translateY(-3px);
-            box-shadow: 0 6px 20px rgba(108, 42, 145, 0.7);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.8);
+            border-color: rgba(255, 255, 255, 0.8);
         }
         
-        @media (max-width: 768px) {
+        .scroll-to-top:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        /* Pulse animation to grab attention */
+        @keyframes scroll-pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(108, 42, 145, 0.9);
+            }
+        }
+        
+        .scroll-to-top.visible {
+            animation: scroll-pulse 2s infinite ease-in-out;
+        }
+        
+        /* Mobile optimization - SMALLER, less obtrusive */
+        @media screen and (max-width: 768px) {
             .scroll-to-top {
-                bottom: 20px;
-                right: 20px;
+                bottom: 15px;
+                right: 15px;
                 width: 45px;
                 height: 45px;
                 font-size: 18px;
+            }
+        }
+        
+        /* Tablet optimization */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .scroll-to-top {
+                bottom: 25px;
+                right: 25px;
             }
         }
         
@@ -688,8 +753,26 @@
                 padding: 30px 15px;
             }
             
-            .faq-item {
+            .faq-question {
                 padding: 20px;
+                font-size: 16px;
+            }
+            
+            .faq-question-text {
+                padding-right: 15px;
+            }
+            
+            .faq-question i.chevron {
+                font-size: 18px;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+                font-size: 15px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px 20px;
             }
             
             .category-header {
@@ -766,54 +849,48 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What is Veritas Vault?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What is Veritas Vault?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Veritas Vault is a DeFi (Decentralized Finance) protocol where you stake VVA tokens and earn up to 1.32% daily through automatic rewards paid 3 times per day (every 8 hours). Your money stays in your wallet at all times, not in someone else's account.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What does "Veritas" mean?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What does "Veritas" mean?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Veritas is the Latin word for "truth." It represents our commitment to 100% transparency and honesty in everything we do.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Who founded Veritas Vault?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Who founded Veritas Vault?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Nick Alan</strong> is the founder of Veritas Vault. He has 26 years of experience in the industry and is a public, known figure (not an anonymous developer). <strong>Barry Monies</strong>, a Homeland Security advisor, serves as the project's cybersecurity expert and advisor.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How does VVA token staking work?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How does VVA token staking work?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>You buy VVA tokens with DAI stablecoin, then stake them in the smart contract. Once staked, your tokens automatically earn rewards up to 0.44% every 8 hours (1.32% daily). The rewards compound automatically, meaning your earnings grow faster over time.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What does "get paid 3 times daily" mean?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What does "get paid 3 times daily" mean?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Simple: the smart contract pays you rewards <strong>every 8 hours</strong>. That's 3 payouts every 24 hours. You can claim your rewards whenever you want. No waiting, no lockups.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What are VVA and sVVA tokens?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What are VVA and sVVA tokens?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>VVA</strong> is the main token you buy and hold. <strong>sVVA</strong> (staked VVA) is what you get when you stake your VVA tokens. sVVA is what earns you the 3x daily rewards. You can unstake and convert sVVA back to VVA anytime.</p>
                     </div>
@@ -828,27 +905,24 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How much can I earn with Veritas Vault?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How much can I earn with Veritas Vault?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>You earn up to <strong>1.32% daily</strong> (0.44% every 8 hours) on your staked VVA tokens. The rewards compound automatically, so your balance grows faster over time. Plus, you can earn 18% direct referral rewards and bonuses from up to 12 levels deep if you share with others.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Do I have to recruit people to earn?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Do I have to recruit people to earn?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>No!</strong> You earn 3x daily just by staking your VVA tokens. No recruiting required. However, if you want to earn even more through referrals, that option is available.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Where does the 1.32% daily reward come from?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Where does the 1.32% daily reward come from?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Veritas Vault generates revenue from multiple sources:</p>
                         <ul>
@@ -862,45 +936,40 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Can I withdraw my money anytime?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Can I withdraw my money anytime?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Yes!</strong> You can unstake all or some of your VVA tokens anytime and sell them on the market. No lockups. No middleman. No penalties. Your money, your control.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Are there any hidden fees?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Are there any hidden fees?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>No hidden fees. There is a transparent <strong>5% buy and sell tax</strong> when you purchase or sell VVA tokens. This tax funds token buybacks, liquidity, and keeps the system running long-term.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Why is there a 5% tax when I buy or sell VVA?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Why is there a 5% tax when I buy or sell VVA?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>The 5% tax serves important purposes: buying back and burning VVA tokens (reducing supply), adding liquidity so you can always buy/sell, and sustaining the platform for the long run. It's how we keep the system healthy and strong.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What if the VVA token price drops?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What if the VVA token price drops?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>You still earn 1.32% daily on the <strong>number of tokens</strong> you hold, not their dollar value. Plus, VVA has grown from $0.38 to over $3.00 in just weeks. As more people join and the project scales, token value has strong upward potential.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Is it too late to get in?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Is it too late to get in?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Absolutely not!</strong> VVA has already surged over 821% (from $0.38 to $3.50+), but experts confirm we're still in the early "Concentration" phase, right before exponential growth. This is your window to get in before mass adoption.</p>
                     </div>
@@ -915,18 +984,16 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Is Veritas Vault legit or a scam?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Is Veritas Vault legit or a scam?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Veritas Vault is 100% legitimate.</strong> It has a public, known founder (Nick Alan with 26+ years experience), an experienced advisor (Barry Monies from Homeland Security), a locked smart contract, and full transparency. Everything is verifiable on the blockchain.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I know this won't be a rugpull?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I know this won't be a rugpull?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Veritas Vault has multiple anti-rugpull protections:</p>
                         <ul>
@@ -941,36 +1008,32 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Where does my money stay?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Where does my money stay?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Your money stays in YOUR wallet</strong> at all times. When you stake, your tokens remain in the smart contract on the blockchain, not in someone's bank account or central wallet. You maintain full control.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What if the website goes down?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What if the website goes down?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>The website is just a front-end interface. Your funds live in the smart contract on the blockchain. Even if the website is offline, you can always connect your MetaMask directly to the contract through BscScan and unstake or claim rewards. No one can block you.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Has the smart contract been audited?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Has the smart contract been audited?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>An official audit is in process. The contract code is 100% transparent and verifiable on the blockchain. You can read the contract yourself on BscScan and verify there are no functions that allow anyone to drain stakers' funds.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Can the founder change the rules or take my money?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Can the founder change the rules or take my money?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>No.</strong> The smart contract is locked and unchangeable: the functional equivalent of renouncement. Even the founder cannot alter the rules or access your funds. The code is law, and it's permanent.</p>
                     </div>
@@ -985,9 +1048,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I join Veritas Vault?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I join Veritas Vault?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Getting started is simple. Follow our complete <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="inline-link" target="_blank" rel="noopener noreferrer">step-by-step getting started guide</a> which walks you through every step with clear instructions and video tutorials.</p>
                         <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green btn-block" target="_blank" rel="noopener noreferrer">
@@ -997,9 +1059,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What do I need to get started?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What do I need to get started?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>You need 4 simple things:</p>
                         <ul>
@@ -1012,9 +1073,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What's the minimum to get started?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What's the minimum to get started?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Technically, you can start with just <strong>$20 worth of VVA</strong>. However, you'll also need about $5-7 in BNB for transaction fees. To be eligible for referral commissions, you need at least <strong>$100 worth of staked VVA tokens</strong>.</p>
                         <p><strong>Best option:</strong> Invest $100+ DAI into VVA and stake it. Set it and forget it!</p>
@@ -1022,18 +1082,16 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> I'm not a crypto expert. Is this too complicated?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">I'm not a crypto expert. Is this too complicated?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>Not at all!</strong> We've made it incredibly user-friendly. Our <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="inline-link" target="_blank" rel="noopener noreferrer">getting started guide</a> includes clear step-by-step instructions and <a href="https://www.youtube.com/@vaultveritas_com" class="inline-link" target="_blank" rel="noopener noreferrer">video tutorials on YouTube</a> showing exactly what to click. Once your tokens are staked, the system handles everything automatically.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Where can I watch tutorial videos?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Where can I watch tutorial videos?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>All tutorial videos, Zoom presentation replays, training materials, updates, and announcements are on our <strong>YouTube channel</strong>. Subscribe to stay updated!</p>
                         <a href="https://www.youtube.com/@vaultveritas_com" class="btn btn-purple btn-block" target="_blank" rel="noopener noreferrer">
@@ -1043,18 +1101,16 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I log into my Veritas Vault dashboard?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I log into my Veritas Vault dashboard?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Go to <strong>https://veritasvault.app</strong> and connect your MetaMask wallet (the same wallet you registered with). That's it. You're logged in!</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Is there an official Telegram channel?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Is there an official Telegram channel?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Yes! Join the official Veritas Vault Telegram community to connect with other members, ask questions, and stay updated on announcements.</p>
                         <a href="https://t.me/+ISjSFMGl3qs3YTlh" class="btn btn-purple btn-block" target="_blank" rel="noopener noreferrer">
@@ -1072,54 +1128,48 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How does the referral program work?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How does the referral program work?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>When someone joins using your referral link and stakes at least $100 worth of VVA, you earn <strong>18% direct referral rewards</strong> on their staking rewards. Plus, you earn override bonuses from up to <strong>12 levels deep</strong> in your team. That's true generational wealth.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How much can I earn from referrals?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How much can I earn from referrals?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>The 12-level compensation plan pays out a massive <strong>49% on just your first four generations</strong> of sales. As your team grows, your passive income can easily scale to $10K+ per month and well beyond. We've already seen it happening!</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What is the Diamond League?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What is the Diamond League?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>The <strong>Diamond League</strong> offers special bonuses and incentives designed to reward top leaders and those who develop other leaders. It's how you unlock maximum earning potential and build true generational wealth.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Do I need to be eligible for referral rewards?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Do I need to be eligible for referral rewards?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Yes. To earn referral commissions, you must have at least <strong>$100 worth of staked VVA tokens</strong>. This ensures everyone in the system is committed and serious about the opportunity.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I find a sponsor or referral link?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I find a sponsor or referral link?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>If you're on this website, you already have a sponsor! Use the <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="inline-link" target="_blank" rel="noopener noreferrer">getting started guide</a> which includes your sponsor's referral link. Or <a href="https://wa.me/27721714626" class="inline-link" target="_blank" rel="noopener noreferrer">contact us directly on WhatsApp</a> for personalized help.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What tools do I get to help build my team?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What tools do I get to help build my team?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Veritas Vault provides professional marketing tools, training videos, ROI calculators, and more. Plus, you can <strong>get this entire website cloned for FREE</strong> with your referral links embedded. This makes it incredibly easy to share and build your team fast!</p>
                     </div>
@@ -1134,9 +1184,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> I still have questions. Can I talk to a real person?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">I still have questions. Can I talk to a real person?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Absolutely! Click below to chat with your Veritas Vault sponsor in real-time on WhatsApp. Get personalized support, ask questions, and learn how to maximize your earnings.</p>
                         <a href="https://wa.me/27721714626" class="btn btn-green btn-block" target="_blank" rel="noopener noreferrer">
@@ -1146,9 +1195,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Where can I find training and educational content?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Where can I find training and educational content?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Everything you need is on our <strong>YouTube channel</strong>: tutorial videos, getting started guides, Zoom presentation replays, team training, updates, and announcements. Plus, join the Telegram community for live support!</p>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 15px;">
@@ -1163,27 +1211,24 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I stay updated with the latest announcements?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I stay updated with the latest announcements?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Subscribe to our <a href="https://www.youtube.com/@vaultveritas_com" class="inline-link" target="_blank" rel="noopener noreferrer">YouTube channel</a> for the latest presentations, updates, and training videos. Join the <a href="https://t.me/+ISjSFMGl3qs3YTlh" class="inline-link" target="_blank" rel="noopener noreferrer">Telegram community</a> for real-time announcements and discussions.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Are there recorded Zoom presentations I can watch?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Are there recorded Zoom presentations I can watch?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Yes! All Zoom presentation replays are uploaded to our <a href="https://www.youtube.com/@vaultveritas_com" class="inline-link" target="_blank" rel="noopener noreferrer">YouTube channel</a> so you can watch them anytime. Perfect for catching up or sharing with your team!</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What happens after I join?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What happens after I join?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Once you complete registration, you'll be added to the official Veritas Vault Telegram group where you'll connect with like-minded DeFi entrepreneurs and team builders. Together, we're building a movement of <strong>100,000 earners</strong> and propelling VVA to $10 per coin within 12 months!</p>
                     </div>
@@ -1198,18 +1243,16 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> Can I get my own website like this one?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">Can I get my own website like this one?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p><strong>YES! And it's 100% FREE!</strong> When you join using our referral link, we'll clone this entire proven website for you with YOUR referral links embedded throughout. Stop struggling with team building and start earning faster by sharing your personalized website with prospects.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> What benefits do I get by joining through your link?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">What benefits do I get by joining through your link?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>When you join through our referral link, you get:</p>
                         <ul>
@@ -1223,9 +1266,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <i class="fas fa-chevron-right"></i> How do I request my free website?
-                    </div>
+                    <div class="faq-question"><span class="faq-question-text">How do I request my free website?
+                    </span><i class="fas fa-chevron-right chevron"></i></div>
                     <div class="faq-answer">
                         <p>Simple! After joining Veritas Vault, <a href="https://wa.me/27721714626" class="inline-link" target="_blank" rel="noopener noreferrer">contact us on WhatsApp</a> and request your website clone. We'll set everything up for you completely FREE!</p>
                         <a href="https://wa.me/27721714626" class="btn btn-green btn-block" target="_blank" rel="noopener noreferrer">
@@ -1371,6 +1413,48 @@
                 // Initial check
                 toggleScrollButton();
             }
+        });
+        
+        // ==========================================
+        // FAQ ACCORDION FUNCTIONALITY
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Check if this item is already active
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                    });
+                    
+                    // If this item wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                        
+                        // Smooth scroll to the question if needed (on mobile especially)
+                        setTimeout(() => {
+                            const rect = item.getBoundingClientRect();
+                            const offset = window.pageYOffset;
+                            const top = rect.top + offset - 100; // 100px offset from top
+                            
+                            if (rect.top < 100) { // Only scroll if question is too close to top
+                                window.scrollTo({
+                                    top: top,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
+                });
+            });
+            
+            console.log('FAQ Accordion initialized:', faqItems.length, 'items');
         });
     </script>
 </body>
