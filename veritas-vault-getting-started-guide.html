@@ -1051,75 +1051,58 @@
             font-weight: 700;
         }
         
-        /* Mobile optimization - VERTICAL STACKING */
+        /* Mobile optimization - SIDE BY SIDE TOP TWO, LEGAL BELOW */
         @media (max-width: 768px) {
             .footer {
-                padding: 30px 15px 25px;
+                padding: 25px 15px 20px;
             }
             
             .footer-sections {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 20px 15px;
                 max-width: 100%;
-                margin: 0 auto 25px;
+                margin: 0 auto 20px;
                 padding: 0;
                 width: 100%;
             }
             
             .footer-section {
-                min-width: 100%;
-                flex-shrink: 0;
                 text-align: center;
                 width: 100%;
+                position: relative;
             }
             
+            /* First two sections side by side */
+            .footer-section:nth-child(1),
+            .footer-section:nth-child(2) {
+                grid-row: 1;
+            }
+            
+            /* Third section (Legal) spans full width below */
+            .footer-section:nth-child(3) {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            
+            /* Remove the vertical divider on mobile */
             .footer-section:not(:last-child)::after {
+                display: none;
+            }
+            
+            /* Add subtle vertical divider between first two sections */
+            .footer-section:nth-child(1)::after {
                 content: '';
                 position: absolute;
-                left: 0;
-                right: 0;
-                bottom: -15px;
-                width: 60%;
-                height: 1px;
-                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-                margin: 0 auto;
-            }
-            
-            .footer-section h4 {
-                font-size: 13px;
-                margin-bottom: 10px;
-            }
-            
-            .footer-section a {
-                font-size: 12px;
-                margin-bottom: 7px;
+                right: -7.5px;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
                 display: block;
-            }
-            
-            .footer-credit {
-                font-size: 12px;
-            }
-        }
-        
-        /* Extra small devices - max-width 480px */
-        @media (max-width: 480px) {
-            .footer {
-                padding: 25px 12px 20px;
-            }
-            
-            .footer-sections {
-                gap: 25px;
-            }
-            
-            .footer-section {
-                width: 100%;
-            }
-            
-            .footer-section:not(:last-child)::after {
-                bottom: -12.5px;
             }
             
             .footer-section h4 {
@@ -1130,10 +1113,44 @@
             .footer-section a {
                 font-size: 11px;
                 margin-bottom: 6px;
+                display: block;
             }
             
             .footer-credit {
                 font-size: 11px;
+            }
+        }
+        
+        /* Extra small devices - max-width 480px */
+        @media (max-width: 480px) {
+            .footer {
+                padding: 20px 12px 18px;
+            }
+            
+            .footer-sections {
+                gap: 18px 12px;
+            }
+            
+            .footer-section:nth-child(3) {
+                padding-top: 12px;
+            }
+            
+            .footer-section:nth-child(1)::after {
+                right: -6px;
+            }
+            
+            .footer-section h4 {
+                font-size: 11px;
+                margin-bottom: 7px;
+            }
+            
+            .footer-section a {
+                font-size: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .footer-credit {
+                font-size: 10px;
             }
         }
         
