@@ -360,29 +360,42 @@
         /* Footer Section */
         .footer {
             background: rgba(0, 0, 0, 0.4);
-            padding: 40px 20px 30px;
+            padding: 35px 20px 30px;
             border-top: 2px solid rgba(108, 42, 145, 0.3);
         }
         
         .footer-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
             max-width: 900px;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
             text-align: left;
         }
         
         .footer-section {
             display: flex;
             flex-direction: column;
+            min-width: 150px;
+            position: relative;
+        }
+        
+        .footer-section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
         }
         
         .footer-section h4 {
             color: var(--gold);
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -390,8 +403,8 @@
         .footer-section a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 13px;
+            margin-bottom: 8px;
             transition: all 0.3s ease;
             display: inline-block;
         }
@@ -403,39 +416,59 @@
         
         .footer-credit {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
             line-height: 1.6;
         }
         
-        /* Mobile optimization for footer */
+        /* Mobile optimization - HORIZONTAL LAYOUT */
         @media (max-width: 768px) {
             .footer {
-                padding: 35px 20px 25px;
+                padding: 30px 15px 25px;
             }
             
             .footer-sections {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                text-align: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 5px;
             }
             
             .footer-section {
-                align-items: center;
+                min-width: 120px;
+                flex-shrink: 0;
+            }
+            
+            .footer-section:not(:last-child)::after {
+                right: -10px;
             }
             
             .footer-section h4 {
-                font-size: 15px;
-                margin-bottom: 12px;
+                font-size: 13px;
+                margin-bottom: 10px;
             }
             
             .footer-section a {
-                font-size: 13px;
-                margin-bottom: 8px;
+                font-size: 12px;
+                margin-bottom: 7px;
             }
             
-            .footer-section a:hover {
-                transform: translateX(0) scale(1.05);
+            .footer-credit {
+                font-size: 12px;
+            }
+        }
+        
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .footer-sections {
+                gap: 35px;
+            }
+            
+            .footer-section:not(:last-child)::after {
+                right: -17.5px;
             }
         }
         
@@ -1123,6 +1156,7 @@
                 <!-- Quick Links Section -->
                 <div class="footer-section">
                     <h4>Quick Links</h4>
+                    <a href="https://vaultveritas.com" rel="noopener noreferrer">Home</a>
                     <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" rel="noopener noreferrer">Getting Started</a>
                     <a href="https://vaultveritas.com/veritas-vault-faq.html" rel="noopener noreferrer">FAQ</a>
                 </div>
@@ -1130,6 +1164,7 @@
                 <!-- Socials Section -->
                 <div class="footer-section">
                     <h4>Socials</h4>
+                    <a href="https://chat.whatsapp.com/IzARh7HB15ZBrGcRLzjXt3?mode=wwt" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                     <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer">YouTube</a>
                     <a href="https://t.me/+ISjSFMGl3qs3YTlh" target="_blank" rel="noopener noreferrer">Telegram</a>
                 </div>
