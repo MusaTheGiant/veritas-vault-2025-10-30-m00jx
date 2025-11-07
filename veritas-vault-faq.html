@@ -621,31 +621,116 @@
         /* Footer */
         .footer {
             background: rgba(0, 0, 0, 0.5);
-            padding: 40px 20px;
-            text-align: center;
+            padding: 35px 20px 30px;
             border-top: 2px solid rgba(108, 42, 145, 0.3);
         }
         
-        .footer-links {
-            margin-bottom: 20px;
+        .footer-sections {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto 25px;
+            text-align: left;
         }
         
-        .footer-links a {
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+            position: relative;
+        }
+        
+        .footer-section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+        
+        .footer-section h4 {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section a {
             color: var(--text-light);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            font-size: 13px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
         
-        .footer-links a:hover {
+        .footer-section a:hover {
             color: var(--gold);
+            transform: translateX(3px);
         }
         
         .footer-credit {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
+            text-align: center;
             line-height: 1.6;
+        }
+        
+        /* Mobile optimization - HORIZONTAL LAYOUT */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 30px 15px 25px;
+            }
+            
+            .footer-sections {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 5px;
+            }
+            
+            .footer-section {
+                min-width: 120px;
+                flex-shrink: 0;
+            }
+            
+            .footer-section:not(:last-child)::after {
+                right: -10px;
+            }
+            
+            .footer-section h4 {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+            
+            .footer-section a {
+                font-size: 12px;
+                margin-bottom: 7px;
+            }
+            
+            .footer-credit {
+                font-size: 12px;
+            }
+        }
+        
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .footer-sections {
+                gap: 35px;
+            }
+            
+            .footer-section:not(:last-child)::after {
+                right: -17.5px;
+            }
         }
         
         /* Scroll to Top Button */
@@ -1328,15 +1413,32 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-links">
-                <a href="https://vaultveritas.com" rel="noopener noreferrer">Home</a>
-                <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" rel="noopener noreferrer">Getting Started</a>
-                <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer">YouTube</a>
-                <a href="https://t.me/+ISjSFMGl3qs3YTlh" target="_blank" rel="noopener noreferrer">Telegram</a>
-                <a href="https://vaultveritas.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
-                <a href="https://vaultveritas.com/terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
-                <a href="https://vaultveritas.com/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+            <div class="footer-sections">
+                <!-- Quick Links Section -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="https://vaultveritas.com" rel="noopener noreferrer">Home</a>
+                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" rel="noopener noreferrer">Getting Started</a>
+                    <a href="https://vaultveritas.com/veritas-vault-faq.html" rel="noopener noreferrer">FAQ</a>
+                </div>
+                
+                <!-- Socials Section -->
+                <div class="footer-section">
+                    <h4>Socials</h4>
+                    <a href="https://chat.whatsapp.com/IzARh7HB15ZBrGcRLzjXt3?mode=wwt" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://t.me/+ISjSFMGl3qs3YTlh" target="_blank" rel="noopener noreferrer">Telegram</a>
+                </div>
+                
+                <!-- Legal Section -->
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="https://vaultveritas.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
+                    <a href="https://vaultveritas.com/terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
+                    <a href="https://vaultveritas.com/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+                </div>
             </div>
+            
             <div class="footer-credit">
                 Built with ❤️ by an independent Veritas Vault member | Not the official company website.
             </div>
