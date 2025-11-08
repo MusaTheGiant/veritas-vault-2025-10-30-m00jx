@@ -24,6 +24,201 @@
             --gold: #FFD700;
         }
         
+        /* ============================================
+           GIVEAWAY ANNOUNCEMENT BAR - FIXED TOP
+           90K VVA Token Giveaway Promotion
+           ============================================ */
+        .giveaway-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #1a0b2e 0%, var(--dark-purple) 50%, #000000 100%);
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            animation: giveawayGlow 3s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .giveaway-bar.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .giveaway-bar.dismissed {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        @keyframes giveawayGlow {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(255, 215, 0, 0.45), 0 0 40px rgba(108, 42, 145, 0.3);
+            }
+        }
+
+        .giveaway-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .giveaway-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+        }
+
+        .giveaway-highlight {
+            color: var(--gold);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            animation: pulseGold 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGold {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .giveaway-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
+            color: var(--black);
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            border: 2px solid var(--gold);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .giveaway-cta:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
+        }
+
+        .giveaway-cta:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .giveaway-close {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .giveaway-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        /* Body padding adjustment for fixed bar */
+        body.giveaway-active {
+            padding-top: 60px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .giveaway-bar {
+                padding: 10px 15px;
+            }
+            
+            .giveaway-content {
+                gap: 12px;
+            }
+            
+            .giveaway-text {
+                font-size: 13px;
+                line-height: 1.3;
+            }
+            
+            .giveaway-cta {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            
+            body.giveaway-active {
+                padding-top: 90px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .giveaway-bar {
+                padding: 8px 12px;
+            }
+            
+            .giveaway-content {
+                gap: 10px;
+                flex-direction: column;
+            }
+            
+            .giveaway-text {
+                font-size: 12px;
+            }
+            
+            .giveaway-cta {
+                padding: 8px 16px;
+                font-size: 12px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .giveaway-close {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                right: 10px;
+            }
+            
+            body.giveaway-active {
+                padding-top: 110px;
+            }
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -224,30 +419,27 @@
         }
         
         .hero .description {
-            font-size: clamp(16px, 2vw, 20px);
+            font-size: clamp(16px, 2.5vw, 20px);
             margin: 20px auto;
             max-width: 800px;
             color: var(--text-light);
-            font-weight: 500;
-        }
-        
-        /* Highlight Box */
-        .highlight-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid var(--text-light);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px auto;
-            max-width: 700px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .highlight-box p {
-            font-size: 18px;
             line-height: 1.8;
         }
         
-        /* Buttons */
+        .hero .highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        /* CTA Buttons */
+        .cta-container {
+            margin: 40px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
         .btn {
             display: inline-block;
             padding: 18px 40px;
@@ -256,712 +448,381 @@
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.3s ease;
-            border: none;
             cursor: pointer;
-            margin: 10px;
+            border: none;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: visible;
-            animation: pulse-glow 2s infinite ease-in-out;
+            letter-spacing: 1px;
         }
         
-        .btn-green {
-            background: linear-gradient(to bottom, var(--primary-green), var(--dark-green));
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(4, 102, 1, 0.4);
-        }
-        
-        .btn-green:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
-        }
-        
-        .btn-purple {
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             color: var(--white);
             box-shadow: 0 4px 15px rgba(108, 42, 145, 0.4);
         }
         
-        .btn-purple:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 42, 145, 0.6);
         }
         
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5);
-            }
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(4, 102, 1, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(4, 102, 1, 0.6);
         }
         
         /* Features Section */
         .features {
             padding: 60px 20px;
-        }
-        
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--text-light);
-        }
-        
-        .section-title {
-            font-size: clamp(24px, 4vw, 36px);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--text-light);
-        }
-        
-        /* Resources Section */
-        .resources {
-            padding: 60px 20px;
             background: rgba(0, 0, 0, 0.2);
         }
         
-        .resource-grid {
+        .features h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 48px);
+            margin-bottom: 50px;
+            color: var(--text-light);
+        }
+        
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .resource-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--primary-purple);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--text-light);
-            box-shadow: 0 10px 30px rgba(108, 42, 145, 0.3);
-        }
-        
-        .resource-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 20px 0 15px;
-            color: var(--text-light);
-        }
-        
-        .resource-card p {
-            font-size: 16px;
-            margin-bottom: 25px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Footer Section */
-        .footer {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 35px 20px 30px;
-            border-top: 2px solid rgba(108, 42, 145, 0.3);
-        }
-        
-        .footer-sections {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto 25px;
-            text-align: left;
-        }
-        
-        .footer-section {
-            display: flex;
-            flex-direction: column;
-            min-width: 150px;
-            position: relative;
-        }
-        
-        .footer-section:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -20px;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
-        }
-        
-        .footer-section h4 {
-            color: var(--gold);
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .footer-section a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 13px;
-            margin-bottom: 8px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .footer-section a:hover {
-            color: var(--gold);
-            transform: translateX(3px);
-        }
-        
-        .footer-credit {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
-        /* Mobile optimization - SIDE BY SIDE TOP TWO, LEGAL BELOW */
-        @media (max-width: 768px) {
-            .footer {
-                padding: 25px 15px 20px;
-            }
-            
-            .footer-sections {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                gap: 20px 15px;
-                max-width: 100%;
-                margin: 0 auto 20px;
-                padding: 0;
-                width: 100%;
-            }
-            
-            .footer-section {
-                text-align: center;
-                width: 100%;
-                position: relative;
-            }
-            
-            /* First two sections side by side */
-            .footer-section:nth-child(1),
-            .footer-section:nth-child(2) {
-                grid-row: 1;
-            }
-            
-            /* Third section (Legal) spans full width below */
-            .footer-section:nth-child(3) {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                padding-top: 15px;
-                border-top: 1px solid rgba(255, 255, 255, 0.15);
-            }
-            
-            /* Remove the vertical divider on mobile */
-            .footer-section:not(:last-child)::after {
-                display: none;
-            }
-            
-            /* Add subtle vertical divider between first two sections */
-            .footer-section:nth-child(1)::after {
-                content: '';
-                position: absolute;
-                right: -7.5px;
-                top: 0;
-                bottom: 0;
-                width: 1px;
-                background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
-                display: block;
-            }
-            
-            .footer-section h4 {
-                font-size: 12px;
-                margin-bottom: 8px;
-            }
-            
-            .footer-section a {
-                font-size: 11px;
-                margin-bottom: 6px;
-                display: block;
-            }
-            
-            .footer-credit {
-                font-size: 11px;
-            }
-        }
-        
-        /* Extra small devices - max-width 480px */
-        @media (max-width: 480px) {
-            .footer {
-                padding: 20px 12px 18px;
-            }
-            
-            .footer-sections {
-                gap: 18px 12px;
-            }
-            
-            .footer-section:nth-child(3) {
-                padding-top: 12px;
-            }
-            
-            .footer-section:nth-child(1)::after {
-                right: -6px;
-            }
-            
-            .footer-section h4 {
-                font-size: 11px;
-                margin-bottom: 7px;
-            }
-            
-            .footer-section a {
-                font-size: 10px;
-                margin-bottom: 5px;
-            }
-            
-            .footer-credit {
-                font-size: 10px;
-            }
-        }
-        
-        /* Tablet optimization - 769px to 1024px */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .footer-sections {
-                gap: 35px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .footer-section {
-                flex: 0 1 auto;
-            }
-            
-            .footer-section:not(:last-child)::after {
-                right: -17.5px;
-            }
-        }
-        
-        /* General emphasis styling for hero and other sections */
-        .emphasis {
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2) 0%, rgba(4, 102, 1, 0.2) 100%);
-        }
-        
-        .cta-section h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--text-light);
-        }
-        
-        /* Mission Section */
-        .mission-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(4, 102, 1, 0.15) 0%, rgba(108, 42, 145, 0.15) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mission-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23DEF2F8"/></svg>') no-repeat;
-            background-size: cover;
-            opacity: 0.1;
-        }
-        
-        .mission-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
         }
         
-        .mission-badge {
-            display: inline-block;
-            background: linear-gradient(to bottom, var(--primary-purple), var(--dark-purple));
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.3);
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .mission-headline {
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--text-light), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-purple);
+            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.3);
         }
         
-        .mission-statement {
-            font-size: clamp(18px, 2.5vw, 22px);
-            line-height: 1.8;
+        .feature-card i {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
             color: var(--text-light);
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            text-align: center;
+        }
+        
+        .stats h2 {
+            font-size: clamp(28px, 4vw, 48px);
             margin-bottom: 50px;
-            font-weight: 400;
-        }
-        
-        .mission-statement strong {
             color: var(--white);
-            font-weight: 700;
         }
         
-        .mission-stats {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin: 50px 0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .stat-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--primary-purple);
-            border-radius: 15px;
-            padding: 30px 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-green);
-            box-shadow: 0 10px 30px rgba(4, 102, 1, 0.3);
+            padding: 20px;
         }
         
         .stat-number {
-            font-size: clamp(42px, 6vw, 64px);
-            font-weight: 900;
-            color: var(--white);
-            line-height: 1;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
             margin-bottom: 10px;
         }
         
         .stat-label {
-            font-size: 16px;
+            font-size: 18px;
+            color: var(--white);
+            opacity: 0.9;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 48px);
+            margin-bottom: 50px;
             color: var(--text-light);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
-        .mission-cta {
-            margin-top: 50px;
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .mission-cta p {
-            font-size: clamp(18px, 2.5vw, 22px);
-            color: var(--text-light);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-        
-        .mission-cta .btn {
-            font-size: clamp(18px, 2.5vw, 22px);
-            padding: 20px 50px;
-            box-shadow: 0 8px 25px rgba(4, 102, 1, 0.5);
-        }
-        
-        /* ============================================
-           VIDEO MODAL POPUP STYLES - PREMIUM DESIGN
-           ============================================ */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26, 11, 46, 0.85) 0%, rgba(55, 25, 79, 0.85) 100%);
-            backdrop-filter: blur(12px);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .video-modal.active {
+        .step {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            gap: 20px;
         }
         
-        .video-modal-content {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            background: linear-gradient(135deg, rgba(26, 11, 46, 0.95) 0%, rgba(55, 25, 79, 0.95) 100%);
-            border: 2px solid rgba(222, 242, 248, 0.5);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(108, 42, 145, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
-        }
-        
-        /* ============================================
-           VIDEO LOADING OVERLAY - PROFESSIONAL DESIGN
-           ============================================ */
-        .video-loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26, 11, 46, 0.98) 0%, rgba(55, 25, 79, 0.98) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            opacity: 1;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            border-radius: 12px;
-        }
-        
-        .video-loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        /* Loading Spinner Animation */
-        .loading-spinner {
+        .step-number {
+            flex-shrink: 0;
             width: 60px;
             height: 60px;
-            border: 4px solid rgba(222, 242, 248, 0.2);
-            border-top: 4px solid var(--primary-green);
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 25px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Loading Text */
-        .loading-text {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-light);
-            letter-spacing: 0.5px;
-            text-align: center;
-            margin-bottom: 10px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-        
-        .loading-subtext {
-            font-size: 14px;
-            color: rgba(222, 242, 248, 0.7);
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-        
-        /* Mobile Optimization for Loading Overlay */
-        @media (max-width: 768px) {
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
-                border-width: 3px;
-                margin-bottom: 20px;
-            }
-            
-            .loading-text {
-                font-size: 18px;
-            }
-            
-            .loading-subtext {
-                font-size: 13px;
-                padding: 0 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .loading-spinner {
-                width: 45px;
-                height: 45px;
-                margin-bottom: 18px;
-            }
-            
-            .loading-text {
-                font-size: 16px;
-            }
-            
-            .loading-subtext {
-                font-size: 12px;
-            }
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: -18px;
-            right: -18px;
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
             color: var(--white);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .step-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 48px);
+            margin-bottom: 50px;
+            color: var(--text-light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            font-size: 22px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 
-                0 6px 20px rgba(4, 102, 1, 0.5),
-                0 0 30px rgba(4, 102, 1, 0.3);
-            z-index: 10001;
-            font-weight: 700;
+            font-size: 24px;
+            color: var(--white);
         }
         
-        .modal-close:hover {
-            transform: rotate(90deg) scale(1.15);
+        .author-info h4 {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 48px);
+            margin-bottom: 50px;
+            color: var(--text-light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .faq-question i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 20px 20px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        /* Final CTA Section */
+        .final-cta {
+            padding: 80px 20px;
             background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
-            box-shadow: 
-                0 8px 30px rgba(108, 42, 145, 0.7),
-                0 0 50px rgba(108, 42, 145, 0.5);
-            border-color: rgba(255, 255, 255, 0.6);
+            text-align: center;
         }
         
-        .modal-close:active {
-            transform: rotate(90deg) scale(1.05);
+        .final-cta h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            margin-bottom: 20px;
+            color: var(--white);
         }
         
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-            }
-            to { 
-                opacity: 1;
-            }
+        .final-cta p {
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 40px;
+            color: var(--white);
+            opacity: 0.9;
         }
         
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(60px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         
-        @media screen and (max-width: 768px) {
-            body {
-                padding-top: 80px; /* Increased space for wrapped conversion bar on tablets */
-            }
-            
-            .mission-section {
-                padding: 60px 20px;
-            }
-            
-            .mission-stats {
-                gap: 30px;
-            }
-            
-            .video-modal-content {
-                width: 95%;
-                padding: 20px;
-                border-width: 2px;
-            }
-            
-            .modal-close {
-                top: -12px;
-                right: -12px;
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-                border-width: 2px;
-            }
-            
-            .video-wrapper {
-                border-width: 1px;
-            }
+        .footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
         }
         
-        @media screen and (max-width: 480px) {
-            body {
-                padding-top: 100px; /* Extra space for multi-line conversion bar on mobile */
+        .footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--gold);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .conversion-bar {
-                padding: 10px 15px;
-                gap: 15px;
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
             
-            .video-modal-content {
-                width: 98%;
-                padding: 15px;
-                border-radius: 15px;
+            .step {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .modal-close {
-                top: -10px;
-                right: -10px;
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-            
-            .video-wrapper {
-                border-radius: 8px;
+            .step-number {
+                margin: 0 auto;
             }
         }
         
-        /* ========================================
-           SCROLL TO TOP BUTTON - OPTIMIZED FOR CONVERSIONS
-           ======================================== */
-        
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
             bottom: 30px;
@@ -970,297 +831,472 @@
             height: 50px;
             background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
             color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: none;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 20px;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;  /* Not clickable when hidden */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 99999;  /* Even higher to ensure it's on top */
-            box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
-            font-size: 20px;
-            -webkit-tap-highlight-color: transparent;  /* Remove tap highlight on mobile */
-            user-select: none;  /* Prevent text selection */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 42, 145, 0.4);
+            z-index: 1000;
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
-            pointer-events: auto;  /* Clickable when visible */
         }
         
         .scroll-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.8);
-            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(108, 42, 145, 0.6);
         }
         
-        .scroll-to-top:active {
-            transform: translateY(-2px) scale(1.05);
-        }
-        
-        /* Pulse animation to grab attention */
-        @keyframes scroll-pulse {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(108, 42, 145, 0.5);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(108, 42, 145, 0.9);
-            }
-        }
-        
-        .scroll-to-top.visible {
-            animation: scroll-pulse 2s infinite ease-in-out;
-        }
-        
-        /* Mobile optimization - SMALLER, less obtrusive */
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             .scroll-to-top {
-                bottom: 15px;
-                right: 15px;
-                width: 45px;  /* Smaller on mobile */
-                height: 45px;  /* Smaller on mobile */
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
                 font-size: 18px;
             }
         }
         
-        /* Tablet optimization */
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            .scroll-to-top {
-                bottom: 25px;
-                right: 25px;
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--white);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Loading Overlay Styles */
+        .video-loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0b2e 0%, var(--bg-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .video-loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+        
+        .loading-subtext {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .video-modal-content {
+                width: 95%;
+            }
+            
+            .modal-close {
+                top: -45px;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .loading-text {
+                font-size: 18px;
+            }
+            
+            .loading-subtext {
+                font-size: 13px;
             }
         }
     </style>
 </head>
 <body>
-    
-    <!-- Logo Section -->
-    <section class="logo-section">
-        <div class="logo-container">
-            <img src="https://vaultveritas.com/images/veritas-vault-registration.png" alt="Veritas Vault Logo">
-        </div>
-    </section>
-    
-    <!-- Section Divider -->
-    <div class="affiliate-divider">
-        <span class="affiliate-divider-text">Built with ❤️ by a Veritas Vault member</span>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>
-                <strong>100% Transparent</strong> • Your Money, Your Control
-            </h1>
-            
-            <h2 class="subtitle">Watch Your Money <span class="emphasis">Grow</span> and <span class="emphasis">Compound</span> Every 8 Hours!</h2>
-            
-            <p class="description">
-                <strong>Passively earn up to 1.3% per day</strong> directly in your Web3 wallet.
-            </p>
-            
-            <div class="highlight-box">
-                <p>
-                    Stake once and watch your balance grow <strong>3x daily</strong> automatically, right in your wallet. 
-                    <strong>No KYC, No lockups. No middlemen.</strong>
-                </p>
+    <!-- GIVEAWAY ANNOUNCEMENT BAR -->
+    <div class="giveaway-bar" id="giveawayBar">
+        <div class="giveaway-content">
+            <div class="giveaway-text">
+                🎉 <span class="giveaway-highlight">HISTORIC GIVEAWAY!</span> We're distributing <span class="giveaway-highlight">90,000 VVA</span> – 15K weekly for 6 weeks!
             </div>
-            
-            <div style="margin-top: 40px;">
-                <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green">
-                    <i class="fas fa-rocket"></i> 👉 5-STEP GETTING STARTED GUIDE
+            <a href="https://drive.google.com/file/d/1P8TLyy4Hr0Ttxm280TnmBqSbZF4WkrDy/view?usp=sharing" 
+               class="giveaway-cta" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                <i class="fas fa-gift"></i> GET DETAILS
+            </a>
+        </div>
+        <button class="giveaway-close" id="closeGiveaway" aria-label="Close announcement">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+        <div class="logo-container">
+            <img src="images/VeritasVault_Logo.png" alt="Veritas Vault Logo">
+        </div>
+    </div>
+
+    <!-- Affiliate Section Divider -->
+    <div class="affiliate-divider">
+        <span class="affiliate-divider-text">Independent Affiliate Promotion</span>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Get Paid <strong>3 Times Daily</strong></h1>
+            <p class="subtitle">Your Wallet. Your Rewards. No Middlemen.</p>
+            <p class="description">
+                Join the DeFi revolution with Veritas Vault. Earn up to <span class="highlight">1.3% daily</span> in passive income, 
+                paid directly to your wallet three times every day. No lockups. No limits. Pure financial freedom.
+            </p>
+            <div class="cta-container">
+                <a href="#" class="btn btn-primary" id="openOverviewVideo">
+                    <i class="fas fa-play-circle"></i> Watch Overview
+                </a>
+                <a href="#" class="btn btn-secondary" id="openPresentationVideo">
+                    <i class="fas fa-video"></i> Full Presentation
                 </a>
             </div>
         </div>
-    </section>
-    
-    <!-- Mission Section -->
-    <section class="mission-section">
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
         <div class="container">
-            <div class="mission-content">
-                <div class="mission-badge">
-                    🎯 OUR BOLD MISSION
+            <h2>Why Veritas Vault?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Direct to Wallet</h3>
+                    <p>Earnings are automatically deposited directly into your wallet. No waiting, no manual claims. Complete control.</p>
                 </div>
-                
-                <h2 class="mission-headline">
-                    We're Building a Movement of 100,000 Earners!
-                </h2>
-                
-                <p class="mission-statement">
-                    Join us in revolutionizing passive income. We're on a mission to help <strong>1 HUNDRED THOUSAND people worldwide</strong> 
-                    get paid <strong>3 times every single day</strong> through VVA token staking and propel the VVA token to 
-                    <strong>$10 per coin</strong> within the next 12 months.
-                </p>
-                
-                <div class="mission-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">1H+</div>
-                        <div class="stat-label">Target Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3x</div>
-                        <div class="stat-label">Daily Payouts</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">$10</div>
-                        <div class="stat-label">Target Price</div>
-                    </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>3 Daily Payouts</h3>
+                    <p>Receive passive income three times daily at 00:00, 08:00, and 16:00 UTC. Consistent, predictable rewards.</p>
                 </div>
-                
-                <div class="mission-cta">
-                    <p>💎 <strong>This isn't just an opportunity. It's a movement.</strong> Are you ready to be part of history?</p>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green">
-                        <i class="fas fa-rocket"></i> JOIN THE MOVEMENT - START NOW
-                    </a>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Up to 1.3% Daily</h3>
+                    <p>Earn competitive daily returns on your VVA holdings. Your investment works for you 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock-open"></i>
+                    <h3>No Lockups</h3>
+                    <p>Your funds remain liquid. Access your VVA anytime without penalties or restrictions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Blockchain Secured</h3>
+                    <p>Built on secure blockchain technology. Transparent, immutable, and auditable transactions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Driven</h3>
+                    <p>Join a global community of DeFi enthusiasts building the future of finance together.</p>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <!-- Resources Section -->
-    <section class="resources" id="resources">
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
         <div class="container">
-            <h2 class="section-title">Essential Resources to Get Started</h2>
-            
-            <div class="resource-grid">
-                <!-- ============================================
-                     NEW CARD: Veritas Vault App Overview
-                     Positioned ABOVE VVA Presentation Card
-                     ============================================ -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>VERITAS VAULT APP OVERVIEW</h3>
-                    <p>Master the app that pays you 3x daily in 4 minutes.</p>
-                    <a href="#" class="btn btn-purple" id="openOverviewVideo">
-                        <i class="fas fa-play-circle"></i> Watch Now
-                    </a>
+            <h2>Veritas Vault by the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">1.3%</span>
+                    <span class="stat-label">Daily Returns</span>
                 </div>
-                
-                <!-- Presentation Card -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-powerpoint"></i>
-                    </div>
-                    <h3>YOUR CRYPTO BREAKTHROUGH</h3>
-                    <p>8-minute blueprint: Earn $2K-$3K/month. Turn $1K into $50K. Find your WHY.</p>
-                    <a href="#" class="btn btn-purple" id="openPresentationVideo">
-                        <i class="fas fa-play-circle"></i> Watch Now
-                    </a>
+                <div class="stat-item">
+                    <span class="stat-number">3x</span>
+                    <span class="stat-label">Daily Payouts</span>
                 </div>
-                
-                <!-- Getting Started Card -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>GETTING STARTED GUIDE</h3>
-                    <p>Start Here: Setup, Stake, and Grow Today</p>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-purple">
-                        <i class="fas fa-arrow-right"></i> Read Guide
-                    </a>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Always Active</span>
                 </div>
-                
-                <!-- FAQ Card -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <h3>FAQ</h3>
-                    <p>Get Instant Answers to All Your Veritas Vault Questions</p>
-                    <a href="https://vaultveritas.com/veritas-vault-faq.html" class="btn btn-purple">
-                        <i class="fas fa-lightbulb"></i> Get Answers
-                    </a>
-                </div>
-                
-                <!-- VVA DOCS Card -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-download"></i>
-                    </div>
-                    <h3>VVA DOCS</h3>
-                    <p>Download essential Veritas Vault documents and resources</p>
-                    <a href="https://drive.google.com/drive/folders/1hH6gvpMJ_1VqfNu8LK4l3jC_B2ZU9Mh4" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
-                        <i class="fas fa-download"></i> Download Docs
-                    </a>
-                </div>
-                
-                <!-- MULTILINGUAL VIDEOS Card -->
-                <div class="resource-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3>MULTILINGUAL VIDEOS</h3>
-                    <p>Watch Veritas Vault videos in different languages</p>
-                    <a href="https://vvault.io" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
-                        <i class="fas fa-globe"></i> Watch in Your Language
-                    </a>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Transparent</span>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <!-- Final CTA -->
-    <section class="cta-section">
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works">
         <div class="container">
-            <h2>Ready to Start Growing Your Crypto?</h2>
-            <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green" style="font-size: 20px; padding: 20px 50px;">
-                <i class="fas fa-rocket"></i> Get Started Now
-            </a>
-            <p style="margin-top: 25px; font-size: 18px; color: var(--text-light); font-weight: 500;">
-                <i class="fas fa-shield-alt" style="color: #FFD700; margin-right: 8px;"></i>Transparent. 🔒 Secure. Supported by ⚓ Deep Liquidity.
-            </p>
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Get VVA Tokens</h3>
+                        <p>Acquire VVA tokens through the official platform or supported exchanges.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Hold in Your Wallet</h3>
+                        <p>Store your VVA tokens in any compatible wallet. You maintain full custody and control.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Earn Automatically</h3>
+                        <p>Sit back and watch as rewards are deposited directly to your wallet three times daily.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Compound or Withdraw</h3>
+                        <p>Choose to reinvest your earnings for compound growth or withdraw anytime without restrictions.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-    
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Veritas Vault has completely changed my perspective on passive income. Getting paid three times a day directly to my wallet feels like magic!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Early Adopter</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The transparency and simplicity of Veritas Vault is refreshing. No complicated processes, just consistent rewards delivered exactly when promised."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael R.</h4>
+                            <p>DeFi Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "I've tried many DeFi platforms, but Veritas Vault stands out with its user-friendly approach and reliable daily payouts. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>James T.</h4>
+                            <p>Crypto Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I start earning with Veritas Vault?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Simply acquire VVA tokens and hold them in your wallet. Rewards will automatically start being deposited to your wallet three times daily at 00:00, 08:00, and 16:00 UTC.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a minimum holding requirement?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            There is no minimum holding requirement. Whether you hold a small amount or a large portfolio, you'll earn proportional rewards based on your holdings.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I withdraw my funds anytime?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Unlike traditional staking platforms, Veritas Vault has no lockup periods. Your funds remain completely liquid and accessible at all times.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How are the rewards calculated?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Rewards are calculated based on your VVA holdings and distributed proportionally. The daily rate can reach up to 1.3%, split across three daily payouts for consistency.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is Veritas Vault safe and secure?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Veritas Vault is built on blockchain technology with transparent, immutable transactions. Your funds remain in your custody at all times, and all operations are verifiable on-chain.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final CTA Section -->
+    <div class="final-cta">
+        <div class="container">
+            <h2>Ready to Start Earning?</h2>
+            <p>Join thousands of users already earning passive income with Veritas Vault</p>
+            <div class="cta-container">
+                <a href="#" class="btn btn-primary" id="openOverviewVideo">
+                    <i class="fas fa-play-circle"></i> Watch Overview
+                </a>
+                <a href="#" class="btn btn-secondary" id="openPresentationVideo">
+                    <i class="fas fa-video"></i> Full Presentation
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="footer">
+    <div class="footer">
         <div class="container">
-            <div class="footer-sections">
-                <!-- Quick Links Section -->
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="https://vaultveritas.com" rel="noopener noreferrer">Home</a>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" rel="noopener noreferrer">Getting Started</a>
-                    <a href="https://vaultveritas.com/veritas-vault-faq.html" rel="noopener noreferrer">FAQ</a>
-                </div>
-                
-                <!-- Socials Section -->
-                <div class="footer-section">
-                    <h4>Socials</h4>
-                    <a href="https://chat.whatsapp.com/IzARh7HB15ZBrGcRLzjXt3?mode=wwt" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer">YouTube</a>
-                    <a href="https://t.me/+ISjSFMGl3qs3YTlh" target="_blank" rel="noopener noreferrer">Telegram</a>
-                </div>
-                
-                <!-- Legal Section -->
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <a href="https://vaultveritas.com/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
-                    <a href="https://vaultveritas.com/terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
-                    <a href="https://vaultveritas.com/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
-                </div>
-            </div>
-            
-            <div class="footer-credit">
-                Built with ❤️ by an independent Veritas Vault member • Not the official company website.
-            </div>
-            <div class="footer-credit" style="margin-top: 15px;">
-                <span style="color: #FFD700; font-weight: 700;">STOP</span> Struggling. <span style="color: #FFD700; font-weight: 700;">START</span> Earning. Clone This Proven Website. <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" style="color: #FFD700; text-decoration: underline; font-weight: 700;">Contact Us</a>
-            </div>
+            <p>&copy; 2024 Veritas Vault. All rights reserved.</p>
+            <p>This is an independent affiliate promotion. Not officially endorsed by Veritas Vault.</p>
         </div>
-    </footer>
-    
-    <!-- ============================================
-         VIDEO MODAL POPUP - PREMIUM DESIGN
-         ============================================ -->
-    <div id="videoModal" class="video-modal">
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
         <div class="video-modal-content">
             <button class="modal-close" id="closeModal">
                 <i class="fas fa-times"></i>
@@ -1478,6 +1514,48 @@
                 console.error('Scroll-to-top button not found!');
             }
         });
+        
+        // ==========================================
+        // GIVEAWAY ANNOUNCEMENT BAR FUNCTIONALITY
+        // Session-based dismissal with smooth animations
+        // ==========================================
+
+        (function() {
+            const giveawayBar = document.getElementById('giveawayBar');
+            const closeBtn = document.getElementById('closeGiveaway');
+            const STORAGE_KEY = 'vv_giveaway_dismissed';
+            
+            // Check if user has dismissed the bar in this session
+            const isDismissed = sessionStorage.getItem(STORAGE_KEY);
+            
+            if (!isDismissed) {
+                // Show bar with animation after page loads
+                setTimeout(function() {
+                    giveawayBar.classList.add('active');
+                    document.body.classList.add('giveaway-active');
+                }, 500);
+            }
+            
+            // Close button functionality
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    giveawayBar.classList.add('dismissed');
+                    document.body.classList.remove('giveaway-active');
+                    sessionStorage.setItem(STORAGE_KEY, 'true');
+                    console.log('✅ Giveaway bar dismissed');
+                });
+            }
+            
+            // Track CTA clicks
+            const ctaBtn = giveawayBar.querySelector('.giveaway-cta');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', function() {
+                    console.log('🎯 Giveaway CTA clicked - PDF download initiated');
+                    // Add your analytics tracking here if needed
+                });
+            }
+        })();
     </script>
     
     <!-- Scroll to Top Button -->
