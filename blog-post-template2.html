@@ -185,128 +185,6 @@
             padding: 0 20px;
         }
         
-        /* ============================================
-           GIVEAWAY BAR
-           ============================================ */
-        .giveaway-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #1a0b2e 0%, var(--dark-purple) 50%, #000000 100%);
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            animation: giveawayGlow 3s ease-in-out infinite;
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .giveaway-bar.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .giveaway-bar.dismissed {
-            opacity: 0;
-            transform: translateY(-100%);
-            pointer-events: none;
-        }
-
-        @keyframes giveawayGlow {
-            0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25); }
-            50% { box-shadow: 0 4px 30px rgba(255, 215, 0, 0.45), 0 0 40px rgba(108, 42, 145, 0.3); }
-        }
-
-        .giveaway-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .giveaway-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--white);
-            text-align: center;
-            line-height: 1.4;
-            letter-spacing: 0.3px;
-        }
-
-        .giveaway-highlight {
-            color: var(--gold);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            animation: pulseGold 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseGold {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
-        }
-
-        .giveaway-cta {
-            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-            color: var(--black);
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-            border: 2px solid var(--gold);
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .giveaway-cta:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
-        }
-
-        .giveaway-close {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            padding: 0;
-        }
-
-        .giveaway-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) rotate(90deg);
-        }
-
-        body.giveaway-active {
-            padding-top: 65px;
-        }
         
         /* ============================================
            LOGO SECTION
@@ -827,27 +705,12 @@
     </style>
 </head>
 <body>
-    <!-- Giveaway Bar -->
-    <div class="giveaway-bar" id="giveawayBar">
-        <div class="giveaway-content">
-            <span class="giveaway-text">
-                🎁 <span class="giveaway-highlight">FREE GIVEAWAY</span> | Download Your Veritas Vault Success Guide + 7 Bonus Strategies
-            </span>
-            <a href="https://vaultveritas.com/files/veritas-vault-success-guide.pdf" class="giveaway-cta" target="_blank">
-                GET FREE PDF
-            </a>
-            <button class="giveaway-close" id="closeGiveaway" aria-label="Close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- Logo Section -->
     <section class="logo-section">
         <div class="container">
             <div class="logo-container">
                 <a href="https://vaultveritas.com">
-                    <img src="https://vaultveritas.com/images/veritas-vault-logo.png" alt="Veritas Vault Logo">
+                    <img src="https://vaultveritas.com/images/veritas-vault-registration.png" alt="Veritas Vault Logo">
                 </a>
             </div>
         </div>
@@ -1064,31 +927,6 @@
     </button>
     
     <script>
-        // Giveaway Bar
-        (function() {
-            const giveawayBar = document.getElementById('giveawayBar');
-            const closeBtn = document.getElementById('closeGiveaway');
-            const STORAGE_KEY = 'vv_giveaway_dismissed';
-            
-            const isDismissed = sessionStorage.getItem(STORAGE_KEY);
-            
-            if (!isDismissed) {
-                setTimeout(function() {
-                    giveawayBar.classList.add('active');
-                    document.body.classList.add('giveaway-active');
-                }, 500);
-            }
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    giveawayBar.classList.add('dismissed');
-                    document.body.classList.remove('giveaway-active');
-                    sessionStorage.setItem(STORAGE_KEY, 'true');
-                });
-            }
-        })();
-        
         // Scroll to Top
         (function() {
             const scrollToTopBtn = document.getElementById('scrollToTop');
