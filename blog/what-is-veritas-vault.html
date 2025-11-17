@@ -518,6 +518,12 @@
             font-weight: bold;
         }
         
+        /* Remove green bullets from Table of Contents */
+        .toc-list li:before {
+            content: none !important;
+            display: none !important;
+        }
+        
         /* ============================================
            SPECIAL CONTENT BLOCKS
            ============================================ */
@@ -710,6 +716,7 @@
             margin-bottom: 12px;
             list-style: none !important;
             list-style-type: none !important;
+            padding-left: 0 !important;
         }
         
         .toc-list a {
