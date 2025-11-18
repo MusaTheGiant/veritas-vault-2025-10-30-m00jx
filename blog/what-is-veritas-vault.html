@@ -1406,12 +1406,12 @@
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
+            transition: max-height 0.5s ease, padding 0.5s ease;
             padding: 0 30px;
         }
         
         .faq-item.active .faq-answer {
-            max-height: 1000px;
+            max-height: 3000px;
             padding: 0 30px 25px 30px;
         }
         
@@ -1476,6 +1476,31 @@
             
             .timeline-step {
                 padding-left: 50px;
+            }
+            
+            .conversion-faq {
+                padding: 30px 15px;
+                margin: 40px auto;
+            }
+            
+            .faq-question {
+                padding: 20px 15px;
+            }
+            
+            .faq-question h3 {
+                font-size: 18px;
+            }
+            
+            .faq-answer {
+                padding: 0 15px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 0 15px 20px 15px;
+            }
+            
+            .faq-answer p {
+                font-size: 16px;
             }
         }
     </style>
@@ -2432,13 +2457,6 @@
             }
         }
         
-        // Auto-open first FAQ item on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstFAQ = document.querySelector('.faq-item');
-            if (firstFAQ) {
-                firstFAQ.classList.add('active');
-            }
-        });
     </script>
 </body>
 </html>
