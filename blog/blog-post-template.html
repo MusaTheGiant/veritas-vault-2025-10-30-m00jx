@@ -1034,24 +1034,91 @@
             margin: 50px 0;
         }
         
+        /* ============================================
+           FAQ ACCORDION - Sleek Collapsible Design
+           ============================================ */
         .faq-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(108, 42, 145, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
             transition: all 0.3s ease;
-            cursor: default;
         }
         
         .faq-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.4);
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
         }
         
-        .faq-item h3 {
+        .faq-item.active {
+            border-color: var(--gold);
+            background: rgba(108, 42, 145, 0.15);
+        }
+        
+        .faq-question {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 700;
+            padding: 20px 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            gap: 15px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            margin: 0;
         }
         
-        .faq-item h3 i {
-            font-size: 20px;
+        .faq-question:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .faq-question-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .faq-chevron {
+            font-size: 16px;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-chevron {
+            transform: rotate(90deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 800px;
+            padding: 0 25px 20px 25px;
+        }
+        
+        .faq-answer p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+        
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-icon {
+            color: var(--primary-purple);
+            font-size: 18px;
         }
         
         /* ============================================
@@ -1549,107 +1616,155 @@
                     </p>
 
                     <!-- FAQ Item 1 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 1 - Make it a natural long-tail keyword]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Direct, confident answer. Include subtle CTA angle. Optimize for featured snippet format. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Continue answer with additional details or examples if needed.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 1 - Make it a natural long-tail keyword]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Direct, confident answer. Include subtle CTA angle. Optimize for featured snippet format. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Continue answer with additional details or examples if needed.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 2 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 2 - Address common objection or concern]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Clear, reassuring answer that removes friction and builds confidence. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Additional context or reassurance if needed.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 2 - Address common objection or concern]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Clear, reassuring answer that removes friction and builds confidence. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Additional context or reassurance if needed.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 3 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 3 - Technical or "how to" question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Step-by-step or detailed answer that demonstrates expertise. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Continue with practical guidance.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 3 - Technical or "how to" question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Step-by-step or detailed answer that demonstrates expertise. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Continue with practical guidance.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 4 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 4 - Comparison or "vs" question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Comparative answer that positions Veritas Vault favorably while being honest. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Additional comparison details.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 4 - Comparison or "vs" question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Comparative answer that positions Veritas Vault favorably while being honest. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Additional comparison details.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 5 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 5 - Getting started or practical question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Actionable answer with clear next steps. Make getting started feel easy. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Include strategic internal link to getting started guide here.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 5 - Getting started or practical question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Actionable answer with clear next steps. Make getting started feel easy. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Include strategic internal link to getting started guide here.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 6 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 6 - Results or timeline question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Realistic answer about expectations, timelines, or results. Balance honesty with optimism. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Additional realistic expectations.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 6 - Results or timeline question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Realistic answer about expectations, timelines, or results. Balance honesty with optimism. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Additional realistic expectations.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 7 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 7 - Safety or security question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Confidence-building answer about safety, security, or legitimacy. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Additional trust-building information.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 7 - Safety or security question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Confidence-building answer about safety, security, or legitimacy. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Additional trust-building information.]
+                            </p>
+                        </div>
                     </div>
 
                     <!-- FAQ Item 8 -->
-                    <div class="highlight-box faq-item" style="margin-bottom: 25px;">
-                        <h3 style="color: var(--gold); margin-bottom: 15px;">
-                            <i class="fas fa-chevron-circle-right"></i> [CUSTOMIZE: Question 8 - Community or support question]
-                        </h3>
-                        <p>
-                            [CUSTOMIZE: Answer emphasizing community support, resources, and belonging. 2-3 paragraphs.]
-                        </p>
-                        <p>
-                            [CUSTOMIZE: Include links to community channels or FAQ page.]
-                        </p>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>[CUSTOMIZE: Question 8 - Community or support question]</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                [CUSTOMIZE: Answer emphasizing community support, resources, and belonging. 2-3 paragraphs.]
+                            </p>
+                            <p>
+                                [CUSTOMIZE: Include links to community channels or FAQ page.]
+                            </p>
+                        </div>
                     </div>
 
                     <div class="info-box">
@@ -1859,6 +1974,23 @@
                 }
             });
         });
+        
+        // FAQ Accordion Toggle
+        function toggleFAQ(questionElement) {
+            const faqItem = questionElement.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
     </script>
 </body>
 </html>
