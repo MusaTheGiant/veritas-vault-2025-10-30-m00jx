@@ -705,24 +705,87 @@
             margin-bottom: 25px;
         }
         
-        /* FAQ Items */
+        /* ============================================
+           FAQ ACCORDION - Sleek Collapsible Design
+           ============================================ */
         .faq-item {
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(108, 42, 145, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
         .faq-item:hover {
-            transform: translateX(8px);
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .faq-item.active {
+            border-color: var(--gold);
+            background: rgba(108, 42, 145, 0.15);
         }
         
         .faq-question {
             color: var(--gold);
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 12px;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+        
+        .faq-question:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .faq-question-text {
+            flex: 1;
             display: flex;
             align-items: center;
             gap: 12px;
+        }
+        
+        .faq-chevron {
+            font-size: 16px;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-chevron {
+            transform: rotate(90deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 20px 25px;
+        }
+        
+        .faq-answer p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+        
+        .faq-icon {
+            color: var(--primary-purple);
+            font-size: 18px;
         }
         
         /* Social Share */
@@ -1413,59 +1476,107 @@
                     <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: Can Veritas Vault steal my money?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: Can Veritas Vault steal my money?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>No. Your funds remain in your wallet at all times (non-custodial). The smart contract is locked and immutable. No one can modify it to drain funds. This is fundamentally different from platforms like FTX or Celsius where the platform controlled user funds.</p>
+                        <div class="faq-answer">
+                            <p>No. Your funds remain in your wallet at all times (non-custodial). The smart contract is locked and immutable. No one can modify it to drain funds. This is fundamentally different from platforms like FTX or Celsius where the platform controlled user funds.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: What happens if VVA token price crashes?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: What happens if VVA token price crashes?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>Your dollar-denominated returns would be affected. You still receive the same percentage of VVA tokens (1.32% daily), but their USD value fluctuates with market price. This is true of all cryptocurrency investments. You can mitigate this by regularly claiming rewards and converting some to stablecoins.</p>
+                        <div class="faq-answer">
+                            <p>Your dollar-denominated returns would be affected. You still receive the same percentage of VVA tokens (1.32% daily), but their USD value fluctuates with market price. This is true of all cryptocurrency investments. You can mitigate this by regularly claiming rewards and converting some to stablecoins.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: Is there a minimum or maximum investment?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: Is there a minimum or maximum investment?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>Minimum is approximately $100 (the cost of the DAI swap to activate your account). There's no maximum, but smart investors start small to verify performance before scaling. Recommended starting range: $100-$500.</p>
+                        <div class="faq-answer">
+                            <p>Minimum is approximately $100 (the cost of the DAI swap to activate your account). There's no maximum, but smart investors start small to verify performance before scaling. Recommended starting range: $100-$500.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: Are there lockup periods or withdrawal restrictions?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: Are there lockup periods or withdrawal restrictions?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>No. Unlike many DeFi platforms, Veritas Vault has no lockup periods. You can unstake and withdraw at any time. Your funds are never frozen or restricted. You maintain complete control.</p>
+                        <div class="faq-answer">
+                            <p>No. Unlike many DeFi platforms, Veritas Vault has no lockup periods. You can unstake and withdraw at any time. Your funds are never frozen or restricted. You maintain complete control.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: How can I verify the payments are real?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: How can I verify the payments are real?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>All transactions occur on BNB Chain blockchain and are publicly verifiable. You can check your own wallet transactions, view the smart contract on BscScan, and see thousands of other users' payment patterns. Don't trust marketing claims. Verify on the blockchain.</p>
+                        <div class="faq-answer">
+                            <p>All transactions occur on BNB Chain blockchain and are publicly verifiable. You can check your own wallet transactions, view the smart contract on BscScan, and see thousands of other users' payment patterns. Don't trust marketing claims. Verify on the blockchain.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: Do I need to recruit people to make money?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: Do I need to recruit people to make money?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>No. You earn staking rewards automatically whether you refer anyone or not. However, the referral program (18% direct bonuses + 12 levels deep) provides <strong>additional</strong> earning potential if you choose to build a network. Staking alone works; referrals enhance earnings.</p>
+                        <div class="faq-answer">
+                            <p>No. You earn staking rewards automatically whether you refer anyone or not. However, the referral program (18% direct bonuses + 12 levels deep) provides <strong>additional</strong> earning potential if you choose to build a network. Staking alone works; referrals enhance earnings.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: What's the worst-case scenario?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: What's the worst-case scenario?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>Worst case: VVA token price drops significantly, reducing the USD value of your holdings and rewards. Or platform usage declines, affecting sustainability of high returns. That's why starting small and verifying over time is crucial. Never invest money you can't afford to lose completely.</p>
+                        <div class="faq-answer">
+                            <p>Worst case: VVA token price drops significantly, reducing the USD value of your holdings and rewards. Or platform usage declines, affecting sustainability of high returns. That's why starting small and verifying over time is crucial. Never invest money you can't afford to lose completely.</p>
+                        </div>
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-circle-right"></i> Q: Is this better than just holding Bitcoin or Ethereum?
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <div class="faq-question-text">
+                                <i class="fas fa-question-circle faq-icon"></i>
+                                <span>Q: Is this better than just holding Bitcoin or Ethereum?</span>
+                            </div>
+                            <i class="fas fa-chevron-right faq-chevron"></i>
                         </div>
-                        <p>Different strategies, different risk profiles. Bitcoin/Ethereum are more established and less volatile. Veritas Vault offers higher potential returns but with increased risk. Smart crypto investors diversify across multiple strategies rather than going all-in on any single approach.</p>
+                        <div class="faq-answer">
+                            <p>Different strategies, different risk profiles. Bitcoin/Ethereum are more established and less volatile. Veritas Vault offers higher potential returns but with increased risk. Smart crypto investors diversify across multiple strategies rather than going all-in on any single approach.</p>
+                        </div>
                     </div>
 
                     <div class="highlight-box">
@@ -1682,6 +1793,23 @@
                 }
             });
         });
+        
+        // FAQ Accordion Toggle
+        function toggleFAQ(questionElement) {
+            const faqItem = questionElement.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
     </script>
 </body>
 </html>
