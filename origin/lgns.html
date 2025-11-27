@@ -1,1 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMJX6M0N41"></script>
+    <script>
+        function gtag(){dataLayer.push(arguments)}
+        window.dataLayer=window.dataLayer||[];
+        gtag("js",new Date);
+        gtag("config","G-PMJX6M0N41");
+    </script>
 
+    <!-- Essential Meta Tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Web3 Integrated Financial Ecosystem - The DeFi 3.0 protocol based on the algorithmic non-stable currency LGNS makes the world's first private and anonymous payment ecosystem"/>
+    <meta name="keywords" content="DeFi, Web3, LGNS, Origin Protocol, cryptocurrency, blockchain, staking, treasury, decentralized finance"/>
+    <meta name="author" content="Origin DeFi"/>
+    <meta name="robots" content="index, follow"/>
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Origin - Web3 Integrated Financial Ecosystem"/>
+    <meta property="og:description" content="The DeFi 3.0 protocol based on the algorithmic non-stable currency LGNS makes the world's first private and anonymous payment ecosystem"/>
+    <meta property="og:image" content="./assets/og-image.jpg"/>
+    <meta property="og:url" content="https://origindefi.io"/>
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Origin - Web3 Integrated Financial Ecosystem"/>
+    <meta name="twitter:description" content="The DeFi 3.0 protocol based on algorithmic non-stable currency LGNS"/>
+    <meta name="twitter:image" content="./assets/twitter-image.jpg"/>
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./favicon.ico"/>
+    <link rel="manifest" href="./manifest.json"/>
+    
+    <!-- Page Title -->
+    <title>Origin</title>
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link href="./static/css/main.b50fa839.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #2a2e35;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(42, 46, 53, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 2px;
+        }
+        
+        .logo-icon::before {
+            width: 18px;
+            height: 2px;
+            transform: rotate(45deg);
+        }
+        
+        .logo-icon::after {
+            width: 2px;
+            height: 18px;
+            transform: rotate(45deg);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffffff;
+        }
+        
+        .nav-link.home {
+            color: #ff4444;
+        }
+        
+        .dropdown-arrow {
+            font-size: 10px;
+        }
+        
+        .buy-button {
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .buy-button:hover {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .lang-selector {
+            width: 32px;
+            height: 22px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(%23s)"><path d="M0,0 v30 h60 v-30 z" fill="%23012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="%23fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(%23t)" stroke="%23C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="%23fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="%23C8102E" stroke-width="6"/></g></svg>') center/cover;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .connect-wallet {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+        }
+        
+        .connect-wallet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 120px 40px 80px;
+            background: linear-gradient(to bottom, #2a2e35 0%, #1f2228 100%);
+        }
+        
+        /* Geometric Background */
+        .geometric-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.3;
+        }
+        
+        .geometric-line {
+            position: absolute;
+            stroke: #4a4e55;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .line-1 {
+            top: 15%;
+            left: 10%;
+            width: 300px;
+            height: 400px;
+        }
+        
+        .line-2 {
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 400px;
+        }
+        
+        .line-3 {
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+        }
+        
+        /* Hero Content */
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: #c0c0c0;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            font-weight: 400;
+        }
+        
+        /* Stats Dashboard */
+        .stats-dashboard {
+            background: rgba(35, 39, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 50px 60px;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+        
+        .stat-item {
+            position: relative;
+        }
+        
+        .stat-indicator {
+            width: 8px;
+            height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.6);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #a0a0a0;
+            margin-bottom: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 20px 30px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .stats-dashboard {
+                padding: 40px 40px;
+            }
+            
+            .stats-grid {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-section {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .stats-dashboard {
+                padding: 30px 25px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .stat-value {
+                font-size: 36px;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+        }
+    </style>
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Origin DeFi",
+        "description": "Web3 Integrated Financial Ecosystem",
+        "url": "https://origindefi.io"
+    }
+    </script>
+    
+    <!-- Deferred JavaScript -->
+    <script defer="defer" src="./static/js/main.0c320be0.js"></script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-icon"></div>
+                <span class="logo-text">Origin</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link home">
+                    HOME
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <button class="buy-button">BUY</button>
+                <div class="lang-selector" title="English"></div>
+                <button class="connect-wallet">CONNECT WALLET</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="root">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- Geometric Background -->
+            <div class="geometric-bg">
+                <svg class="geometric-line line-1" viewBox="0 0 300 400">
+                    <path d="M 50,50 Q 150,200 250,350" />
+                </svg>
+                <svg class="geometric-line line-2" viewBox="0 0 300 400">
+                    <path d="M 250,50 Q 150,200 50,350" />
+                </svg>
+                <svg class="geometric-line line-3" viewBox="0 0 600 300">
+                    <path d="M 100,150 Q 300,50 500,150" />
+                </svg>
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="hero-content">
+                <h1 class="hero-title">Web3 Integrated Financial Ecosystem</h1>
+                <p class="hero-subtitle">
+                    The DeFi 3.0 protocol based on the algorithmic non-stable currency LGNS makes the world's first private and anonymous payment ecosystem
+                </p>
+                
+                <!-- Stats Dashboard -->
+                <div class="stats-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-indicator"></div>
+                            <div class="stat-label">Total LGNS Staked</div>
+                            <div class="stat-value">506428446.33</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Treasury Balance</div>
+                            <div class="stat-value">$NaN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Analytics & Tracking -->
+    <script>
+        // Page Load Performance Tracking
+        window.addEventListener('load', function() {
+            if (window.gtag) {
+                gtag('event', 'page_load_complete', {
+                    'load_time': performance.now()
+                });
+            }
+        });
+        
+        // Connect Wallet Click Tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectButton = document.querySelector('.connect-wallet');
+            if (connectButton) {
+                connectButton.addEventListener('click', function() {
+                    if (window.gtag) {
+                        gtag('event', 'wallet_connect_click', {
+                            'button_location': 'header'
+                        });
+                    }
+                    alert('Wallet connection functionality - integrate with Web3 provider');
+                });
+            }
+            
+            // Buy Button Tracking
+            const buyButton = document.querySelector('.buy-button');
+            if (buyButton) {
+                buyButton.addEventListener('click', function() {
+                    if (window.gtag) {
+                        gtag('event', 'buy_click', {
+                            'button_location': 'header'
+                        });
+                    }
+                    alert('Buy functionality - integrate with exchange');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
