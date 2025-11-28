@@ -1256,6 +1256,384 @@
             }
         }
         
+
+        /* ============================================
+           MASTERPIECE ENHANCEMENTS - Professional Polish
+           ============================================ */
+        
+        /* HYPERLINKS - Make them visible and attractive */
+        .content-wrapper a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+        }
+        
+        .content-wrapper a:hover {
+            color: #ffd700;
+            border-bottom-color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        
+        /* Special styling for links in headers */
+        .content-wrapper h2 a,
+        .content-wrapper h3 a {
+            border-bottom: none;
+            color: inherit;
+        }
+        
+        /* TYPOGRAPHY - Enhanced readability */
+        .content-wrapper p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        
+        .content-wrapper strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .content-wrapper em {
+            color: rgba(255, 215, 0, 0.9);
+            font-style: italic;
+        }
+        
+        /* HEADERS - Improved hierarchy and spacing */
+        .content-wrapper h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-wrapper h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 60px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(255, 215, 0, 0.3);
+            line-height: 1.3;
+        }
+        
+        .content-wrapper h3 {
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 600;
+            color: var(--white);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        /* LISTS - Better visual hierarchy */
+        .content-wrapper ul,
+        .content-wrapper ol {
+            margin: 25px 0 25px 30px;
+            padding-left: 20px;
+        }
+        
+        .content-wrapper li {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 17px;
+        }
+        
+        .content-wrapper ul li::marker {
+            color: var(--gold);
+            font-size: 1.2em;
+        }
+        
+        .content-wrapper ol li::marker {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        /* CODE/FORMULAS - Mathematical expressions */
+        .content-wrapper code {
+            background: rgba(108, 42, 145, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-family: 'Courier New', monospace;
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* BLOCKQUOTES - Standout sections */
+        .content-wrapper blockquote {
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.15), rgba(255, 215, 0, 0.05));
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* DIVIDERS - Section separation */
+        .content-wrapper hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 50px 0;
+            opacity: 0.5;
+        }
+        
+        /* INTRODUCTION BOX - Enhanced styling */
+        .content-wrapper .introduction {
+            background: linear-gradient(135deg, rgba(108, 42, 145, 0.2), rgba(55, 25, 79, 0.3));
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 30px rgba(108, 42, 145, 0.3);
+        }
+        
+        .content-wrapper .introduction p:first-child {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        /* META INFO - Article metadata */
+        .content-wrapper .article-meta {
+            background: rgba(108, 42, 145, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .content-wrapper .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+        }
+        
+        .content-wrapper .meta-icon {
+            font-size: 18px;
+        }
+        
+        /* IMPROVED TABLE READABILITY */
+        .content-wrapper table {
+            font-size: 16px;
+            letter-spacing: 0.3px;
+        }
+        
+        .content-wrapper table th {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .content-wrapper table td {
+            line-height: 1.6;
+        }
+        
+        .content-wrapper table tbody tr:nth-child(even) {
+            background: rgba(108, 42, 145, 0.05);
+        }
+        
+        /* PARAGRAPH SPACING - Better breathing room */
+        .content-wrapper > p:first-of-type {
+            font-size: 20px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* EMPHASIS - Make important text stand out */
+        .content-wrapper p strong:first-child {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        /* VISUAL BREAKS - Section breathing room */
+        .content-wrapper h2:first-of-type {
+            margin-top: 40px;
+        }
+        
+        /* NESTED LISTS - Better indentation */
+        .content-wrapper ul ul,
+        .content-wrapper ol ul,
+        .content-wrapper ul ol,
+        .content-wrapper ol ol {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* IMAGE STYLING - If any images are added */
+        .content-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            margin: 30px 0;
+        }
+        
+        /* RESPONSIVE ENHANCEMENTS */
+        @media (max-width: 768px) {
+            .content-wrapper p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+            
+            .content-wrapper h2 {
+                margin-top: 40px;
+                font-size: 24px;
+            }
+            
+            .content-wrapper h3 {
+                margin-top: 30px;
+                font-size: 20px;
+            }
+            
+            .content-wrapper li {
+                font-size: 16px;
+            }
+            
+            .content-wrapper .introduction {
+                padding: 25px 20px;
+            }
+        }
+        
+        /* SCROLLBAR STYLING - Professional touch */
+        .content-wrapper::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .content-wrapper::-webkit-scrollbar-track {
+            background: rgba(15, 15, 30, 0.5);
+        }
+        
+        .content-wrapper::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-purple), var(--gold));
+            border-radius: 5px;
+        }
+        
+        .content-wrapper::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--gold), var(--primary-purple));
+        }
+        
+
+        /* ============================================
+           FINAL PROFESSIONAL TOUCHES
+           ============================================ */
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Text selection styling */
+        ::selection {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+        
+        ::-moz-selection {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+        
+        /* Focus states for accessibility */
+        .content-wrapper a:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+        
+        /* Header anchor links */
+        .content-wrapper h2:hover,
+        .content-wrapper h3:hover {
+            color: #ffd700;
+        }
+        
+        /* Print-friendly styles */
+        @media print {
+            .content-wrapper {
+                max-width: 100%;
+            }
+            
+            .content-wrapper a {
+                color: #000;
+                text-decoration: underline;
+            }
+            
+            .content-wrapper h2 {
+                page-break-after: avoid;
+            }
+        }
+        
+        /* Highlight boxes for key information */
+        .content-wrapper .highlight {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(108, 42, 145, 0.1));
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+        
+        /* Reading mode optimization */
+        .content-wrapper {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Link icons/indicators */
+        .content-wrapper a[href^="http"]::after {
+            content: " ↗";
+            font-size: 0.8em;
+            opacity: 0.6;
+            margin-left: 2px;
+        }
+        
+        .content-wrapper a[href^="#"]::after {
+            content: "";
+        }
+        
+        /* Callout box enhancement */
+        .content-wrapper p strong:only-child {
+            display: block;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--gold);
+            margin: 20px 0;
+        }
+        
+        /* Better paragraph breaks after headers */
+        .content-wrapper h2 + p,
+        .content-wrapper h3 + p {
+            margin-top: 20px;
+        }
+        
+        /* Improved contrast for better readability */
+        .content-wrapper {
+            background: linear-gradient(180deg, 
+                rgba(15, 15, 30, 0.95) 0%, 
+                rgba(26, 11, 46, 0.95) 100%);
+            padding: 40px 0;
+        }
+        
 </style>
 </head>
 <body>
