@@ -1668,7 +1668,8 @@
                     <!-- YouTube iframe (initially hidden, shown on click) -->
                     <div class="video-iframe-container" id="heroVideoIframe" style="display: none;">
                         <iframe 
-                            src="https://www.youtube.com/embed/nXO2VP2uHkI?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+                            id="heroVideoFrame"
+                            data-src="https://www.youtube.com/embed/nXO2VP2uHkI?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
                             title="Veritas Vault Explained - Your Complete Guide" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -1762,44 +1763,44 @@
                 .play-button-circle {
                     width: 90px;
                     height: 90px;
-                    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+                    background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     box-shadow: 
-                        0 8px 30px rgba(255, 0, 0, 0.5),
-                        0 0 0 8px rgba(255, 0, 0, 0.2),
-                        0 0 0 16px rgba(255, 0, 0, 0.1);
+                        0 8px 30px rgba(255, 215, 0, 0.5),
+                        0 0 0 8px rgba(255, 215, 0, 0.2),
+                        0 0 0 16px rgba(255, 215, 0, 0.1);
                     transition: all 0.3s ease;
-                    animation: pulse 2s ease-in-out infinite;
+                    animation: pulseGold 2s ease-in-out infinite;
                 }
                 
-                @keyframes pulse {
+                @keyframes pulseGold {
                     0%, 100% {
                         box-shadow: 
-                            0 8px 30px rgba(255, 0, 0, 0.5),
-                            0 0 0 8px rgba(255, 0, 0, 0.2),
-                            0 0 0 16px rgba(255, 0, 0, 0.1);
+                            0 8px 30px rgba(255, 215, 0, 0.5),
+                            0 0 0 8px rgba(255, 215, 0, 0.2),
+                            0 0 0 16px rgba(255, 215, 0, 0.1);
                     }
                     50% {
                         box-shadow: 
-                            0 8px 40px rgba(255, 0, 0, 0.7),
-                            0 0 0 12px rgba(255, 0, 0, 0.3),
-                            0 0 0 24px rgba(255, 0, 0, 0.15);
+                            0 8px 40px rgba(255, 215, 0, 0.7),
+                            0 0 0 12px rgba(255, 215, 0, 0.3),
+                            0 0 0 24px rgba(255, 215, 0, 0.15);
                     }
                 }
                 
                 .video-thumbnail:hover .play-button-circle {
                     transform: scale(1.15);
-                    background: linear-gradient(135deg, #FF3333 0%, #FF0000 100%);
+                    background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
                 }
                 
                 .play-button-circle i {
                     font-size: 32px;
-                    color: white;
+                    color: var(--black);
                     margin-left: 5px;
-                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
                 }
                 
                 /* Video Badge */
@@ -1825,7 +1826,7 @@
                 }
                 
                 .video-badge i {
-                    color: #FF0000;
+                    color: var(--gold);
                     font-size: 18px;
                 }
                 
@@ -1972,31 +1973,46 @@
             </style>
             
             <script>
-                // Hero Video Click-to-Play Functionality
+                // Hero Video Click-to-Play Functionality with Guaranteed Autoplay
                 (function() {
                     const thumbnail = document.getElementById('heroVideoThumbnail');
                     const iframeContainer = document.getElementById('heroVideoIframe');
+                    const iframe = document.getElementById('heroVideoFrame');
                     
-                    if (thumbnail && iframeContainer) {
-                        thumbnail.addEventListener('click', function() {
-                            // Hide thumbnail with fade
+                    if (thumbnail && iframeContainer && iframe) {
+                        // Click handler
+                        function playVideo(e) {
+                            if (e) e.preventDefault();
+                            
+                            // Set iframe src from data-src (loads video with autoplay)
+                            const videoSrc = iframe.getAttribute('data-src');
+                            iframe.setAttribute('src', videoSrc);
+                            
+                            // Hide thumbnail immediately
                             thumbnail.classList.add('hidden');
+                            thumbnail.style.display = 'none';
                             
-                            // Show and play video
-                            setTimeout(function() {
-                                iframeContainer.style.display = 'block';
-                                thumbnail.style.display = 'none';
-                            }, 300);
+                            // Show video player
+                            iframeContainer.style.display = 'block';
                             
-                            console.log('🎬 Hero video started playing');
+                            console.log('🎬 Hero video loaded and autoplaying');
                             
-                            // Track video play event (add your analytics here)
+                            // Track video play event
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'video_play', {
                                     'event_category': 'Hero Video',
                                     'event_label': 'Veritas Vault Explained'
                                 });
                             }
+                        }
+                        
+                        // Click event
+                        thumbnail.addEventListener('click', playVideo);
+                        
+                        // Touch event for mobile (prevents double-tap issues)
+                        thumbnail.addEventListener('touchend', function(e) {
+                            e.preventDefault();
+                            playVideo(e);
                         });
                     }
                 })();
