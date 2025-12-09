@@ -73,6 +73,9 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
         }
         
         body {
@@ -81,6 +84,18 @@
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        /* Prevent horizontal overflow on all elements */
+        * {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         /* ============================================
@@ -180,12 +195,21 @@
         main {
             margin-top: 80px;
             padding: 0;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
         }
         
         /* ============================================
@@ -193,11 +217,18 @@
            ============================================ */
         .hero {
             background: linear-gradient(135deg, var(--black) 0%, var(--dark-charcoal) 50%, var(--very-dark-gray) 100%);
-            padding: 6rem 2rem 4rem;
+            padding: 4rem 1rem 3rem;
             text-align: center;
             border-bottom: 3px solid var(--lime-green);
             position: relative;
             overflow: hidden;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
         }
         
         .hero::before {
@@ -258,7 +289,15 @@
            ============================================ */
         .overview {
             background: var(--very-dark-gray);
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .overview {
+                padding: 4rem 2rem;
+            }
         }
         
         .section-title {
@@ -283,18 +322,40 @@
         
         .achievement-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             margin-top: 2rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 600px) {
+            .achievement-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .achievement-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
         
         .achievement-card {
             background: var(--near-black-2);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border: 2px solid var(--dark-gray);
             transition: all 0.3s ease;
             text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .achievement-card {
+                padding: 2rem;
+            }
         }
         
         .achievement-card:hover {
@@ -324,8 +385,16 @@
            STEP SECTIONS
            ============================================ */
         .step-section {
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
             border-bottom: 1px solid var(--dark-gray);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .step-section {
+                padding: 4rem 2rem;
+            }
         }
         
         .step-section:nth-child(even) {
@@ -373,15 +442,30 @@
         }
         
         .step-content {
-            margin-left: 100px;
+            margin-left: 0;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .step-content {
+                margin-left: 100px;
+            }
         }
         
         .step-instructions {
             background: var(--very-dark-gray);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border-left: 4px solid var(--lime-green);
             margin-bottom: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .step-instructions {
+                padding: 2rem;
+            }
         }
         
         .step-instructions ol {
@@ -424,18 +508,38 @@
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .code-inline {
+                font-size: 0.95rem;
+                word-break: normal;
+            }
         }
         
         /* Callout Boxes */
         .callout {
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 8px;
             margin: 1.5rem 0;
             border-left: 4px solid;
             display: flex;
             align-items: start;
-            gap: 1rem;
+            gap: 0.75rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .callout {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
         }
         
         .callout-icon {
@@ -492,10 +596,18 @@
         /* DNS Records Table */
         .dns-records {
             background: var(--black);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border: 2px solid var(--lime-green);
             margin: 2rem 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .dns-records {
+                padding: 2rem;
+            }
         }
         
         .dns-records h4 {
@@ -507,22 +619,40 @@
         
         .ip-addresses {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin: 1.5rem 0;
+            width: 100%;
+        }
+        
+        @media (max-width: 480px) {
+            .ip-addresses {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
         }
         
         .ip-box {
             background: var(--very-dark-gray);
-            padding: 1rem;
+            padding: 1rem 0.5rem;
             border-radius: 8px;
             text-align: center;
             font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--lime-green);
             font-weight: bold;
             border: 2px solid var(--dark-gray);
             transition: all 0.3s ease;
+            word-break: break-all;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .ip-box {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
         }
         
         .ip-box:hover {
@@ -535,12 +665,23 @@
             border-radius: 8px;
             overflow: hidden;
             margin: 1rem 0;
+            width: 100%;
         }
         
         .dns-row {
             display: grid;
-            grid-template-columns: 150px 1fr;
+            grid-template-columns: 1fr;
             border-bottom: 1px solid var(--dark-gray);
+        }
+        
+        @media (min-width: 600px) {
+            .dns-row {
+                grid-template-columns: 150px 1fr;
+            }
+            
+            .dns-label {
+                border-bottom: none !important;
+            }
         }
         
         .dns-row:last-child {
@@ -552,27 +693,47 @@
             font-weight: bold;
             color: var(--lime-green);
             background: var(--near-black-2);
+            border-bottom: 1px solid var(--dark-gray);
+            word-break: break-word;
         }
         
         .dns-value {
             padding: 1rem;
             color: var(--lighter-gray);
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         
         /* Domain Options Comparison */
         .domain-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             margin: 2rem 0;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .domain-options {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
         }
         
         .domain-option {
             background: var(--very-dark-gray);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border: 2px solid var(--dark-gray);
             transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .domain-option {
+                padding: 2rem;
+            }
         }
         
         .domain-option:hover {
@@ -618,9 +779,17 @@
            ============================================ */
         .video-section {
             background: var(--black);
-            padding: 5rem 2rem;
+            padding: 3rem 1rem;
             border-top: 3px solid var(--lime-green);
             border-bottom: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .video-section {
+                padding: 5rem 2rem;
+            }
         }
         
         .video-intro {
@@ -628,14 +797,29 @@
             max-width: 800px;
             margin: 0 auto 3rem;
             color: var(--light-gray);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .video-intro {
+                font-size: 1.1rem;
+            }
         }
         
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin-top: 3rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 3rem;
+            }
         }
         
         .video-card {
@@ -645,6 +829,8 @@
             border: 2px solid var(--dark-gray);
             transition: all 0.4s ease;
             position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .video-card:hover {
@@ -656,12 +842,18 @@
         .video-thumbnail {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 200px;
             background: linear-gradient(135deg, var(--dark-charcoal) 0%, var(--very-dark-gray) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .video-thumbnail {
+                height: 220px;
+            }
         }
         
         .video-thumbnail::before {
@@ -684,7 +876,13 @@
         }
         
         .video-content {
-            padding: 2rem;
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .video-content {
+                padding: 2rem;
+            }
         }
         
         .video-title {
@@ -738,7 +936,15 @@
            ============================================ */
         .troubleshooting {
             background: var(--dark-charcoal);
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .troubleshooting {
+                padding: 4rem 2rem;
+            }
         }
         
         .faq-container {
@@ -760,7 +966,7 @@
         }
         
         .faq-question {
-            padding: 1.5rem;
+            padding: 1rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -768,10 +974,23 @@
             user-select: none;
         }
         
+        @media (min-width: 768px) {
+            .faq-question {
+                padding: 1.5rem;
+            }
+        }
+        
         .faq-question h4 {
             color: var(--white);
-            font-size: 1.1rem;
+            font-size: 1rem;
             flex: 1;
+            padding-right: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .faq-question h4 {
+                font-size: 1.1rem;
+            }
         }
         
         .faq-icon {
@@ -787,9 +1006,15 @@
         }
         
         .faq-answer-content {
-            padding: 0 1.5rem 1.5rem;
+            padding: 0 1rem 1rem;
             color: var(--lighter-gray);
             line-height: 1.8;
+        }
+        
+        @media (min-width: 768px) {
+            .faq-answer-content {
+                padding: 0 1.5rem 1.5rem;
+            }
         }
         
         .faq-answer-content ul {
@@ -808,11 +1033,19 @@
         /* Help Contact Box */
         .help-contact {
             background: linear-gradient(135deg, var(--very-dark-gray) 0%, var(--near-black-2) 100%);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border: 2px solid var(--lime-green);
             text-align: center;
             margin-top: 3rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .help-contact {
+                padding: 2rem;
+            }
         }
         
         .help-contact h3 {
@@ -846,9 +1079,17 @@
            ============================================ */
         .success-section {
             background: linear-gradient(135deg, var(--black) 0%, var(--very-dark-gray) 50%, var(--black) 100%);
-            padding: 5rem 2rem;
+            padding: 3rem 1rem;
             text-align: center;
             border-top: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .success-section {
+                padding: 5rem 2rem;
+            }
         }
         
         .success-icon {
@@ -882,8 +1123,16 @@
            ============================================ */
         footer {
             background: var(--black);
-            padding: 3rem 2rem 1rem;
+            padding: 2rem 1rem 1rem;
             border-top: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            footer {
+                padding: 3rem 2rem 1rem;
+            }
         }
         
         .footer-content {
@@ -1017,6 +1266,35 @@
         /* ============================================
            RESPONSIVE DESIGN
            ============================================ */
+        
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .step-number {
+                font-size: 2.5rem;
+            }
+            
+            .step-title {
+                font-size: 1.5rem;
+            }
+            
+            .callout-icon {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Tablets and Small Screens */
         @media (max-width: 768px) {
             .nav-menu {
                 position: fixed;
@@ -1028,6 +1306,7 @@
                 padding: 2rem;
                 transition: left 0.3s ease;
                 border-top: 2px solid var(--lime-green);
+                z-index: 999;
             }
             
             .nav-menu.active {
@@ -1046,6 +1325,10 @@
                 font-size: 1.2rem;
             }
             
+            .hero-description {
+                font-size: 1rem;
+            }
+            
             .section-title {
                 font-size: 2rem;
             }
@@ -1060,28 +1343,48 @@
                 font-size: 3rem;
             }
             
-            .step-content {
-                margin-left: 0;
+            .step-title {
+                font-size: 1.75rem;
             }
             
-            .video-grid {
+            .step-instructions li {
+                padding-left: 2.5rem;
+                font-size: 1rem;
+            }
+            
+            .step-instructions li::before {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 0.9rem;
+            }
+            
+            .dns-label,
+            .dns-value {
+                font-size: 0.95rem;
+            }
+            
+            .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Ensure no element causes horizontal scroll */
+        @media (max-width: 1024px) {
+            img {
+                max-width: 100%;
+                height: auto;
             }
             
-            .achievement-cards {
-                grid-template-columns: 1fr;
+            table {
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
             }
             
-            .domain-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .dns-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .dns-label {
-                border-bottom: 1px solid var(--dark-gray);
+            pre {
+                max-width: 100%;
+                overflow-x: auto;
             }
         }
         
