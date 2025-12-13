@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Earn up to 1.3% daily in DeFi with Veritas Vault. Passive income directly in your wallet. No lockups. No middlemen.">
     <title>Veritas Vault App | Get Paid 3 Times Daily</title>
-    <link rel="icon" type="image/jpg" href="https://vaultveritas.com/images/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="https://vaultveritas.com/david/vvafavicon.jpg">
 
     <!-- ============================================
          SEO DOMINATION ARCHITECTURE
@@ -39,7 +39,7 @@
     <meta property="og:site_name" content="Veritas Vault - DeFi Passive Income Platform">
     <meta property="og:title" content="Veritas Vault App | Earn Up to 1.3% Daily - Get Paid 3 Times Daily">
     <meta property="og:description" content="Join thousands earning passive crypto income with Veritas Vault. Stake VVA tokens and receive 3x daily payouts directly to your wallet. No lockups. No middlemen. Start earning 1.3% daily returns in DeFi.">
-    <meta property="og:image" content="https://vaultveritas.com/images/favicon.jpg">
+    <meta property="og:image" content="https://vaultveritas.com/david/vvafavicon.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Vault Veritas Logo">
@@ -51,7 +51,7 @@
     <meta name="twitter:url" content="https://vaultveritas.com/">
     <meta name="twitter:title" content="Veritas Vault App | Earn 1.3% Daily - 3x Daily Payouts">
     <meta name="twitter:description" content="Earn passive crypto income with Veritas Vault. Stake VVA tokens, get paid 3 times daily directly to your wallet. No lockups. No middlemen. Start earning today.">
-    <meta name="twitter:image" content="https://vaultveritas.com/images/favicon.jpg">
+    <meta name="twitter:image" content="https://vaultveritas.com/david/vvafavicon.jpg">
     <meta name="twitter:image:alt" content="Vault Veritas Logo">
     <meta name="twitter:site" content="@VeritasVault">
     <meta name="twitter:creator" content="@VeritasVault">
@@ -255,74 +255,19 @@
             --gold: #FFD700;
         }
         
-        /* ============================================
-           GIVEAWAY ANNOUNCEMENT BAR - FIXED TOP
-           90K VVA Token Giveaway Promotion
-           ============================================ */
-        .giveaway-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #1a0b2e 0%, var(--dark-purple) 50%, #000000 100%);
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            animation: giveawayGlow 3s ease-in-out infinite;
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
+        
 
-        .giveaway-bar.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .giveaway-bar.dismissed {
-            opacity: 0;
-            transform: translateY(-100%);
-            pointer-events: none;
-        }
-
-        @keyframes giveawayGlow {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
-            }
+        
             50% {
                 box-shadow: 0 4px 30px rgba(255, 215, 0, 0.45), 0 0 40px rgba(108, 42, 145, 0.3);
             }
         }
 
-        .giveaway-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
+        
 
-        .giveaway-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--white);
-            text-align: center;
-            line-height: 1.4;
-            letter-spacing: 0.3px;
-        }
+        
 
-        .giveaway-highlight {
-            color: var(--gold);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            animation: pulseGold 2s ease-in-out infinite;
-        }
+        
 
         @keyframes pulseGold {
             0%, 100% {
@@ -333,150 +278,57 @@
             }
         }
 
-        .giveaway-cta {
-            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-            color: var(--black);
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-            border: 2px solid var(--gold);
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
+        
 
-        .giveaway-cta:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
-        }
+        
 
-        .giveaway-cta:active {
-            transform: translateY(0) scale(1);
-        }
+        
 
-        .giveaway-close {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            padding: 0;
-        }
+        
 
-        .giveaway-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) rotate(90deg);
-        }
+        
 
         /* Body padding adjustment for fixed bar */
-        body.giveaway-active {
-            padding-top: 65px;
-        }
+        body
 
         /* Mobile Responsive - Optimized to prevent logo overlap */
         @media (max-width: 768px) {
-            .giveaway-bar {
-                padding: 8px 12px;
-            }
             
-            .giveaway-content {
-                gap: 10px;
-            }
             
-            .giveaway-text {
-                font-size: 12px;
-                line-height: 1.3;
-            }
             
-            .giveaway-cta {
-                padding: 7px 16px;
-                font-size: 12px;
-            }
             
-            body.giveaway-active {
-                padding-top: 115px;
-            }
+            
+            
+            
+            
+            body
         }
 
         @media (max-width: 480px) {
-            .giveaway-bar {
-                padding: 10px 12px;
-            }
             
-            .giveaway-content {
-                gap: 8px;
-                flex-direction: column;
-            }
             
-            .giveaway-text {
-                font-size: 11px;
-                line-height: 1.4;
-            }
             
-            .giveaway-cta {
-                padding: 10px 20px;
-                font-size: 12px;
-                width: auto;
-                max-width: 90%;
-                justify-content: center;
-                font-weight: 800;
-            }
             
-            .giveaway-close {
-                width: 26px;
-                height: 26px;
-                font-size: 13px;
-                right: 8px;
-                top: 8px;
-                transform: none;
-            }
             
-            .giveaway-close:hover {
-                transform: rotate(90deg);
-            }
             
-            body.giveaway-active {
-                padding-top: 145px;
-            }
+            
+            
+            
+            
+            
+            
+            body
         }
         
         /* Extra small devices - Further optimization */
         @media (max-width: 375px) {
-            .giveaway-bar {
-                padding: 10px 10px;
-            }
             
-            .giveaway-text {
-                font-size: 10.5px;
-            }
             
-            .giveaway-cta {
-                padding: 9px 18px;
-                font-size: 11px;
-            }
             
-            body.giveaway-active {
-                padding-top: 155px;
-            }
+            
+            
+            
+            body
         }
         
         * {
@@ -1493,24 +1345,6 @@
     </style>
 </head>
 <body>
-    <!-- GIVEAWAY ANNOUNCEMENT BAR -->
-    <div class="giveaway-bar" id="giveawayBar">
-        <div class="giveaway-content">
-            <div class="giveaway-text">
-                🎉 <span class="giveaway-highlight">HISTORIC GIVEAWAY!</span> We're distributing <span class="giveaway-highlight">90,000 VVA</span> – 15K weekly for 6 weeks!
-            </div>
-            <a href="https://drive.google.com/file/d/1P8TLyy4Hr0Ttxm280TnmBqSbZF4WkrDy/view?usp=sharing" 
-               class="giveaway-cta" 
-               target="_blank" 
-               rel="noopener noreferrer">
-                <i class="fas fa-gift"></i> GET DETAILS
-            </a>
-        </div>
-        <button class="giveaway-close" id="closeGiveaway" aria-label="Close announcement">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    
     <!-- Logo Section -->
     <section class="logo-section">
         <div class="logo-container">
@@ -1689,7 +1523,7 @@
                 
                 <!-- CTA Button Below Video -->
                 <div class="video-cta-container">
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="video-cta-button">
+                    <a href="https://vaultveritas.com/david/get-started.html" class="video-cta-button">
                         <i class="fas fa-rocket"></i> 
                         <span>Get Started with Veritas Vault</span>
                         <i class="fas fa-arrow-right"></i>
@@ -2286,7 +2120,7 @@
             </div>
             
             <div style="margin-top: 40px;">
-                <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green">
+                <a href="https://vaultveritas.com/david/get-started.html" class="btn btn-green">
                     <i class="fas fa-rocket"></i> 👉 5-STEP GETTING STARTED GUIDE
                 </a>
             </div>
@@ -2328,7 +2162,7 @@
                 
                 <div class="mission-cta">
                     <p>💎 <strong>This isn't just an opportunity. It's a movement.</strong> Are you ready to be part of history?</p>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green">
+                    <a href="https://vaultveritas.com/david/get-started.html" class="btn btn-green">
                         <i class="fas fa-rocket"></i> JOIN THE MOVEMENT - START NOW
                     </a>
                 </div>
@@ -2376,7 +2210,7 @@
                     </div>
                     <h3>GETTING STARTED GUIDE</h3>
                     <p>Start Here: Setup, Stake, and Grow Today</p>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-purple">
+                    <a href="https://vaultveritas.com/david/get-started.html" class="btn btn-purple">
                         <i class="fas fa-arrow-right"></i> Read Guide
                     </a>
                 </div>
@@ -2388,7 +2222,7 @@
                     </div>
                     <h3>FAQ</h3>
                     <p>Get Instant Answers to All Your Veritas Vault Questions</p>
-                    <a href="https://vaultveritas.com/veritas-vault-faq.html" class="btn btn-purple">
+                    <a href="https://vaultveritas.com/david/faq.html" class="btn btn-purple">
                         <i class="fas fa-lightbulb"></i> Get Answers
                     </a>
                 </div>
@@ -2400,7 +2234,7 @@
                     </div>
                     <h3>VERITAS VAULT REVIEW</h3>
                     <p>Unbiased deep-dive review: features, payouts, and legitimacy analysis</p>
-                    <a href="https://vaultveritas.com/veritas-vault-review.html" class="btn btn-purple">
+                    <a href="https://vaultveritas.com/david/review.html" class="btn btn-purple">
                         <i class="fas fa-search"></i> Read Review
                     </a>
                 </div>
@@ -2424,7 +2258,7 @@
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Start Growing Your Crypto?</h2>
-            <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" class="btn btn-green" style="font-size: 20px; padding: 20px 50px;">
+            <a href="https://vaultveritas.com/david/get-started.html" class="btn btn-green" style="font-size: 20px; padding: 20px 50px;">
                 <i class="fas fa-rocket"></i> Get Started Now
             </a>
             <p style="margin-top: 25px; font-size: 18px; color: var(--text-light); font-weight: 500;">
@@ -2441,18 +2275,20 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <a href="https://vaultveritas.com" rel="noopener noreferrer">Home</a>
-                    <a href="https://vaultveritas.com/veritas-vault-getting-started-guide.html" rel="noopener noreferrer">Getting Started</a>
-                    <a href="https://vaultveritas.com/veritas-vault-faq.html" rel="noopener noreferrer">FAQ</a>
-                    <a href="https://vaultveritas.com/veritas-vault-review.html" rel="noopener noreferrer">Review</a>
+                    <a href="https://vaultveritas.com/david/get-started.html" rel="noopener noreferrer">Getting Started</a>
+                    <a href="https://vaultveritas.com/david/faq.html" rel="noopener noreferrer">FAQ</a>
+                    <a href="https://vaultveritas.com/david/review.html" rel="noopener noreferrer">Review</a>
                 </div>
                 
                 <!-- Socials Section -->
                 <div class="footer-section">
                     <h4>Socials</h4>
-                    <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer">YouTube</a>
-                    <a href="https://chat.whatsapp.com/IzARh7HB15ZBrGcRLzjXt3?mode=wwt" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    <a href="https://t.me/vva_signals" target="_blank" rel="noopener noreferrer">VVA Signals</a>
+                    <a href="https://www.youtube.com/@MyVeritasVault" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://api.whatsapp.com/send/?phone=17025771234&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">VVA Signals</a>
                     <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">News & Updates</a>
+                                    <a href="https://www.instagram.com/myveritasvault" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="http://linkedin.com/in/david-s-francis" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
                 
                 <!-- Legal Section -->
@@ -2468,7 +2304,7 @@
                 Built with ❤️ by an independent Veritas Vault member • Not the official company website.
             </div>
             <div class="footer-credit" style="margin-top: 15px;">
-                <span style="color: #FFD700; font-weight: 700;">STOP</span> Struggling. <span style="color: #FFD700; font-weight: 700;">START</span> Earning. Clone This Proven Website. <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" style="color: #FFD700; text-decoration: underline; font-weight: 700;">Contact Us</a>
+                <span style="color: #FFD700; font-weight: 700;">STOP</span> Struggling. <span style="color: #FFD700; font-weight: 700;">START</span> Earning. Clone This Proven Website. <a href="https://api.whatsapp.com/send/?phone=17025771234&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" style="color: #FFD700; text-decoration: underline; font-weight: 700;">Contact Us</a>
             </div>
         </div>
     </footer>
@@ -2695,47 +2531,7 @@
             }
         });
         
-        // ==========================================
-        // GIVEAWAY ANNOUNCEMENT BAR FUNCTIONALITY
-        // Session-based dismissal with smooth animations
-        // ==========================================
 
-        (function() {
-            const giveawayBar = document.getElementById('giveawayBar');
-            const closeBtn = document.getElementById('closeGiveaway');
-            const STORAGE_KEY = 'vv_giveaway_dismissed';
-            
-            // Check if user has dismissed the bar in this session
-            const isDismissed = sessionStorage.getItem(STORAGE_KEY);
-            
-            if (!isDismissed) {
-                // Show bar with animation after page loads
-                setTimeout(function() {
-                    giveawayBar.classList.add('active');
-                    document.body.classList.add('giveaway-active');
-                }, 500);
-            }
-            
-            // Close button functionality
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    giveawayBar.classList.add('dismissed');
-                    document.body.classList.remove('giveaway-active');
-                    sessionStorage.setItem(STORAGE_KEY, 'true');
-                    console.log('✅ Giveaway bar dismissed');
-                });
-            }
-            
-            // Track CTA clicks
-            const ctaBtn = giveawayBar.querySelector('.giveaway-cta');
-            if (ctaBtn) {
-                ctaBtn.addEventListener('click', function() {
-                    console.log('🎯 Giveaway CTA clicked - PDF download initiated');
-                    // Add your analytics tracking here if needed
-                });
-            }
-        })();
     </script>
     
     <!-- Scroll to Top Button -->
