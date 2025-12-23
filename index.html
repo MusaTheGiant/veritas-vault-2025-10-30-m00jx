@@ -256,23 +256,23 @@
         }
         
         /* ============================================
-           GIVEAWAY ANNOUNCEMENT BAR - FIXED TOP
-           90K VVA Token Giveaway Promotion
+           WEFI DEOBANK ANNOUNCEMENT BAR - FIXED TOP
+           World's First Deobank Promotion
            ============================================ */
         .giveaway-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(135deg, #1a0b2e 0%, var(--dark-purple) 50%, #000000 100%);
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+            background: linear-gradient(135deg, #000000 0%, #0A0A0A 25%, #1A1A1A 75%, #000000 100%);
+            border-bottom: 3px solid #C7F160;
+            box-shadow: 0 4px 25px rgba(199, 241, 96, 0.3), 0 0 50px rgba(0, 255, 136, 0.15);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 20px;
-            animation: giveawayGlow 3s ease-in-out infinite;
+            padding: 14px 20px;
+            animation: wefiGlow 3s ease-in-out infinite;
             opacity: 0;
             transform: translateY(-100%);
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -289,12 +289,14 @@
             pointer-events: none;
         }
 
-        @keyframes giveawayGlow {
+        @keyframes wefiGlow {
             0%, 100% {
-                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+                box-shadow: 0 4px 25px rgba(199, 241, 96, 0.3), 0 0 50px rgba(0, 255, 136, 0.15);
+                border-bottom-color: #C7F160;
             }
             50% {
-                box-shadow: 0 4px 30px rgba(255, 215, 0, 0.45), 0 0 40px rgba(108, 42, 145, 0.3);
+                box-shadow: 0 6px 35px rgba(199, 241, 96, 0.5), 0 0 60px rgba(0, 255, 136, 0.25), 0 0 80px rgba(0, 217, 255, 0.15);
+                border-bottom-color: #00FF88;
             }
         }
 
@@ -309,57 +311,63 @@
         }
 
         .giveaway-text {
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: 700;
             color: var(--white);
             text-align: center;
             line-height: 1.4;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .giveaway-highlight {
-            color: var(--gold);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            animation: pulseGold 2s ease-in-out infinite;
+            color: #C7F160;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(199, 241, 96, 0.6), 0 0 30px rgba(0, 255, 136, 0.3);
+            animation: pulseWefi 2s ease-in-out infinite;
+            letter-spacing: 1px;
         }
 
-        @keyframes pulseGold {
+        @keyframes pulseWefi {
             0%, 100% {
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+                text-shadow: 0 0 15px rgba(199, 241, 96, 0.6), 0 0 30px rgba(0, 255, 136, 0.3);
+                color: #C7F160;
             }
             50% {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+                text-shadow: 0 0 25px rgba(199, 241, 96, 0.9), 0 0 40px rgba(0, 255, 136, 0.5), 0 0 50px rgba(0, 217, 255, 0.3);
+                color: #00FF88;
             }
         }
 
         .giveaway-cta {
-            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-            color: var(--black);
-            padding: 10px 24px;
-            border-radius: 6px;
+            background: #C7F160;
+            color: #000000;
+            padding: 14px 36px;
+            border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-            border: 2px solid var(--gold);
+            border: 2px solid #C7F160;
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .giveaway-cta:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
+            background: transparent;
+            color: #C7F160;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.3);
         }
 
         .giveaway-cta:active {
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .giveaway-close {
@@ -367,24 +375,28 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
+            background: rgba(199, 241, 96, 0.1);
+            border: 1px solid rgba(199, 241, 96, 0.3);
+            color: #C7F160;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s ease;
             padding: 0;
+            font-weight: 700;
         }
 
         .giveaway-close:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(199, 241, 96, 0.2);
+            border-color: #00FF88;
+            color: #00FF88;
             transform: translateY(-50%) rotate(90deg);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
         }
 
         /* Body padding adjustment for fixed bar */
@@ -1493,17 +1505,17 @@
     </style>
 </head>
 <body>
-    <!-- GIVEAWAY ANNOUNCEMENT BAR -->
+    <!-- WEFI DEOBANK ANNOUNCEMENT BAR -->
     <div class="giveaway-bar" id="giveawayBar">
         <div class="giveaway-content">
             <div class="giveaway-text">
-                🎉 <span class="giveaway-highlight">HISTORIC GIVEAWAY!</span> We're distributing <span class="giveaway-highlight">90,000 VVA</span> – 15K weekly for 6 weeks!
+                ⚡ <span class="giveaway-highlight">REVOLUTIONARY!</span> The World's First <span class="giveaway-highlight">DEOBANK</span> Is Here.
             </div>
-            <a href="https://drive.google.com/file/d/1P8TLyy4Hr0Ttxm280TnmBqSbZF4WkrDy/view?usp=sharing" 
+            <a href="https://www.deobankdefi.com" 
                class="giveaway-cta" 
                target="_blank" 
                rel="noopener noreferrer">
-                <i class="fas fa-gift"></i> GET DETAILS
+                <i class="fas fa-rocket"></i> ENTER
             </a>
         </div>
         <button class="giveaway-close" id="closeGiveaway" aria-label="Close announcement">
