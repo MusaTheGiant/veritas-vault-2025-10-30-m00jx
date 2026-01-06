@@ -2110,7 +2110,7 @@
                     </div>
                     <h3>VERITAS VAULT APP OVERVIEW</h3>
                     <p>Master the app that pays you 3x daily in 4 minutes.</p>
-                    <a href="https://www.youtube.com/watch?v=UZQzqpow_bE" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
+                    <a href="#" id="openOverviewVideo" class="btn btn-purple">
                         <i class="fas fa-play-circle"></i> Watch Now
                     </a>
                 </div>
@@ -2122,7 +2122,7 @@
                     </div>
                     <h3>YOUR CRYPTO BREAKTHROUGH</h3>
                     <p>8-minute blueprint: Earn $2K-$3K/month. Turn $1K into $50K. Find your WHY.</p>
-                    <a href="https://www.youtube.com/watch?v=ZNgtyM7o5jE&t=1s" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
+                    <a href="#" id="openPresentationVideo" class="btn btn-purple">
                         <i class="fas fa-play-circle"></i> Watch Now
                     </a>
                 </div>
@@ -2211,7 +2211,7 @@
                     <a href="https://wa.me/18886893990" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                     <a href="https://t.me/vva_signals" target="_blank" rel="noopener noreferrer">VVA Signals</a>
                     <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">News & Updates</a>
-                    <a href="mailto:vault@paralleleconomy.info">Email: vault@paralleleconomy.info</a>
+                    <a href="/cdn-cgi/l/email-protection#e99f889c859da999889b8885858c858c8a8687868490c780878f86">Email: <span class="__cf_email__" data-cfemail="1d6b7c6871695d6d7c6f7c71717871787e72737270643374737b72">[email&#160;protected]</span></a>
                 </div>
                 
                 <!-- Legal Section -->
@@ -2256,7 +2256,7 @@
         </div>
     </div>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ============================================
         // VIDEO MODAL FUNCTIONALITY - BULLETPROOF APPROACH
         // Simple iframe load detection with loading overlay
@@ -2272,8 +2272,8 @@
             
             // ACTUAL VIDEO URLS WITH OPTIMAL PARAMETERS
             const videos = {
-                overview: 'https://www.youtube.com/watch?v=UZQzqpow_bE',
-                presentation: 'https://www.youtube.com/watch?v=ZNgtyM7o5jE&t=1s'
+                overview: 'https://www.youtube.com/embed/UZQzqpow_bE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0',
+                presentation: 'https://www.youtube.com/embed/ZNgtyM7o5jE?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0'
             };
             
             let loadTimeout = null;
@@ -2440,13 +2440,4 @@
                 scrollToTopBtn.addEventListener('touchend', function(e) {
                     e.preventDefault();
                     console.log('Scroll to top button tapped!');
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-                
-                // Initial check
-                toggleScrollButton();
-            } else {
-                console
+                    window.scroll
