@@ -88,7 +88,7 @@
     <meta property="fb:app_id" content="your-facebook-app-id">
     <meta property="article:published_time" content="2025-08-20T09:00:00Z">
     <meta property="article:modified_time" content="2025-11-09T15:00:00Z">
-    <meta property="article:author" content="Parallel Economy - Crypto & DeFi Analyst">
+    <meta property="article:author" content="Parallel Economy - Crypto content="MTG - Crypto & DeFi Analyst" DeFi Analyst">
     <meta property="article:section" content="Cryptocurrency Review">
     <meta property="article:tag" content="Veritas Vault Review, VVA Token Analysis, DeFi Staking Review, Cryptocurrency Legitimacy, Investment Analysis">
     
@@ -466,177 +466,6 @@
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
-            }
-        }
-        
-        /* ============================================
-           GIVEAWAY ANNOUNCEMENT BAR - INHERITED
-           ============================================ */
-        .giveaway-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #1a0b2e 0%, var(--dark-purple) 50%, #000000 100%);
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            animation: giveawayGlow 3s ease-in-out infinite;
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .giveaway-bar.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .giveaway-bar.dismissed {
-            opacity: 0;
-            transform: translateY(-100%);
-            pointer-events: none;
-        }
-
-        @keyframes giveawayGlow {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(255, 215, 0, 0.45), 0 0 40px rgba(108, 42, 145, 0.3);
-            }
-        }
-
-        .giveaway-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .giveaway-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--white);
-            text-align: center;
-            line-height: 1.4;
-            letter-spacing: 0.3px;
-        }
-
-        .giveaway-highlight {
-            color: var(--gold);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            animation: pulseGold 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseGold {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            }
-            50% {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-            }
-        }
-
-        .giveaway-cta {
-            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-            color: var(--black);
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-            border: 2px solid var(--gold);
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .giveaway-cta:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #FFA500 0%, var(--gold) 100%);
-        }
-
-        .giveaway-close {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            padding: 0;
-        }
-
-        .giveaway-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) rotate(90deg);
-        }
-
-        body.giveaway-active {
-            padding-top: 65px;
-        }
-
-        @media (max-width: 768px) {
-            .giveaway-bar {
-                padding: 8px 12px;
-            }
-            
-            .giveaway-text {
-                font-size: 12px;
-            }
-            
-            .giveaway-cta {
-                padding: 7px 16px;
-                font-size: 12px;
-            }
-            
-            body.giveaway-active {
-                padding-top: 115px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .giveaway-content {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .giveaway-text {
-                font-size: 11px;
-            }
-            
-            .giveaway-cta {
-                padding: 10px 20px;
-                width: auto;
-                max-width: 90%;
-            }
-            
-            body.giveaway-active {
-                padding-top: 145px;
             }
         }
         
@@ -1597,24 +1426,7 @@
     </style>
 </head>
 <body>
-    <!-- GIVEAWAY ANNOUNCEMENT BAR -->
-    <div class="giveaway-bar" id="giveawayBar">
-        <div class="giveaway-content">
-            <div class="giveaway-text">
-                🎉 <span class="giveaway-highlight">HISTORIC GIVEAWAY!</span> We're distributing <span class="giveaway-highlight">90,000 VVA</span> – 15K weekly for 6 weeks!
-            </div>
-            <a href="https://drive.google.com/file/d/1P8TLyy4Hr0Ttxm280TnmBqSbZF4WkrDy/view?usp=sharing" 
-               class="giveaway-cta" 
-               target="_blank" 
-               rel="noopener noreferrer">
-                <i class="fas fa-gift"></i> GET DETAILS
-            </a>
-        </div>
-        <button class="giveaway-close" id="closeGiveaway" aria-label="Close announcement">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    
+
     <!-- Logo Section -->
     <section class="logo-section">
         <div class="logo-container">
@@ -1647,7 +1459,7 @@
         <div class="container">
             <div class="author-card">
                 <div class="author-image">
-                    <img src="https://vaultveritas.com/vault/parallele-conomy.jpg" alt="Parallel Economy - Crypto & DeFi Analyst" loading="lazy">
+                    <img src="https://vaultveritas.com/vault/parallele-conomy.jpg" alt="Parallel Economy - Crypto alt="MTG - Crypto & DeFi Analyst" DeFi Analyst" loading="lazy">
                 </div>
                 <div class="author-content">
                     <h3 class="author-name">Parallel Economy</h3>
@@ -1668,6 +1480,9 @@
                             <i class="fas fa-user-check"></i> Real Investor Perspective
                         </span>
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
     
     <!-- Table of Contents -->
@@ -1771,6 +1586,9 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                     </iframe>
+                </div>
+            </div>
+        </div>
     </section>
     
     <!-- How It Works Section -->
@@ -1924,6 +1742,9 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                     </iframe>
+                </div>
+            </div>
+        </div>
     </section>
     
     <!-- Legitimacy Section -->
@@ -2180,7 +2001,7 @@
                 <p style="margin-top: 30px; color: var(--text-light); font-size: 16px;">
                     <strong>Don't have a sponsor?</strong> Use our verified referral link to get started:
                 </p>
-                <a href="https://veritasvault.app/dashboard?ref=0xa891226974f46aedabb285ac127dde25bd8891c2" 
+                <a href="https://veritasvault.app/dashboard?ref=0x904E288BacB46c26095115682266323342Cb7ab5" 
                    class="btn btn-purple btn-block"
                    target="_blank"
                    rel="noopener noreferrer">
@@ -2521,33 +2342,6 @@
                 toggleScrollButton();
             }
         });
-        
-        // ==========================================
-        // GIVEAWAY ANNOUNCEMENT BAR FUNCTIONALITY
-        // ==========================================
-        (function() {
-            const giveawayBar = document.getElementById('giveawayBar');
-            const closeBtn = document.getElementById('closeGiveaway');
-            const STORAGE_KEY = 'vv_giveaway_dismissed';
-            
-            const isDismissed = sessionStorage.getItem(STORAGE_KEY);
-            
-            if (!isDismissed) {
-                setTimeout(function() {
-                    giveawayBar.classList.add('active');
-                    document.body.classList.add('giveaway-active');
-                }, 500);
-            }
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    giveawayBar.classList.add('dismissed');
-                    document.body.classList.remove('giveaway-active');
-                    sessionStorage.setItem(STORAGE_KEY, 'true');
-                });
-            }
-        })();
         
         // ==========================================
         // BUTTON CLICK TRACKING
