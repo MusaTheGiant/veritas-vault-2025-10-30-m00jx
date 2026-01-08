@@ -1997,7 +1997,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    
+    <script>
         // ============================================
         // COPY TO CLIPBOARD FUNCTIONALITY - BULLETPROOF EDITION
         // Three-Tier Fallback System with Full Error Handling
@@ -2005,7 +2006,7 @@
         
         function copyToClipboard(elementId, button) {
             // VALIDATION: Check if element exists
-            const element = document.getElementById(elementId);
+            var element = document.getElementById(elementId);
             if (!element) {
                 console.error('❌ Copy failed: Element not found with ID:', elementId);
                 alert('Error: Unable to find content to copy. Please refresh the page and try again.');
@@ -2013,7 +2014,7 @@
             }
             
             // Get text and trim whitespace
-            const text = element.textContent.trim();
+            var text = element.textContent.trim();
             if (!text) {
                 console.error('❌ Copy failed: Element contains no text');
                 alert('Error: No content to copy.');
@@ -2024,16 +2025,16 @@
             
             // Disable button to prevent double-clicks
             button.disabled = true;
-            const originalHTML = button.innerHTML;
+            var originalHTML = button.innerHTML;
             
             // TIER 1: Try Modern Clipboard API (most reliable)
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text)
-                    .then(() => {
+                    .then(function() {
                         console.log('✅ Clipboard API succeeded');
                         showCopySuccess(button, originalHTML, text);
                     })
-                    .catch((err) => {
+                    .catch(function(err) {
                         console.warn('⚠️ Clipboard API failed, trying fallback:', err.message);
                         fallbackCopyMethod(text, button, originalHTML);
                     });
@@ -2046,8 +2047,8 @@
         
         // TIER 2: Legacy execCommand Fallback with iOS Support
         function fallbackCopyMethod(text, button, originalHTML) {
-            let textarea = null;
-            let successful = false;
+            var textarea = null;
+            var successful = false;
             
             try {
                 // Create temporary textarea
@@ -2070,13 +2071,13 @@
                 document.body.appendChild(textarea);
                 
                 // iOS-SPECIFIC HANDLING
-                const isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent);
+                var isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent);
                 
                 if (isIOS) {
                     console.log('📱 iOS device detected, using iOS-specific selection');
-                    const range = document.createRange();
+                    var range = document.createRange();
                     range.selectNodeContents(textarea);
-                    const selection = window.getSelection();
+                    var selection = window.getSelection();
                     selection.removeAllRanges();
                     selection.addRange(range);
                     textarea.setSelectionRange(0, 999999);
@@ -2118,7 +2119,7 @@
             console.log('✅ Successfully copied to clipboard:', text.substring(0, 50) + '...');
             
             // Reset button after 2 seconds
-            setTimeout(() => {
+            setTimeout(function() {
                 button.innerHTML = originalHTML;
                 button.classList.remove('copied');
                 button.disabled = false;
@@ -2139,13 +2140,13 @@
         // ============================================
         // SMOOTH SCROLLING FOR ANCHOR LINKS
         // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
+                var href = this.getAttribute('href');
                 
                 if (href && href.length > 1) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
+                    var target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({
                             behavior: 'smooth',
@@ -2157,12 +2158,10 @@
         });
         
         // ==========================================
-        // SCROLL TO TOP BUTTON FUNCTIONALITY - FIXED
+        // SCROLL TO TOP BUTTON FUNCTIONALITY
         // ==========================================
-        
-        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            const scrollToTopBtn = document.getElementById('scrollToTop');
+            var scrollToTopBtn = document.getElementById('scrollToTop');
             
             if (scrollToTopBtn) {
                 console.log('Scroll-to-top button found and initialized!');
@@ -2206,60 +2205,6 @@
                 console.error('Scroll-to-top button not found!');
             }
         });
-        
-        // ============================================
-        // PREMIUM VIDEO PLAYER WITH CUSTOM CONTROLS
-        // ============================================
-        
-        // Initialize all video players
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoContainers = document.querySelectorAll('.video-container');
-            
-            videoContainers.forEach(container => {
-                const video = container.querySelector('video');
-                const playButton = container.querySelector('.video-play-button');
-                
-                if (!video || !playButton) return;
-                
-                // Play video when custom play button is clicked
-                playButton.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    playVideo(container, video);
-                });
-                
-                // Also allow clicking anywhere on the container to play
-                container.addEventListener('click', function(e) {
-                    // Only play if clicking the container itself or overlay, not the video controls
-                    if (e.target === container || e.target === playButton) {
-                        playVideo(container, video);
-                    }
-                });
-                
-                // When video starts playing, hide custom controls
-                video.addEventListener('play', function() {
-                    container.classList.add('playing');
-                    console.log('Video started:', video.querySelector('source').src);
-                    
-                    // Add your analytics tracking here
-                    // Example: gtag('event', 'video_play', { 'video_title': video.id });
-                });
-                
-                // When video is paused, show custom controls again
-                video.addEventListener('pause', function() {
-                    container.classList.remove('playing');
-                    console.log('Video paused:', video.querySelector('source').src);
-                });
-                
-                // When video ends, show custom controls again
-                video.addEventListener('ended', function() {
-                    container.classList.remove('playing');
-                    video.currentTime = 0; // Reset to beginning
-                    console.log('Video completed:', video.querySelector('source').src);
-                    
-                    // Add your analytics tracking here
-                    // Example: gtag('event', 'video_complete', { 'video_title': video.id });
-                });
-                
-                // Handle video errors gracefully
-                video.addEventListener('error', function() {
-                    console.error('Video load err
+    </script>
+</body>
+</html>
