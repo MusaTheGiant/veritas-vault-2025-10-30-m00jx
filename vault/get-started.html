@@ -1971,7 +1971,7 @@
                     <a href="https://www.linkedin.com/in/future-here-772b92353" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://t.me/vva_signals" target="_blank" rel="noopener noreferrer">VVA Signals</a>
                     <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">News & Updates</a>
-                    <a href="/cdn-cgi/l/email-protection#addbccd8c1d9edddccdfccc1c1c8c1c8cec2c3c2c0d483c4c3cbc2">EMAIL: <span class="__cf_email__" data-cfemail="0d7b6c7861794d7d6c7f6c61616861686e62636260742364636b62">[email&#160;protected]</span></a>
+                    <a href="/cdn-cgi/l/email-protection#c6b0a7b3aab286b6a7b4a7aaaaa3aaa3a5a9a8a9abbfe8afa8a0a9">EMAIL: <span class="__cf_email__" data-cfemail="384e594d544c7848594a5954545d545d5b57565755411651565e57">[email&#160;protected]</span></a>
                 </div>
                 
                 <!-- Legal Section -->
@@ -1999,52 +1999,81 @@
     
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ============================================
-        // COPY TO CLIPBOARD FUNCTIONALITY - FIXED
+        // COPY TO CLIPBOARD FUNCTIONALITY - BULLETPROOF EDITION
+        // Three-Tier Fallback System with Full Error Handling
         // ============================================
+        
         function copyToClipboard(elementId, button) {
+            // VALIDATION: Check if element exists
             const element = document.getElementById(elementId);
             if (!element) {
-                console.error('Element not found:', elementId);
-                alert('Error: Content element not found.');
+                console.error('❌ Copy failed: Element not found with ID:', elementId);
+                alert('Error: Unable to find content to copy. Please refresh the page and try again.');
                 return;
             }
             
+            // Get text and trim whitespace
             const text = element.textContent.trim();
-            console.log('Attempting to copy:', text);
+            if (!text) {
+                console.error('❌ Copy failed: Element contains no text');
+                alert('Error: No content to copy.');
+                return;
+            }
             
-            // Try modern Clipboard API first (most reliable)
+            console.log('📋 Attempting to copy:', text.substring(0, 50) + '...');
+            
+            // Disable button to prevent double-clicks
+            button.disabled = true;
+            const originalHTML = button.innerHTML;
+            
+            // TIER 1: Try Modern Clipboard API (most reliable)
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text)
                     .then(() => {
-                        showCopySuccess(button, text);
+                        console.log('✅ Clipboard API succeeded');
+                        showCopySuccess(button, originalHTML, text);
                     })
                     .catch((err) => {
-                        console.warn('Clipboard API failed, trying fallback:', err);
-                        fallbackCopy(text, button);
+                        console.warn('⚠️ Clipboard API failed, trying fallback:', err.message);
+                        fallbackCopyMethod(text, button, originalHTML);
                     });
             } else {
-                // Use fallback for non-secure contexts or older browsers
-                fallbackCopy(text, button);
+                // Not in secure context or API unavailable, use fallback immediately
+                console.log('ℹ️ Clipboard API not available, using fallback method');
+                fallbackCopyMethod(text, button, originalHTML);
             }
         }
         
-        // Fallback copy method using textarea
-        function fallbackCopy(text, button) {
+        // TIER 2: Legacy execCommand Fallback with iOS Support
+        function fallbackCopyMethod(text, button, originalHTML) {
+            let textarea = null;
+            let successful = false;
+            
             try {
-                const textarea = document.createElement('textarea');
+                // Create temporary textarea
+                textarea = document.createElement('textarea');
                 textarea.value = text;
                 
-                // Make it invisible but accessible
+                // Styling to make it invisible but accessible
                 textarea.style.position = 'fixed';
-                textarea.style.left = '-9999px';
                 textarea.style.top = '0';
-                textarea.style.opacity = '0';
+                textarea.style.left = '-9999px';
+                textarea.style.width = '2em';
+                textarea.style.height = '2em';
+                textarea.style.padding = '0';
+                textarea.style.border = 'none';
+                textarea.style.outline = 'none';
+                textarea.style.boxShadow = 'none';
+                textarea.style.background = 'transparent';
                 textarea.setAttribute('readonly', '');
                 
                 document.body.appendChild(textarea);
                 
-                // Handle iOS devices specifically
-                if (navigator.userAgent.match(/ipad|iphone/i)) {
+                // iOS-SPECIFIC HANDLING
+                const isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent);
+                
+                if (isIOS) {
+                    console.log('📱 iOS device detected, using iOS-specific selection');
                     const range = document.createRange();
                     range.selectNodeContents(textarea);
                     const selection = window.getSelection();
@@ -2052,41 +2081,59 @@
                     selection.addRange(range);
                     textarea.setSelectionRange(0, 999999);
                 } else {
+                    // Standard desktop/Android selection
                     textarea.focus();
                     textarea.select();
                     textarea.setSelectionRange(0, 999999);
                 }
                 
-                const successful = document.execCommand('copy');
-                document.body.removeChild(textarea);
+                // Attempt copy
+                successful = document.execCommand('copy');
                 
                 if (successful) {
-                    showCopySuccess(button, text);
+                    console.log('✅ Legacy copy method succeeded');
+                    showCopySuccess(button, originalHTML, text);
                 } else {
-                    throw new Error('Copy command returned false');
+                    throw new Error('execCommand returned false');
                 }
+                
             } catch (err) {
-                console.error('All copy methods failed:', err);
-                document.body.removeChild(textarea);
-                // Show the text in an alert so user can copy manually
-                alert('Copy failed. Please copy manually:\n\n' + text);
+                // TIER 3: Complete failure - show manual copy option
+                console.error('❌ All copy methods failed:', err);
+                showManualCopyAlert(text, button, originalHTML);
+            } finally {
+                // CRITICAL: Always clean up textarea
+                if (textarea && textarea.parentNode) {
+                    document.body.removeChild(textarea);
+                }
             }
         }
         
-        // Helper function to show copy success feedback
-        function showCopySuccess(button, text) {
-            const originalHTML = button.innerHTML;
+        // Success handler - Visual feedback
+        function showCopySuccess(button, originalHTML, text) {
             button.innerHTML = '<i class="fas fa-check"></i> Copied!';
             button.classList.add('copied');
-            button.disabled = true;
             
+            // Log success for debugging
+            console.log('✅ Successfully copied to clipboard:', text.substring(0, 50) + '...');
+            
+            // Reset button after 2 seconds
             setTimeout(() => {
                 button.innerHTML = originalHTML;
                 button.classList.remove('copied');
                 button.disabled = false;
             }, 2000);
+        }
+        
+        // Manual copy fallback - Last resort
+        function showManualCopyAlert(text, button, originalHTML) {
+            // Re-enable button
+            button.disabled = false;
             
-            console.log('Successfully copied:', text);
+            // Show alert with text for manual copy
+            alert('Automatic copy failed. Please manually copy the text below:\n\n' + text + '\n\nThe text has been displayed above. You can also select and copy it directly from the page.');
+            
+            console.log('ℹ️ User shown manual copy option');
         }
         
         // ============================================
