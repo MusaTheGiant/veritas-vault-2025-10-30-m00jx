@@ -1971,7 +1971,7 @@
                     <a href="https://www.linkedin.com/in/future-here-772b92353" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://t.me/vva_signals" target="_blank" rel="noopener noreferrer">VVA Signals</a>
                     <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">News & Updates</a>
-                    <a href="mailto:vault@paralleleconomy.info">EMAIL: vault@paralleleconomy.info</a>
+                    <a href="/cdn-cgi/l/email-protection#addbccd8c1d9edddccdfccc1c1c8c1c8cec2c3c2c0d483c4c3cbc2">EMAIL: <span class="__cf_email__" data-cfemail="0d7b6c7861794d7d6c7f6c61616861686e62636260742364636b62">[email&#160;protected]</span></a>
                 </div>
                 
                 <!-- Legal Section -->
@@ -1997,47 +1997,82 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ============================================
-        // COPY TO CLIPBOARD FUNCTIONALITY
+        // COPY TO CLIPBOARD FUNCTIONALITY - FIXED
         // ============================================
-        function copyToClipboard(elementId, button) {
+        async function copyToClipboard(elementId, button) {
             const element = document.getElementById(elementId);
-            const text = element.textContent;
-            
-            // Create temporary textarea
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            
-            // Select and copy
-            textarea.select();
-            textarea.setSelectionRange(0, 99999); // For mobile devices
-            
-            try {
-                document.execCommand('copy');
-                
-                // Visual feedback
-                const originalHTML = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                button.classList.add('copied');
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    button.innerHTML = originalHTML;
-                    button.classList.remove('copied');
-                }, 2000);
-                
-                console.log('Copied:', text);
-            } catch (err) {
-                console.error('Failed to copy:', err);
-                alert('Failed to copy. Please copy manually.');
+            if (!element) {
+                console.error('Element not found:', elementId);
+                alert('Error: Content element not found.');
+                return;
             }
             
-            // Clean up
-            document.body.removeChild(textarea);
+            const text = element.textContent.trim();
+            
+            // Try modern Clipboard API first (more reliable)
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    showCopySuccess(button, text);
+                    return;
+                } catch (err) {
+                    console.warn('Clipboard API failed, trying fallback:', err);
+                }
+            }
+            
+            // Fallback for older browsers or non-secure contexts
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.left = '-9999px';
+                textarea.style.top = '-9999px';
+                textarea.setAttribute('readonly', '');
+                document.body.appendChild(textarea);
+                
+                // Handle iOS devices
+                if (navigator.userAgent.match(/ipad|iphone/i)) {
+                    const range = document.createRange();
+                    range.selectNodeContents(textarea);
+                    const selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                    textarea.setSelectionRange(0, 999999);
+                } else {
+                    textarea.select();
+                    textarea.setSelectionRange(0, 999999);
+                }
+                
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                if (successful) {
+                    showCopySuccess(button, text);
+                } else {
+                    throw new Error('Copy command failed');
+                }
+            } catch (err) {
+                console.error('All copy methods failed:', err);
+                alert('Unable to copy automatically. Please copy manually:\n\n' + text);
+            }
+        }
+        
+        // Helper function to show copy success feedback
+        function showCopySuccess(button, text) {
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            button.classList.add('copied');
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.classList.remove('copied');
+                button.disabled = false;
+            }, 2000);
+            
+            console.log('Successfully copied:', text);
         }
         
         // ============================================
@@ -2166,11 +2201,4 @@
                 
                 // Handle video errors gracefully
                 video.addEventListener('error', function() {
-                    console.error('Video load error:', video.querySelector('source').src);
-                    
-                    // You could display a user-friendly error message here
-                    playButton.style.opacity = '0.5';
-                });
-            });
-            
-            //
+                    console.error('Video load err
