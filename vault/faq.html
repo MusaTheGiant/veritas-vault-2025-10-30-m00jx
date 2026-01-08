@@ -1908,7 +1908,7 @@
                     <a href="https://www.linkedin.com/in/future-here-772b92353" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://t.me/vva_signals" target="_blank" rel="noopener noreferrer">VVA Signals</a>
                     <a href="https://t.me/veritasvaultnews" target="_blank" rel="noopener noreferrer">News & Updates</a>
-                    <a href="mailto:vault@paralleleconomy.info">EMAIL: vault@paralleleconomy.info</a>
+                    <a href="/cdn-cgi/l/email-protection#d4a2b5a1b8a094a4b5a6b5b8b8b1b8b1b7bbbabbb9adfabdbab2bb">EMAIL: <span class="__cf_email__" data-cfemail="d0a6b1a5bca490a0b1a2b1bcbcb5bcb5b3bfbebfbda9feb9beb6bf">[email&#160;protected]</span></a>
                 </div>
                 
                 <!-- Legal Section -->
@@ -1934,17 +1934,18 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    
+    <script>
         // ==========================================
         // SMOOTH SCROLLING FOR ANCHOR LINKS
         // ==========================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
+                var href = this.getAttribute('href');
                 
                 if (href && href.length > 1) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
+                    var target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({
                             behavior: 'smooth',
@@ -1959,7 +1960,7 @@
         // SCROLL TO TOP BUTTON FUNCTIONALITY
         // ==========================================
         document.addEventListener('DOMContentLoaded', function() {
-            const scrollToTopBtn = document.getElementById('scrollToTop');
+            var scrollToTopBtn = document.getElementById('scrollToTop');
             
             if (scrollToTopBtn) {
                 // Show/hide button based on scroll position
@@ -1999,29 +2000,86 @@
         });
         
         // ==========================================
-        // FAQ ACCORDION FUNCTIONALITY
+        // FAQ ACCORDION FUNCTIONALITY - COMPLETE
         // ==========================================
         document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
+            var faqItems = document.querySelectorAll('.faq-item');
             
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
+            console.log('FAQ Accordion initialized. Found', faqItems.length, 'FAQ items');
+            
+            faqItems.forEach(function(item, index) {
+                var question = item.querySelector('.faq-question');
+                
+                if (!question) {
+                    console.error('FAQ item', index, 'has no question element');
+                    return;
+                }
                 
                 question.addEventListener('click', function() {
+                    console.log('FAQ question clicked:', index);
+                    
                     // Check if this item is already active
-                    const isActive = item.classList.contains('active');
+                    var isActive = item.classList.contains('active');
                     
                     // Close all FAQ items
-                    faqItems.forEach(faq => {
+                    faqItems.forEach(function(faq) {
                         faq.classList.remove('active');
                     });
                     
                     // If this item wasn't active, open it
                     if (!isActive) {
                         item.classList.add('active');
+                        console.log('FAQ item', index, 'opened');
                         
-                        // Smooth scroll to the question if needed (on mobile especially)
-                        setTimeout(() => {
-                            const rect = item.getBoundingClientRect();
-                            const offset = window.pageYOffset;
-                            const top = rect.top + offset - 100; // 100px offset from top
+                        // Smooth scroll to the question if needed (especially on mobile)
+                        setTimeout(function() {
+                            var rect = question.getBoundingClientRect();
+                            var isInViewport = (
+                                rect.top >= 0 &&
+                                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                            );
+                            
+                            // Only scroll if the answer might be cut off
+                            if (!isInViewport || rect.top < 100) {
+                                question.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        }, 300); // Wait for the accordion to expand
+                    } else {
+                        console.log('FAQ item', index, 'closed');
+                    }
+                });
+                
+                // Make the question keyboard accessible
+                question.setAttribute('tabindex', '0');
+                question.setAttribute('role', 'button');
+                question.setAttribute('aria-expanded', 'false');
+                
+                // Handle keyboard navigation (Enter and Space keys)
+                question.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        question.click();
+                    }
+                });
+                
+                // Update aria-expanded when item becomes active
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'class') {
+                            var isActive = item.classList.contains('active');
+                            question.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                        }
+                    });
+                });
+                
+                observer.observe(item, { attributes: true });
+            });
+            
+            console.log('FAQ Accordion: All event listeners attached');
+        });
+    </script>
+</body>
+</html>
